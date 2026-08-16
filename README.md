@@ -7,6 +7,21 @@
 
 **Community:** Join [Discord](https://discord.gg/tANKJkHck) for discussions and support
 
+## 🏠 Self-Hosted Mode
+
+This project supports a **fully self-hosted mode** with zero cloud dependencies. Run everything locally with a Deno backend and local AI models.
+
+```bash
+# Start Deno backend
+cd deno
+deno task dev
+
+# Start Next.js frontend (self-hosted mode)
+npm run dev:self-hosted
+```
+
+See `deno/README.md` for full self-hosted documentation.
+
 <p align="center"><a href="https://youtu.be/YhHHut-pDOY"><img src="https://i.ytimg.com/vi/YhHHut-pDOY/maxresdefault.jpg" width="720"></a></p>
 <p align="center"><a href="https://youtu.be/YhHHut-pDOY"><b>▶ Watch: Free Uncensored AI Image & Video Generator API — Open Source (500+ Models) | Open Generative AI </b></a></p>
 
