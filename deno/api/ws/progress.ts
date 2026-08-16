@@ -136,7 +136,7 @@ export async function serveStaticFile(
 
 // ─── Frontend static file serving ─────────────────────────────────────────────
 
-const FRONTEND_DIR = new URL("../../out", import.meta.url).pathname;
+const FRONTEND_DIR = new URL("../../../out", import.meta.url).pathname;
 
 const CONTENT_TYPES: Record<string, string> = {
   ".html": "text/html; charset=utf-8",
