@@ -2,8 +2,6 @@
 
 > **A fully self-hosted, open-source AI image, video, cinema, and lip sync studio.** Generate AI images and videos using 200+ models — Flux, Midjourney, Kling, Veo, Seedance and more — with zero cloud dependencies.
 
-**Community:** Join [Discord](https://discord.gg/tANKJkHck) for discussions and support
-
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -29,7 +27,7 @@ deno task dev
 npm run dev:self-hosted
 ```
 
-The app will be available at `http://localhost:3000`. You'll be prompted to enter your API key on first use.
+The app will be available at `http://localhost:3000`. The Deno backend runs in open mode by default — no API key required. To enable API key authentication, set `AI_CINEMA_API_KEY` or configure it in `~/.ai-cinema/config.json`.
 
 ### Production Build
 
