@@ -22,7 +22,7 @@
     "build:agent": "npm run build -w ai-agent",
     "build:design": "npm run build -w design-agent",
     "build:packages": "npm run build:workflow && npm run build:agent && npm run build:design && npm run build:studio",
-    "setup": "npm install && npm run build:packages"
+    "setup": "npm install && npm run build:packages && deno run --allow-all deno/scripts/fetch-binary.ts"
   },
   "dependencies": {
     "ai-agent": "file:./packages/Open-Poe-AI/packages/agents",

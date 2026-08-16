@@ -10,6 +10,7 @@
     "start": "deno run --allow-all main.ts",
     "build-frontend": "cd .. && npm run build",
     "start-all": "deno run --allow-all launcher.ts",
+    "fetch-binary": "deno run --allow-all scripts/fetch-binary.ts",
     "test": "deno test --allow-all"
   },
   "fmt": {

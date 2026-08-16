@@ -16,7 +16,7 @@
 git clone git@github.com:virtualcodewarrior/cinema-creator.git
 cd cinema-creator
 
-# Install dependencies + build workspace packages
+# Install dependencies, build workspace packages, and fetch the sd.cpp binary
 npm run setup
 
 # Build the frontend (static export)
@@ -27,6 +27,19 @@ deno task start-all
 ```
 
 The app will be available at `http://localhost:8000`. The Deno backend runs in open mode by default — no API key required. To enable API key authentication, set `AI_CINEMA_API_KEY` or configure it in `~/.ai-cinema/config.json`.
+
+### Local image generation (sd.cpp)
+
+`npm run setup` also downloads the [stable-diffusion.cpp](https://github.com/leejet/stable-diffusion.cpp) engine binary (`sd-cli`) into `~/.ai-cinema/bin/`. It is required for local image generation — without it the backend logs a warning at startup and local models are unavailable.
+
+To (re-)install the binary at any time:
+
+```bash
+cd deno
+deno task fetch-binary
+```
+
+Model weights (2.1–6.9 GB each) are not installed by setup — download the ones you need in Settings → Models.
 
 ### Development
 
@@ -43,11 +56,14 @@ deno task dev
 Run everything locally with a Deno backend and local AI models. No cloud dependencies, no subscription fees.
 
 ```bash
+# Fetch the sd.cpp engine binary (done automatically by "npm run setup")
+cd deno && deno task fetch-binary && cd ..
+
 # Build frontend and start Deno server (serves both API and frontend)
 deno task start-all
 ```
 
-See `deno/README.md` for full self-hosted documentation.
+See `deno/README.md` for full self-hosted documentation, including how to obtain the sd.cpp binary and model weights manually.
 
 ## ✨ Features
 

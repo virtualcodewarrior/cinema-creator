@@ -177,7 +177,15 @@ async function handleRequest(request: Request): Promise<Response> {
 
 logger.info(`Starting AI Cinema backend on ${config.host}:${config.port}`);
 logger.info(`Data directory: ${config.dataDir}`);
-logger.info(`sd.cpp binary: ${engine.binaryExists() ? "found" : "not found"}`);
+const sdcppBinPath = `${config.dataDir}/bin/sd-cli`;
+if (engine.binaryExists()) {
+  logger.info(`sd.cpp binary: found at ${sdcppBinPath}`);
+} else {
+  logger.warn(`sd.cpp binary: not found at ${sdcppBinPath} — local image generation is disabled.`);
+  logger.warn(
+    `Install it with "deno task fetch-binary" (in the deno/ directory) or re-run "npm run setup". See README.md.`,
+  );
+}
 
 Deno.serve({
   hostname: config.host,

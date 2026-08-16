@@ -11,6 +11,9 @@ Serves both the REST API and the static frontend from a single Deno server.
 # Clone and navigate
 cd deno
 
+# Install the sd.cpp inference binary (if you haven't already run "npm run setup")
+deno task fetch-binary
+
 # Run in development mode (hot reload)
 deno task dev
 
@@ -39,6 +42,32 @@ Or use the launcher which builds the frontend automatically:
 ```bash
 deno task start-all
 ```
+
+## Local inference binary (sd.cpp)
+
+The backend runs image generation through the `sd-cli` binary from
+[stable-diffusion.cpp](https://github.com/leejet/stable-diffusion.cpp), expected at
+`~/.ai-cinema/bin/sd-cli` (`bin/` under `AI_CINEMA_HOME`). `npm run setup` (from the project root) installs it automatically.
+
+Install or refresh it from this directory:
+
+```bash
+deno task fetch-binary
+```
+
+The task downloads the latest GitHub release prebuilt for your platform (the plain
+CPU build), extracts it into `~/.ai-cinema/bin/`, and exits if the binary is already
+present. It needs network access to GitHub plus `unzip` (or `tar`) on the system.
+Interrupted downloads resume on the next run.
+
+Manual install: download the zip for your platform from
+https://github.com/leejet/stable-diffusion.cpp/releases (e.g.
+`sd-...-bin-Linux-Ubuntu-24.04-x86_64.zip`) and extract its contents — the `sd-cli`
+binary and its shared libraries — directly into `~/.ai-cinema/bin/`.
+
+If the binary is missing, the server still starts but logs a warning and local image
+generation is disabled. Model weights are separate from the binary — download them
+in the app (Settings → Models, see *Available Models* below).
 
 ## Configuration
 
