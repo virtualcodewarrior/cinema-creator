@@ -1045,7 +1045,7 @@ export default function DrawModal({
             <div className="border-2 border-dashed border-white/10 rounded-2xl p-8 max-w-md w-full text-center flex flex-col items-center gap-6 bg-[#070708]/50">
               <div className="w-56 h-36 rounded-xl border border-white/5 overflow-hidden shadow-lg select-none relative bg-black/40">
                 <img
-                  src="https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/neta-lumina.avif"
+                  src="/assets/videomodels/neta-lumina.avif"
                   alt="Draw visual representation"
                   className="w-full h-full object-cover opacity-60"
                 />

@@ -760,7 +760,7 @@ export const t2iModels = [
       },
       "image_url": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/818590409074/b5aa9200-ed01-43b2-8ed7-091255f3d164.jpg"
+          "/assets/examples/b5aa9200-ed01-43b2-8ed7-091255f3d164.jpg"
         ],
         "description": "URL of the input image used to generate image.",
         "field": "image",
@@ -1150,7 +1150,7 @@ export const t2iModels = [
       },
       "image_url": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/flux-redux-input.jpg"
+          "/assets/videomodels/flux-redux-input.jpg"
         ],
         "description": "URL of the input image used to generate image.",
         "field": "image",
@@ -7354,7 +7354,7 @@ export const t2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/seedance-v1.5-pro-i2v.jpg"
+          "/assets/videomodels/seedance-v1.5-pro-i2v.jpg"
         ],
         "description": "Up to 9 reference images (JPEG/PNG/WebP). Referenced in prompt via @image1..@image9.",
         "field": "images_list",
@@ -10141,7 +10141,7 @@ export const i2iModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/seedream-v4-edit-input.jpg"
+          "/assets/videomodels/seedream-v4-edit-input.jpg"
         ],
         "description": "Upload or provide reference images. Used for image-to-image generation.",
         "field": "images_list",
@@ -10213,7 +10213,7 @@ export const i2iModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/seedream-5.0-edit-in.jpg"
+          "/assets/videomodels/seedream-5.0-edit-in.jpg"
         ],
         "description": "Upload or provide start frame image. Used for image-to-video generation.",
         "field": "images_list",
@@ -10274,7 +10274,7 @@ export const i2iModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/qwen-image-2.0-edit-in.jpg"
+          "/assets/videomodels/qwen-image-2.0-edit-in.jpg"
         ],
         "description": "Upload up to 9 image URLs.",
         "field": "images_list",
@@ -10323,7 +10323,7 @@ export const i2iModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/qwen-image-2.0-pro-edit-in.jpg"
+          "/assets/videomodels/qwen-image-2.0-pro-edit-in.jpg"
         ],
         "description": "Upload up to 6 image URLs.",
         "field": "images_list",
@@ -10372,7 +10372,7 @@ export const i2iModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/flux-2-klein-4b-edit-in.jpg"
+          "/assets/videomodels/flux-2-klein-4b-edit-in.jpg"
         ],
         "description": "List of URLs of input images for editing.",
         "field": "images_list",
@@ -10421,7 +10421,7 @@ export const i2iModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/flux-2-klein-9b-edit-in.jpg"
+          "/assets/videomodels/flux-2-klein-9b-edit-in.jpg"
         ],
         "description": "List of URLs of input images for editing.",
         "field": "images_list",
@@ -10533,7 +10533,7 @@ export const i2iModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/956660418681/1b84d57d-0869-40f7-8ceb-85ea38074022.jpg"
+          "/assets/examples/1b84d57d-0869-40f7-8ceb-85ea38074022.jpg"
         ],
         "description": "1–3 reference photos of the character to build the sheet from.",
         "field": "images_list",
@@ -10576,7 +10576,7 @@ export const i2iModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/wan2.7-image-edit-in.jpg"
+          "/assets/videomodels/wan2.7-image-edit-in.jpg"
         ],
         "description": "Upload or provide the input image to animate.",
         "field": "images_list",
@@ -10627,7 +10627,7 @@ export const i2iModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/wan2.7-image-edit-pro-in.jpg"
+          "/assets/videomodels/wan2.7-image-edit-pro-in.jpg"
         ],
         "description": "Upload or provide the input image to animate.",
         "field": "images_list",
@@ -10678,7 +10678,7 @@ export const i2iModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/flux-2-klein-4b-edit-in.jpg"
+          "/assets/videomodels/flux-2-klein-4b-edit-in.jpg"
         ],
         "description": "List of 1-3 reference image URLs to edit.",
         "field": "images_list",
@@ -10762,7 +10762,7 @@ export const i2iModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/flux-2-klein-9b-edit-in.jpg"
+          "/assets/videomodels/flux-2-klein-9b-edit-in.jpg"
         ],
         "description": "List of 1-3 reference image URLs to edit.",
         "field": "images_list",
@@ -10846,7 +10846,7 @@ export const i2iModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/kling-o3-image-edit-in.jpg"
+          "/assets/videomodels/kling-o3-image-edit-in.jpg"
         ],
         "description": "Upload or provide reference images to transform. Up to 10 images supported.",
         "field": "images_list",
@@ -14499,7 +14499,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/seedance-v2.0-i2v.jpg"
+          "/assets/videomodels/seedance-v2.0-i2v.jpg"
         ],
         "description": "Upload up to 9 image URLs. Reference them in the prompt using @image1, @image2, … @image9. The aspect ratio of the reference image takes precedence over the aspect_ratio parameter.",
         "field": "images_list",
@@ -14564,7 +14564,7 @@ export const i2vModels = [
       },
       "image_url": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/ltx-2.3-image-to-video.png"
+          "/assets/videomodels/ltx-2.3-image-to-video.png"
         ],
         "description": "URL of the input image.",
         "field": "image",
@@ -14624,7 +14624,7 @@ export const i2vModels = [
       },
       "image_url": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/openai-sora-2-standard-image-to-video.png"
+          "/assets/videomodels/openai-sora-2-standard-image-to-video.png"
         ],
         "type": "string",
         "title": "Image URL",
@@ -14700,7 +14700,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "Up to 9 reference image URLs. Each Nth image corresponds to @image_file_N in the prompt.",
         "field": "images_list",
@@ -14714,7 +14714,7 @@ export const i2vModels = [
       },
       "video_files": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/videos/186/314541316386/621c8607-a60f-4503-b1bf-a2c1cd90c84f.mp4"
+          "/assets/examples/621c8607-a60f-4503-b1bf-a2c1cd90c84f.mp4"
         ],
         "description": "Up to 3 reference video clip URLs. Each Nth video corresponds to @video_file_N in the prompt.",
         "field": "videos_list",
@@ -14728,7 +14728,7 @@ export const i2vModels = [
       },
       "audio_files": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/minimax-speech-2.6-turbo.mp3"
+          "/assets/videomodels/minimax-speech-2.6-turbo.mp3"
         ],
         "description": "Up to 3 reference audio clip URLs. Each Nth audio corresponds to @audio_file_N in the prompt.",
         "field": "audios_list",
@@ -14799,7 +14799,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "1 image = first frame anchor; 2 images = first and last frame.",
         "field": "images_list",
@@ -14870,7 +14870,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/seedance-v2.0-omni-reference.png"
+          "/assets/videomodels/seedance-v2.0-omni-reference.png"
         ],
         "description": "Up to 9 reference image URLs (JPEG/PNG/WebP). Each Nth image corresponds to @imageN in the prompt.",
         "field": "images_list",
@@ -14965,7 +14965,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/pixverse-v6-i2v.mp4"
+          "/assets/videomodels/pixverse-v6-i2v.mp4"
         ],
         "description": "Upload or provide the input image to animate.",
         "field": "images_list",
@@ -15048,7 +15048,7 @@ export const i2vModels = [
         "description": "Upload starting image.",
         "field": "image",
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/pixverse-v6-transition.jpg"
+          "/assets/videomodels/pixverse-v6-transition.jpg"
         ]
       },
       "last_image": {
@@ -15058,7 +15058,7 @@ export const i2vModels = [
         "description": "Upload ending image (optional).",
         "field": "image",
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/pixverse-v6-transition-1.jpg"
+          "/assets/videomodels/pixverse-v6-transition-1.jpg"
         ]
       },
       "aspect_ratio": {
@@ -15324,7 +15324,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/seedance-v2.0-i2v.jpg"
+          "/assets/videomodels/seedance-v2.0-i2v.jpg"
         ],
         "description": "Upload up to 9 image URLs. Reference them in the prompt using @image1, @image2, … @image9.",
         "field": "images_list",
@@ -15392,7 +15392,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/seedance-v2.0-omni-reference.png"
+          "/assets/videomodels/seedance-v2.0-omni-reference.png"
         ],
         "description": "Up to 9 reference image URLs (JPEG/PNG/WebP). Each Nth image corresponds to @imageN in the prompt.",
         "field": "images_list",
@@ -15485,7 +15485,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "1 image uses it as the start frame (first_last_frames mode). 2–9 images switches to omni_reference mode — reference them in your prompt with @image1, @image2, etc.",
         "field": "images_list",
@@ -15545,7 +15545,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "1 image uses it as the start frame (first_last_frames mode). 2–9 images switches to omni_reference mode — reference them in your prompt with @image1, @image2, etc.",
         "field": "images_list",
@@ -15605,7 +15605,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "1 image = first frame only; 2 images = first and last frame. Use 'adaptive' aspect ratio to match the reference image geometry.",
         "field": "images_list",
@@ -15666,7 +15666,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "1 image = first frame only; 2 images = first and last frame. Use 'adaptive' aspect ratio to match the reference image geometry.",
         "field": "images_list",
@@ -15727,7 +15727,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "Up to 9 reference image URLs (JPEG/PNG/WebP). Each Nth image corresponds to @imageN in the prompt.",
         "field": "images_list",
@@ -15798,7 +15798,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "Up to 9 reference image URLs (JPEG/PNG/WebP). Each Nth image corresponds to @imageN in the prompt.",
         "field": "images_list",
@@ -15869,7 +15869,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "1 or 2 images used as start frame (and optional end frame). Provide 1 image to animate from it, or 2 images for a start-to-end transition.",
         "field": "images_list",
@@ -15936,7 +15936,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "1 or 2 images used as start frame (and optional end frame).",
         "field": "images_list",
@@ -16003,7 +16003,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "1 image = first frame only; 2 images = first and last frame. Use 'adaptive' aspect ratio to match the reference image geometry.",
         "field": "images_list",
@@ -16071,7 +16071,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "1 image = first frame only; 2 images = first and last frame. Use 'adaptive' aspect ratio to match the reference image geometry.",
         "field": "images_list",
@@ -16139,7 +16139,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "Up to 9 reference image URLs (JPEG/PNG/WebP). Each Nth image corresponds to @imageN in the prompt.",
         "field": "images_list",
@@ -16223,7 +16223,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "Up to 9 reference image URLs (JPEG/PNG/WebP). Each Nth image corresponds to @imageN in the prompt.",
         "field": "images_list",
@@ -16307,7 +16307,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/happy-horse-1-image-to-video-1080p.jpg"
+          "/assets/videomodels/happy-horse-1-image-to-video-1080p.jpg"
         ],
         "description": "Upload or provide the image to animate.",
         "field": "images_list",
@@ -16366,7 +16366,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/happy-horse-1-image-to-video-720p.jpg"
+          "/assets/videomodels/happy-horse-1-image-to-video-720p.jpg"
         ],
         "description": "Upload or provide the image to animate.",
         "field": "images_list",
@@ -16416,7 +16416,7 @@ export const i2vModels = [
     "inputs": {
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "Upload or provide the image to animate.",
         "field": "images_list",
@@ -16473,7 +16473,7 @@ export const i2vModels = [
     "inputs": {
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/seedance-v2.0-i2v.jpg"
+          "/assets/videomodels/seedance-v2.0-i2v.jpg"
         ],
         "description": "Upload or provide the start frame image.",
         "field": "images_list",
@@ -16533,7 +16533,7 @@ export const i2vModels = [
     "inputs": {
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/seedance-v2.0-i2v.jpg"
+          "/assets/videomodels/seedance-v2.0-i2v.jpg"
         ],
         "description": "Upload or provide the start frame image.",
         "field": "images_list",
@@ -16602,7 +16602,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "Up to 9 reference image URLs (JPEG/PNG/WebP). Each Nth image corresponds to @imageN in the prompt.",
         "field": "images_list",
@@ -16686,7 +16686,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "Up to 9 reference image URLs (JPEG/PNG/WebP). Each Nth image corresponds to @imageN in the prompt.",
         "field": "images_list",
@@ -16770,7 +16770,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "1 image = first frame only; 2 images = first and last frame. Use 'adaptive' aspect ratio to match the reference image geometry.",
         "field": "images_list",
@@ -16832,7 +16832,7 @@ export const i2vModels = [
       },
       "image_url": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/kling-v3.0-pro-image-to-video1.jpg"
+          "/assets/videomodels/vidu-q3-pro-first-last-frames-1.jpg"
         ],
         "description": "URL of the input image used to generate video.",
         "field": "image",
@@ -16842,7 +16842,7 @@ export const i2vModels = [
       },
       "last_image": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/kling-v3.0-pro-image-to-video2.jpg"
+          "/assets/videomodels/vidu-q3-pro-first-last-frames-2.jpg"
         ],
         "description": "URL of the input last image.",
         "field": "image",
@@ -16890,7 +16890,7 @@ export const i2vModels = [
       },
       "image_url": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/vidu-q3-pro-image-to-video.jpg"
+          "/assets/videomodels/vidu-q3-pro-image-to-video.jpg"
         ],
         "description": "URL of the starting frame image.",
         "field": "image",
@@ -16966,7 +16966,7 @@ export const i2vModels = [
       },
       "image_url": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/vidu-q3-pro-first-last-frames-1.jpg"
+          "/assets/videomodels/vidu-q3-pro-first-last-frames-1.jpg"
         ],
         "description": "URL of the starting (first) frame image.",
         "field": "image",
@@ -16976,7 +16976,7 @@ export const i2vModels = [
       },
       "last_image": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/vidu-q3-pro-first-last-frames-2.jpg"
+          "/assets/videomodels/vidu-q3-pro-first-last-frames-2.jpg"
         ],
         "description": "URL of the ending (last) frame image.",
         "field": "image",
@@ -17051,7 +17051,7 @@ export const i2vModels = [
       },
       "image_url": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/vidu-q3-turbo-image-to-video.jpg"
+          "/assets/videomodels/vidu-q3-turbo-image-to-video.jpg"
         ],
         "description": "URL of the starting frame image.",
         "field": "image",
@@ -17127,7 +17127,7 @@ export const i2vModels = [
       },
       "image_url": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/vidu-q3-turbo-first-last-frames-1.jpg"
+          "/assets/videomodels/vidu-q3-turbo-first-last-frames-1.jpg"
         ],
         "description": "URL of the starting (first) frame image.",
         "field": "image",
@@ -17137,7 +17137,7 @@ export const i2vModels = [
       },
       "last_image": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/vidu-q3-turbo-first-last-frames-2.jpg"
+          "/assets/videomodels/vidu-q3-turbo-first-last-frames-2.jpg"
         ],
         "description": "URL of the ending (last) frame image.",
         "field": "image",
@@ -17212,7 +17212,7 @@ export const i2vModels = [
       },
       "image_url": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/vidu-q2-turbo-1.jpg"
+          "/assets/videomodels/vidu-q2-turbo-1.jpg"
         ],
         "description": "URL of the starting frame image.",
         "field": "image",
@@ -17296,7 +17296,7 @@ export const i2vModels = [
       },
       "image_url": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/vidu-q2-turbo-1.jpg"
+          "/assets/videomodels/vidu-q2-turbo-1.jpg"
         ],
         "description": "URL of the starting frame image.",
         "field": "image",
@@ -17380,8 +17380,8 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/happy-horse-1-reference-to-video-1080p-1.jpg",
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/happy-horse-1-reference-to-video-1080p-2.jpg"
+          "/assets/videomodels/happy-horse-1-reference-to-video-1080p-1.jpg",
+          "/assets/videomodels/happy-horse-1-reference-to-video-1080p-2.jpg"
         ],
         "description": "1-9 reference image URLs. JPEG/PNG/WEBP, >=400px shortest side, <=10 MB each.",
         "field": "images_list",
@@ -17450,8 +17450,8 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/happy-horse-1-reference-to-video-720p-1.jpg",
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/happy-horse-1-reference-to-video-720p-2.jpg"
+          "/assets/videomodels/happy-horse-1-reference-to-video-720p-1.jpg",
+          "/assets/videomodels/happy-horse-1-reference-to-video-720p-2.jpg"
         ],
         "description": "1-9 reference image URLs. JPEG/PNG/WEBP, >=400px shortest side, <=10 MB each.",
         "field": "images_list",
@@ -17776,7 +17776,7 @@ export const i2vModels = [
       },
       "image_url": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/seedance-v1.5-pro-i2v.jpg"
+          "/assets/videomodels/seedance-v1.5-pro-i2v.jpg"
         ],
         "description": "URL of the input image to animate into video.",
         "field": "image",
@@ -17869,7 +17869,7 @@ export const i2vModels = [
       },
       "image_url": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/seedance-v1.5-pro-i2v.jpg"
+          "/assets/videomodels/seedance-v1.5-pro-i2v.jpg"
         ],
         "description": "URL of the input image to animate into video.",
         "field": "image",
@@ -17962,7 +17962,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/seedance-v1.5-pro-i2v.jpg"
+          "/assets/videomodels/seedance-v1.5-pro-i2v.jpg"
         ],
         "description": "1 image = start frame. 2-9 images = reference images; reference them in your prompt with @image1, @image2, etc.",
         "field": "images_list",
@@ -18047,7 +18047,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/happy-horse-1-image-to-video-1080p.jpg"
+          "/assets/videomodels/happy-horse-1-image-to-video-1080p.jpg"
         ],
         "description": "Upload or provide the image to animate.",
         "field": "images_list",
@@ -18106,7 +18106,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/happy-horse-1-image-to-video-1080p.jpg"
+          "/assets/videomodels/happy-horse-1-image-to-video-1080p.jpg"
         ],
         "description": "Upload or provide the image to animate.",
         "field": "images_list",
@@ -18165,8 +18165,8 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/happy-horse-1-reference-to-video-1080p-1.jpg",
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/happy-horse-1-reference-to-video-1080p-2.jpg"
+          "/assets/videomodels/happy-horse-1-reference-to-video-1080p-1.jpg",
+          "/assets/videomodels/happy-horse-1-reference-to-video-1080p-2.jpg"
         ],
         "description": "1-9 reference image URLs. JPEG/PNG/WEBP, >=400px shortest side, <=10 MB each.",
         "field": "images_list",
@@ -18235,8 +18235,8 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/happy-horse-1-reference-to-video-1080p-1.jpg",
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/happy-horse-1-reference-to-video-1080p-2.jpg"
+          "/assets/videomodels/happy-horse-1-reference-to-video-1080p-1.jpg",
+          "/assets/videomodels/happy-horse-1-reference-to-video-1080p-2.jpg"
         ],
         "description": "1-9 reference image URLs. JPEG/PNG/WEBP, >=400px shortest side, <=10 MB each.",
         "field": "images_list",
@@ -18296,7 +18296,7 @@ export const i2vModels = [
     "inputs": {
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/seedance-v2.0-i2v.jpg"
+          "/assets/videomodels/seedance-v2.0-i2v.jpg"
         ],
         "description": "Upload or provide the start frame image.",
         "field": "images_list",
@@ -18365,7 +18365,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "1 image = first frame only; 2 images = first and last frame. Use ‘adaptive’ aspect ratio to match the reference image geometry.",
         "field": "images_list",
@@ -18426,7 +18426,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "Up to 9 reference image URLs (JPEG/PNG/WebP). Each Nth image corresponds to @imageN in the prompt.",
         "field": "images_list",
@@ -18511,7 +18511,7 @@ export const i2vModels = [
       },
       "image_url": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/seedance-v1.5-pro-i2v.jpg"
+          "/assets/videomodels/seedance-v1.5-pro-i2v.jpg"
         ],
         "description": "URL of the input image to animate into video.",
         "field": "image",
@@ -18996,7 +18996,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "1 or 2 images used as start frame (and optional end frame). Provide 1 image to animate from it, or 2 images for a start-to-end transition.",
         "field": "images_list",
@@ -19063,7 +19063,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-images/186/712345784292/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
+          "/assets/examples/4a8c5c70-abcc-4920-873e-b0e219986453.jpg"
         ],
         "description": "1 or 2 images used as start frame (and optional end frame).",
         "field": "images_list",
@@ -19130,7 +19130,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/seedance-v1.5-pro-i2v.jpg"
+          "/assets/videomodels/seedance-v1.5-pro-i2v.jpg"
         ],
         "description": "1 image = start frame. 2-9 images = reference images; reference them in your prompt with @image1, @image2, etc.",
         "field": "images_list",
@@ -20385,7 +20385,7 @@ export const audioModels = [
       },
       "audio_url": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/ai-music/186/309018126238/c7e634cf-f0f3-4988-8225-4e7d0eb6121b.mp3"
+          "/assets/examples/c7e634cf-f0f3-4988-8225-4e7d0eb6121b.mp3"
         ],
         "description": "The URL for uploading audio files. Ensure the uploaded audio does not exceed 2 minutes in length.",
         "field": "audio",
@@ -20534,7 +20534,7 @@ export const audioModels = [
       },
       "audio_url": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/audios/186/755853337445/example.mp3"
+          "/assets/examples/example.mp3"
         ],
         "description": "The URL for uploading audio files. Ensure the uploaded audio does not exceed 2 minutes in length.",
         "field": "audio",
@@ -21078,7 +21078,7 @@ export const audioModels = [
     "inputs": {
       "audio_url": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/minimax-voice-clone-in.wav"
+          "/assets/videomodels/minimax-voice-clone-in.wav"
         ],
         "description": "URL of a clean 10-second recording of the voice to clone. Mono is fine. The provider extracts a vocal segment between vocal_start_s and vocal_end_s.",
         "field": "audio",
@@ -21161,7 +21161,7 @@ export const audioModels = [
     "inputs": {
       "audio_url": {
         "examples": [
-          "https://d3adwkbyhxyrtq.cloudfront.net/webassets/videomodels/minimax-voice-clone-in.wav"
+          "/assets/videomodels/minimax-voice-clone-in.wav"
         ],
         "description": "Url of the audio url.",
         "field": "audio",
