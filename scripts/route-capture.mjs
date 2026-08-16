@@ -11,15 +11,44 @@ const ROUTES = [
   '/studio/workflow',
   '/agents/agent-1',
 ];
-const PROBE = `JSON.stringify({
-  title: document.title,
-  rootChildren: document.getElementById('root')?.childElementCount ?? -1,
-  text: document.body.innerText.slice(0, 350),
-  buttons: [...document.querySelectorAll('button')].map(b => b.textContent.trim()).filter(Boolean).slice(0, 45),
-  inputs: [...document.querySelectorAll('input,textarea,select')].length,
-  videos: document.querySelectorAll('video').length,
-  canvases: document.querySelectorAll('canvas').length
-})`;
+// Shadow-piercing probe: querySelector/innerText on body do not cross shadow
+// boundaries, so walk shadow roots explicitly. String.raw: the probe contains
+// regex backslashes (\s) that a plain template literal would mangle.
+const PROBE = String.raw`(() => {
+  function deep(sel, root = document, acc = []) {
+    // Walk every element (not just matches) so shadow roots of non-matching
+    // containers are still traversed.
+    for (const el of root.querySelectorAll('*')) {
+      if (el.matches(sel)) acc.push(el);
+      if (el.shadowRoot) deep(sel, el.shadowRoot, acc);
+    }
+    return acc;
+  }
+  function text(root, acc = '') {
+    // Snapshot childNodes: iterating a live NodeList while the DOM mutates
+    // (e.g. an HMR reload mid-probe) walks a torn tree and garbles the text.
+    for (const c of Array.from(root.childNodes)) {
+      if (c.nodeType === 3) acc += c.textContent;
+      else if (c.nodeType === 1) {
+        if (c.shadowRoot) acc += text(c.shadowRoot);
+        else acc += text(c);
+      }
+    }
+    return acc;
+  }
+  const buttons = deep('button').map((b) => b.textContent.trim()).filter(Boolean).slice(0, 45);
+  const allEls = deep('*');
+  return JSON.stringify({
+    title: document.title,
+    rootChildren: document.getElementById('root')?.childElementCount ?? -1,
+    shadowRoots: allEls.reduce((n, el) => n + (el.shadowRoot ? 1 : 0), 0),
+    text: text(document.body).replace(/\s+/g, ' ').trim().slice(0, 2000),
+    buttons,
+    inputs: deep('input,textarea,select').length,
+    videos: deep('video').length,
+    canvases: deep('canvas').length,
+  });
+})()`;
 
 const targets = await (await fetch('http://127.0.0.1:9222/json')).json();
 const page = targets.find(t => t.type === 'page');
@@ -51,13 +80,32 @@ const out = {};
 for (const route of ROUTES) {
   errors.length = 0;
   await send('Page.navigate', { url: BASE + route });
-  await new Promise(r => setTimeout(r, 4500));
-  const res = await send('Runtime.evaluate', { expression: PROBE, returnByValue: true });
-  out[route] = {
-    dom: JSON.parse(res?.result?.value ?? '{}'),
-    errors: [...new Set(errors)],
-  };
-  await new Promise(r => setTimeout(r, 500));
+  await new Promise(r => setTimeout(r, 2000));
+  // Hard reload: discards any in-flight HMR-patched DOM and guarantees a
+  // clean document for this route.
+  await send('Page.reload');
+  // Wait until the DOM settles: lazy imports can keep mutating the tree for
+  // a while after load. Two identical probes = stable.
+  let last = null;
+  let stableFor = 0;
+  let dom = {};
+  for (let attempt = 0; attempt < 20; attempt++) {
+    if (attempt === 0) await new Promise(r => setTimeout(r, 3000));
+    else await new Promise(r => setTimeout(r, 1000));
+    const res = await send('Runtime.evaluate', { expression: PROBE, returnByValue: true });
+    const now = res?.result?.value ?? '{}';
+    if (now === last) {
+      stableFor++;
+      dom = JSON.parse(now);
+      if (stableFor >= 1) break;
+    } else {
+      stableFor = 0;
+      last = now;
+      dom = JSON.parse(now);
+    }
+  }
+  out[route] = { dom, errors: [...new Set(errors)] };
+  await new Promise(r => setTimeout(r, 300));
 }
 ws.close();
 const fs = await import('node:fs');

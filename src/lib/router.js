@@ -31,13 +31,13 @@ export function matchPath(pathname) {
   for (const r of routes) {
     const m = r.regex.exec(pathname);
     if (!m) continue;
-    const params = { _: null };
+    const params = {};
     r.names.forEach((n, i) => {
       params[n] = decodeURIComponent(m[i + 1] ?? '');
     });
-    const wildcard = r.pattern.endsWith('/*') ? r.names.length : -1;
-    if (wildcard >= 0 && m[wildcard + 1] != null) params._ = m[wildcard + 1];
-    return { pattern, params };
+    // A trailing '/*' contributes one extra capture group after the named ones.
+    if (r.pattern.endsWith('/*')) params._ = m[r.names.length + 1] ?? '';
+    return { pattern: r.pattern, handler: r.handler, params };
   }
   return null;
 }
@@ -60,7 +60,9 @@ export function dispatch() {
   const pathname = window.location.pathname;
   const search = window.location.search;
   const match = matchPath(pathname);
-  current = match ? { ...match, pathname, search } : { pattern: null, params: {}, pathname, search };
+  current = match
+    ? { pattern: match.pattern, params: match.params, pathname, search }
+    : { pattern: null, params: {}, pathname, search };
   if (match) match.handler({ ...match.params, pathname, search });
   return current;
 }

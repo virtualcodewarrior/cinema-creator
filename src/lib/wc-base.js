@@ -46,12 +46,15 @@ function applySheet(root, key) {
 
 export class BaseElement extends LitElement {
   // Subclasses set: static sheetKey = 'studio' | 'workflow' | ...
+  // or a list: static sheetKeys = ['shell', 'studio'].
   static sheetKey = null;
+  static sheetKeys = null;
 
   createRenderRoot() {
     const root = super.createRenderRoot();
-    const key = this.constructor.sheetKey;
-    if (key) applySheet(root, key);
+    const ctor = this.constructor;
+    const keys = ctor.sheetKeys ?? (ctor.sheetKey ? [ctor.sheetKey] : []);
+    for (const key of keys) applySheet(root, key);
     return root;
   }
 }
