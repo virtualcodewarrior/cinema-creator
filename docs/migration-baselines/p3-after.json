@@ -57,5 +57,40 @@
       "canvases": 0
     },
     "errors": []
+  },
+  "/studio/audio": {
+    "dom": {
+      "title": "Open Generative AI \u2014 Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "shadowRoots": 3,
+      "text": "AI Cinema Self-Hosted Studio \ud83c\udfa8Image \ud83c\udfacVideo \ud83c\udfa5Cinema \ud83d\udc44Lip Sync \ud83d\udd17Workflow \ud83e\udd16Agents \ud83d\udce6Apps \ud83c\udfb5Audio \ud83d\udce2Marketing \ud83c\udfadRecast \ud83d\udc83Motion \u2702\ufe0fClipping \ud83d\uddbc\ufe0fLayers \u270f\ufe0fDesign \u2b50Influencer \u2699\ufe0fSettings Audio Model Suno Create Music Description Suno generate music that turns text prompts into full songs \u0393\u00c7\u00f6 complete with vocals, lyrics, and instrumentation. You can describe a mood, genre, or even a specific lyric idea, and Suno creates a realistic, studio-quality track in seconds. Prompt \"Hard-hitting rap track with aggress...\" Style Music style specification for the generated audio. Custom Mode Enable custom mode for advanced settings. Title Title for the generated music track (optional). Persona ID Persona ID or custom voice ID to apply to the generated music (optional). Pair with persona_model to disambiguate. Persona Model Select option What kind of persona_id this is. Set to voice_persona when persona_id is a cloned voice ID from suno-voice-clone. Requires model V5 or V5_5. Instrumental Enable this option to generate music without prompt. If false prompt will used as the exact lyrics. Negative Tags Music styles or traits to exclude from the generated audio (optional). Use to avoid specific styles. Vocal Gender male Vocal gender preference for the singing voice (optional). Style Weight 0.65 0 1 Strength of adherence to the specified style (optional). Range 0\u0393\u00c7\u00f41, up to 2 decimal places. Weirdness Constraint 0.65 0 1 Controls experimental/creative deviation (optional). Range 0\u0393\u00c7\u00f41, up to 2 decimal places. Audio Weight 0.65 0 1 Balance weight for audio features vs. other factors (optional). Range 0\u0393\u00c7\u00f41, up to 2 decimal places. Generate Track Audio Studio Choose an AI music model, voice cloner, or sound generator. Modify variables on the left and craft your next high-fidelity track.",
+      "buttons": [
+        "\ud83c\udfa8Image",
+        "\ud83c\udfacVideo",
+        "\ud83c\udfa5Cinema",
+        "\ud83d\udc44Lip Sync",
+        "\ud83d\udd17Workflow",
+        "\ud83e\udd16Agents",
+        "\ud83d\udce6Apps",
+        "\ud83c\udfb5Audio",
+        "\ud83d\udce2Marketing",
+        "\ud83c\udfadRecast",
+        "\ud83d\udc83Motion",
+        "\u2702\ufe0fClipping",
+        "\ud83d\uddbc\ufe0fLayers",
+        "\u270f\ufe0fDesign",
+        "\u2b50Influencer",
+        "\u2699\ufe0fSettings",
+        "Suno Create Music",
+        "\"Hard-hitting rap track with aggress...\"",
+        "Select option",
+        "male",
+        "Generate Track"
+      ],
+      "inputs": 8,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": []
   }
 }

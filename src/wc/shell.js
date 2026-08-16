@@ -7,11 +7,13 @@ import { navigate } from '../lib/router.js';
 import './settings.js';
 
 import './studio/studio-apps.js';
+import './studio/studio-audio.js';
 
 // P3: studios flipped to native web components map to an element tag; they
 // render into #studio-outlet instead of the React root below.
 const NATIVE_STUDIOS = {
   apps: 'studio-apps',
+  audio: 'studio-audio',
 };
 
 import ImageStudio from '../../packages/studio/src/components/ImageStudio';
