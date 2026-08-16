@@ -1,0 +1,26 @@
+{
+  "name": "@ai-cinema/backend",
+  "version": "0.1.0",
+  "exports": "./main.ts",
+  "imports": {
+    "@ai-cinema/*": "./mod.ts"
+  },
+  "tasks": {
+    "dev": "deno run --watch --allow-all main.ts",
+    "start": "deno run --allow-all main.ts",
+    "test": "deno test --allow-all",
+    "all": "deno run --allow-all launcher.ts"
+  },
+  "fmt": {
+    "indentWidth": 2,
+    "lineWidth": 120,
+    "semiColons": true,
+    "singleQuote": false,
+    "proseWrap": "preserve"
+  },
+  "lint": {
+    "rules": {
+      "exclude": ["prefer-const", "no-explicit-any"]
+    }
+  }
+}

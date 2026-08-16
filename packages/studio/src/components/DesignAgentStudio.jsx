@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { CreativeCanvas } from 'design-agent';
 
-import { getUserBalance } from '../muapi';
+import { getUserBalance } from '../backendClient';
 
 export default function DesignAgentStudio({
   apiKey,
@@ -30,9 +30,7 @@ export default function DesignAgentStudio({
   useEffect(() => {
     if (!apiKey) return;
 
-    // White-label shells already know the end user's identity/credit balance (fetched via
-    // /api/whitelabel/balance) and pass them in directly — GET /account/balance explicitly
-    // 403s for white-label end users, so getUserBalance() below must stay BYOK-only.
+    // White-label shells already know the end user's identity/credit balance and pass them in directly.
     if (userEmail !== undefined || balance !== undefined) {
       setUserData({
         username: userEmail?.split('@')[0] || 'Studio User',

@@ -1,0 +1,26 @@
+# Deno backend Dockerfile
+FROM denoland/deno:1.40.0
+
+# Install unzip for model extraction
+RUN apt-get update && apt-get install -y unzip && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Copy Deno project files
+COPY deno/ ./
+
+# Cache dependencies
+RUN deno cache --allow-all main.ts
+
+# Expose port
+EXPOSE 8000
+
+# Set environment variables
+ENV AI_CINEMA_HOME=/data
+ENV DENO_DIR=/cache
+
+# Create data directory
+RUN mkdir -p /data
+
+# Run the backend
+CMD ["run", "--allow-all", "main.ts"]

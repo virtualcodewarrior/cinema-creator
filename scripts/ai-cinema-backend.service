@@ -1,0 +1,27 @@
+[Unit]
+Description=AI Cinema Deno Backend
+After=network.target
+
+[Service]
+Type=simple
+User=ai-cinema
+Group=ai-cinema
+WorkingDirectory=/opt/ai-cinema/deno
+ExecStart=/usr/local/bin/deno run --allow-all main.ts
+Restart=on-failure
+RestartSec=5
+
+# Environment
+Environment=AI_CINEMA_HOME=/opt/ai-cinema/data
+Environment=DENO_DIR=/opt/ai-cinema/cache
+Environment=AI_CINEMA_PORT=8000
+Environment=AI_CINEMA_LOG_LEVEL=info
+
+# Security
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/ai-cinema/data /opt/ai-cinema/cache
+
+[Install]
+WantedBy=multi-user.target

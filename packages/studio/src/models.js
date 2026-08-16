@@ -394,7 +394,7 @@ export const t2iModels = [
         "isEdit": true
       }
     },
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "MuapiApp"
   },
   {
@@ -4978,7 +4978,7 @@ export const t2vModels = [
         "default": "16:9"
       }
     },
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Muapi"
   },
   {
@@ -7841,7 +7841,7 @@ export const i2iModels = [
     "imageField": "image_url",
     "hasPrompt": false,
     "inputs": {},
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Fal"
   },
   {
@@ -7864,7 +7864,7 @@ export const i2iModels = [
         "step": 1
       }
     },
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "MuapiApp"
   },
   {
@@ -7875,7 +7875,7 @@ export const i2iModels = [
     "imageField": "model_image_url",
     "hasPrompt": false,
     "inputs": {},
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Fal"
   },
   {
@@ -7887,7 +7887,7 @@ export const i2iModels = [
     "hasPrompt": false,
     "inputs": {},
     "cost": 0.01,
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Fal"
   },
   {
@@ -7899,7 +7899,7 @@ export const i2iModels = [
     "hasPrompt": false,
     "inputs": {},
     "cost": 0.03,
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Fal"
   },
 
@@ -7921,7 +7921,7 @@ export const i2iModels = [
         ]
       }
     },
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Fal"
   },
   {
@@ -7932,7 +7932,7 @@ export const i2iModels = [
     "imageField": "image_url",
     "hasPrompt": false,
     "inputs": {},
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Fal"
   },
   {
@@ -7943,7 +7943,7 @@ export const i2iModels = [
     "imageField": "image_url",
     "hasPrompt": false,
     "inputs": {},
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Fal"
   },
   {
@@ -8014,7 +8014,7 @@ export const i2iModels = [
         ]
       }
     },
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Fal"
   },
   {
@@ -8025,7 +8025,7 @@ export const i2iModels = [
     "imageField": "image_url",
     "hasPrompt": false,
     "inputs": {},
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Fal"
   },
   {
@@ -8036,7 +8036,7 @@ export const i2iModels = [
     "imageField": "image_url",
     "hasPrompt": false,
     "inputs": {},
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Fal"
   },
   {
@@ -8047,7 +8047,7 @@ export const i2iModels = [
     "imageField": "image_url",
     "hasPrompt": false,
     "inputs": {},
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Fal"
   },
   {
@@ -8724,7 +8724,7 @@ export const i2iModels = [
         "default": "Angel Figurine"
       }
     },
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Muapi"
   },
   {
@@ -9192,7 +9192,7 @@ export const i2iModels = [
         "default": "4k"
       }
     },
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Muapi"
   },
   {
@@ -9333,7 +9333,7 @@ export const i2iModels = [
         "default": true
       }
     },
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Muapi"
   },
   {
@@ -9879,7 +9879,7 @@ export const i2iModels = [
         ]
       }
     },
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Muapi"
   },
   {
@@ -9995,7 +9995,7 @@ export const i2iModels = [
         "default": 0.2
       }
     },
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Muapi"
   },
   {
@@ -10465,7 +10465,7 @@ export const i2iModels = [
         "description": "Upload a clear portrait photo.",
         "field": "image",
         "examples": [
-          "https://cdn.muapi.ai/outputs/d09a771a8b2a45f1b0b5e6aba5955f1b.jpg"
+          "https://example.com/outputs/d09a771a8b2a45f1b0b5e6aba5955f1b.jpg"
         ]
       },
       "name": {
@@ -10919,7 +10919,7 @@ export const i2iModels = [
       },
       "images_list": {
         "examples": [
-          "https://cdn.muapi.ai/assets/nano-banana-2-lite-edit-in.jpg"
+          "https://example.com/assets/nano-banana-2-lite-edit-in.jpg"
         ],
         "description": "Reference image URLs to edit. Up to 14 images.",
         "field": "images_list",
@@ -11269,7 +11269,7 @@ export const i2vModels = [
         "default": 5
       }
     },
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "MuapiApp"
   },
   {
@@ -11390,7 +11390,7 @@ export const i2vModels = [
         "default": 5
       }
     },
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "MuapiApp"
   },
   {
@@ -11473,7 +11473,7 @@ export const i2vModels = [
         "default": 5
       }
     },
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "MuapiApp"
   },
   {
@@ -12305,7 +12305,7 @@ export const i2vModels = [
         "default": "Balloon Flyaway"
       }
     },
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Muapi"
   },
   {
@@ -12749,7 +12749,7 @@ export const i2vModels = [
         ]
       }
     },
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Muapi"
   },
   {
@@ -17528,7 +17528,7 @@ export const i2vModels = [
         "name": "image_urls",
         "description": "Upload 1–7 reference images for the video. Maximum 20 MB each.",
         "examples": [
-          "https://cdn.muapi.ai/assets/gemini-omni-image-to-video.jpg"
+          "https://example.com/assets/gemini-omni-image-to-video.jpg"
         ],
         "maxItems": 7
       },
@@ -17620,7 +17620,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://cdn.muapi.ai/assets/grok-imagine-video-1-5-preview.jpg"
+          "https://example.com/assets/grok-imagine-video-1-5-preview.jpg"
         ],
         "description": "Upload or provide image URLs to use as input for video generation.",
         "field": "images_list",
@@ -17698,7 +17698,7 @@ export const i2vModels = [
         "description": "URL of the input image used to generate video.",
         "field": "image",
         "examples": [
-          "https://cdn.muapi.ai/assets/kling-v3-turbo-standard-image-to-video.jpg"
+          "https://example.com/assets/kling-v3-turbo-standard-image-to-video.jpg"
         ]
       },
       "duration": {
@@ -17739,7 +17739,7 @@ export const i2vModels = [
         "description": "URL of the input image used to generate video.",
         "field": "image",
         "examples": [
-          "https://cdn.muapi.ai/assets/kling-v3-turbo-pro-image-to-video.jpg"
+          "https://example.com/assets/kling-v3-turbo-pro-image-to-video.jpg"
         ]
       },
       "duration": {
@@ -19542,7 +19542,7 @@ export const v2vModels = [
     "videoField": "video_url",
     "hasPrompt": false,
     "description": "Remove watermarks, logos, captions, and unwanted text from videos.",
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Muapi"
   },
   {
@@ -19592,7 +19592,7 @@ export const v2vModels = [
     "imageField": "image_url",
     "hasPrompt": false,
     "description": "Replace faces in videos with stunning realism.",
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Muapi"
   },
   {
@@ -19637,7 +19637,7 @@ export const v2vModels = [
     "imageField": "image_url",
     "hasPrompt": true,
     "description": "Bring your characters and worlds to life with AI Dance Effects — a creative video effect that adds playful, dynamic, and cinematic motion to your generations.",
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Muapi"
   },
   {
@@ -19648,7 +19648,7 @@ export const v2vModels = [
     "videoField": "video_url",
     "hasPrompt": false,
     "description": "The AI Video Upscaler is a powerful tool designed to enhance the resolution and quality of videos.",
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Muapi"
   },
   {
@@ -19670,7 +19670,7 @@ export const v2vModels = [
     "videoField": "video_url",
     "hasPrompt": false,
     "description": "Convert any video into 175+ languages with synchronized voice translation, AI-voice cloning, and accurate lip sync.",
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Muapi"
   },
   {
@@ -19692,7 +19692,7 @@ export const v2vModels = [
     "videoField": "video_url",
     "hasPrompt": false,
     "description": "The AI Video Upscaler is a powerful tool designed to enhance the resolution and quality of videos.",
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Muapi"
   },
   {
@@ -19703,7 +19703,7 @@ export const v2vModels = [
     "videoField": "video_url",
     "hasPrompt": false,
     "description": "Transform and resize your videos effortlessly with remix video tool.",
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Muapi"
   },
   {
@@ -19781,7 +19781,7 @@ export const v2vModels = [
     "imageField": "watermark_image_url",
     "hasPrompt": false,
     "description": "Add custom watermark to videos with adjustable position, opacity, and size.",
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Muapi"
   },
   {
@@ -19803,7 +19803,7 @@ export const v2vModels = [
     "videoField": "video_url",
     "hasPrompt": false,
     "description": "Add AI-generated animated captions to any video using Vadoo's caption engine.",
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Muapi"
   },
   {
@@ -19924,7 +19924,7 @@ export const v2vModels = [
     "videoField": "video_url",
     "hasPrompt": false,
     "description": "Video Background Remover automatically removes the background from any video, producing a clean cutout of the subject with a transparent or solid-color backdrop.",
-    "provider": "muapi",
+    "provider": "self-hosted",
     "provider_name": "Muapi"
   },
   {
@@ -21725,7 +21725,7 @@ export const audioModels = [
           "Afrikaans_male_1_v1",
           "Afrikaans_female_1_v1"
         ],
-        "description": "Desired voice ID. Use a voice ID you have trained (https://muapi.ai/playground/minimax-voice-clone), or one of the following system voice IDs",
+        "description": "Desired voice ID. Use a voice ID you have trained (https://example.com/voice-clone), or one of the following system voice IDs",
         "type": "string",
         "typing": true,
         "title": "Voice ID",
@@ -22384,7 +22384,7 @@ export const audioModels = [
           "Afrikaans_male_1_v1",
           "Afrikaans_female_1_v1"
         ],
-        "description": "Desired voice ID. Use a voice ID you have trained (https://muapi.ai/playground/minimax-voice-clone), or one of the following system voice IDs",
+        "description": "Desired voice ID. Use a voice ID you have trained (https://example.com/voice-clone), or one of the following system voice IDs",
         "type": "string",
         "typing": true,
         "title": "Voice ID",

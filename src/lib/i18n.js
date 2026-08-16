@@ -91,19 +91,19 @@ const translations = {
         'settings.title': 'Settings',
         'settings.apiKey': 'API Key',
         'settings.localModels': 'Local Models',
-        'settings.muapiKeyLabel': 'Muapi API Key',
-        'settings.keyPlaceholder': 'Enter your Muapi API key...',
-        'settings.keyNote': 'Your API key is stored locally and never sent anywhere except api.muapi.ai.',
+        'settings.apiKeyLabel': 'API Key',
+        'settings.keyPlaceholder': 'Enter your API key...',
+        'settings.keyNote': 'Your API key is stored locally and only sent to your local backend.',
         'settings.invalidKey': 'Please enter a valid API key.',
 
         // Auth Modal
-        'auth.title': 'Muapi API Key Required',
-        'auth.subtitle': 'Create a Muapi access key, then paste the key value here to start creating high-aesthetic images.',
-        'auth.keyLabel': 'Muapi Access Key',
+        'auth.title': 'API Key Required',
+        'auth.subtitle': 'Create your API key, then paste it here to start creating high-aesthetic images.',
+        'auth.keyLabel': 'API Key',
         'auth.keyPlaceholder': 'Paste your access key value...',
-        'auth.keyNote': 'Do not enter the key name or label; paste the generated key value from Muapi.',
+        'auth.keyNote': 'Do not enter the key name or label; paste your generated key value.',
         'auth.initBtn': 'Initialize Studio',
-        'auth.createKey': 'Create or copy a Muapi access key →',
+        'auth.createKey': 'Create or copy an API key →',
 
         // Image Studio
         'image.title': 'Image Studio',
@@ -211,7 +211,7 @@ const translations = {
 
         // Local Model Manager
         'localModels.title': 'Local Models',
-        'localModels.webOnly': 'Local model inference is only available in the desktop app (Electron build). Use npm run electron:build to build.',
+        'localModels.webOnly': 'Local model inference requires the sd.cpp binary. Download it via Settings → Models.',
         'localModels.inferenceEngine': 'Inference Engine',
         'localModels.checking': 'Checking...',
         'localModels.installed': 'Installed and ready',
@@ -292,19 +292,19 @@ const translations = {
         'settings.title': '设置',
         'settings.apiKey': 'API 密钥',
         'settings.localModels': '本地模型',
-        'settings.muapiKeyLabel': 'Muapi API 密钥',
-        'settings.keyPlaceholder': '输入您的 Muapi API 密钥...',
-        'settings.keyNote': '您的 API 密钥仅存储在本地，除 api.muapi.ai 外不会发送到任何地方。',
+        'settings.apiKeyLabel': 'API 密钥',
+        'settings.keyPlaceholder': '输入您的 API 密钥...',
+        'settings.keyNote': '您的 API 密钥仅存储在本地，仅发送到您的本地后端。',
         'settings.invalidKey': '请输入有效的 API 密钥。',
 
         // Auth Modal
-        'auth.title': '需要 Muapi API 密钥',
-        'auth.subtitle': '创建一个 Muapi 访问密钥，然后将密钥值粘贴到这里开始创建高质量图像。',
-        'auth.keyLabel': 'Muapi 访问密钥',
+        'auth.title': '需要 API 密钥',
+        'auth.subtitle': '创建您的 API 密钥，然后将密钥值粘贴到这里开始创建高质量图像。',
+        'auth.keyLabel': 'API 密钥',
         'auth.keyPlaceholder': '粘贴您的访问密钥值...',
-        'auth.keyNote': '请不要输入密钥名称或标签；粘贴从 Muapi 生成的密钥值。',
+        'auth.keyNote': '请不要输入密钥名称或标签；粘贴您生成的密钥值。',
         'auth.initBtn': '初始化工作室',
-        'auth.createKey': '创建或复制 Muapi 访问密钥 →',
+        'auth.createKey': '创建或复制 API 密钥 →',
 
         // Image Studio
         'image.title': '图像工作室',
@@ -412,7 +412,7 @@ const translations = {
 
         // Local Model Manager
         'localModels.title': '本地模型',
-        'localModels.webOnly': '本地模型推理仅在桌面应用（Electron 构建版）中可用。使用 npm run electron:build 进行构建。',
+        'localModels.webOnly': '本地模型推理需要 sd.cpp 二进制文件。通过设置 → 模型下载它.',
         'localModels.inferenceEngine': '推理引擎',
         'localModels.checking': '检查中...',
         'localModels.installed': '已安装，可以使用',

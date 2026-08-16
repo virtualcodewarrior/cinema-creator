@@ -36,14 +36,14 @@ const UPSCALE_MODELS = [
 
 // Sample initial image & decomposed layers for demonstration (Seedream Wild Beauty via CDN)
 const DEFAULT_SAMPLE_IMAGE =
-  "https://cdn.muapi.ai/assets/1786019968051_cKRYLHHu.png";
+  "https://example.com/assets/1786019968051_cKRYLHHu.png";
 
 const DEFAULT_SAMPLE_LAYERS = [
-  "https://cdn.muapi.ai/assets/1786021161819_iOe80bNR.webp",
-  "https://cdn.muapi.ai/assets/1786020452731_mB4m6NFR.webp",
-  "https://cdn.muapi.ai/assets/1786021169234_iyVccSAA.webp",
-  "https://cdn.muapi.ai/assets/1786021154170_Dx9snemT.webp",
-  "https://cdn.muapi.ai/assets/1786021150882_p9lgz4lY.webp",
+  "https://example.com/assets/1786021161819_iOe80bNR.webp",
+  "https://example.com/assets/1786020452731_mB4m6NFR.webp",
+  "https://example.com/assets/1786021169234_iyVccSAA.webp",
+  "https://example.com/assets/1786021154170_Dx9snemT.webp",
+  "https://example.com/assets/1786021150882_p9lgz4lY.webp",
 ];
 
 // Preset colors for Marker & Shapes tool
@@ -1095,7 +1095,7 @@ export default function LayersStudio({
   // Load Seedream Wild Beauty 5-Layer Decomposition Example via CDN
   const handleLoadSampleLayers = () => {
     setCurrentImageUrl(
-      "https://cdn.muapi.ai/assets/1786019968051_cKRYLHHu.png",
+      "https://example.com/assets/1786019968051_cKRYLHHu.png",
     );
     setDecomposedLayers(DEFAULT_SAMPLE_LAYERS);
     setCarouselIndex(0);
@@ -2171,7 +2171,7 @@ export default function LayersStudio({
                   <div className="flex items-center gap-2.5">
                     <div className="relative w-28 h-36 rounded-2xl overflow-hidden bg-zinc-900 flex-shrink-0 shadow-md">
                       <img
-                        src="https://cdn.muapi.ai/assets/1786019968051_cKRYLHHu.png"
+                        src="https://example.com/assets/1786019968051_cKRYLHHu.png"
                         alt="Seedream original demo"
                         className="w-full h-full object-cover"
                       />

@@ -553,31 +553,31 @@ function UploadButton({ apiKey, maxImages, onSelect, onClear, initialUrls = [], 
 // ─── ModelDropdown ────────────────────────────────────────────────────────────
 
 const PROVIDER_LOGOS = {
-  openai: "https://cdn.muapi.ai/models/openai.png",
-  google: "https://cdn.muapi.ai/models/gemini.png",
-  kling: "https://cdn.muapi.ai/models/kling.png",
-  alibaba: "https://cdn.muapi.ai/models/alibaba.png",
-  bytedance: "https://cdn.muapi.ai/models/bytedance.png",
-  blackforest: "https://cdn.muapi.ai/models/bfl.png",
-  minimax: "https://cdn.muapi.ai/models/minimax.png",
-  suno: "https://cdn.muapi.ai/models/suno.png",
-  anthropic: "https://cdn.muapi.ai/models/claude.png",
-  meshy: "https://cdn.muapi.ai/models/meshy-3.png",
-  tripo3d: "https://cdn.muapi.ai/models/tripo3d.png",
-  grok: "https://cdn.muapi.ai/models/xai.png",
-  muapi: "https://cdn.muapi.ai/models/muapi.png",
-  midjourney: "https://cdn.muapi.ai/models/midjourney.png",
-  vidu: "https://cdn.muapi.ai/models/vidu.png",
-  runway: "https://cdn.muapi.ai/models/runway.png",
-  luma: "https://cdn.muapi.ai/models/luma.png",
-  ideogram: "https://cdn.muapi.ai/models/ideogram.png",
-  leonardoai: "https://cdn.muapi.ai/models/leonardoai.png",
-  hunyuan: "https://cdn.muapi.ai/models/hunyuan.png",
-  hidream: "https://cdn.muapi.ai/models/hidream.png",
-  lightricks: "https://cdn.muapi.ai/models/lightricks.png",
-  pixverse: "https://cdn.muapi.ai/models/pixverse.png",
-  reve: "https://cdn.muapi.ai/models/reve.png",
-  stability: "https://cdn.muapi.ai/models/stability.png"
+  openai: "https://example.com/models/openai.png",
+  google: "https://example.com/models/gemini.png",
+  kling: "https://example.com/models/kling.png",
+  alibaba: "https://example.com/models/alibaba.png",
+  bytedance: "https://example.com/models/bytedance.png",
+  blackforest: "https://example.com/models/bfl.png",
+  minimax: "https://example.com/models/minimax.png",
+  suno: "https://example.com/models/suno.png",
+  anthropic: "https://example.com/models/claude.png",
+  meshy: "https://example.com/models/meshy-3.png",
+  tripo3d: "https://example.com/models/tripo3d.png",
+  grok: "https://example.com/models/xai.png",
+  muapi: "https://example.com/models/muapi.png",
+  midjourney: "https://example.com/models/midjourney.png",
+  vidu: "https://example.com/models/vidu.png",
+  runway: "https://example.com/models/runway.png",
+  luma: "https://example.com/models/luma.png",
+  ideogram: "https://example.com/models/ideogram.png",
+  leonardoai: "https://example.com/models/leonardoai.png",
+  hunyuan: "https://example.com/models/hunyuan.png",
+  hidream: "https://example.com/models/hidream.png",
+  lightricks: "https://example.com/models/lightricks.png",
+  pixverse: "https://example.com/models/pixverse.png",
+  reve: "https://example.com/models/reve.png",
+  stability: "https://example.com/models/stability.png"
 };
 
 const invertLogos = ['openai', 'blackforest', 'runway', 'ideogram', 'lightricks', 'grok'];
@@ -659,7 +659,7 @@ function ModelDropdown({ selectedModel, onSelect, onClose }) {
   const seenProviders = new Set();
   
   modelEntries.forEach(({ model: m }) => {
-    const pId = m.provider || 'muapi';
+    const pId = m.provider || 'self-hosted';
     const pName = m.provider_name || 'Muapi';
     if (!seenProviders.has(pId)) {
       seenProviders.add(pId);
@@ -670,7 +670,7 @@ function ModelDropdown({ selectedModel, onSelect, onClose }) {
   const filtered = modelEntries.filter(({ model: m }) => {
     // 1. Filter by provider tab
     if (selectedProvider !== "all") {
-      const pId = m.provider || 'muapi';
+      const pId = m.provider || 'self-hosted';
       if (pId !== selectedProvider) return false;
     }
     // 2. Filter by search query
@@ -1580,7 +1580,7 @@ export default function ImageStudio({
                   <div className="w-4 h-4 rounded overflow-hidden shrink-0 flex items-center justify-center bg-white/5">
                     {(() => {
                       const selectedModelObj = currentModels.find(m => m.id === selectedModelId);
-                      const selectedModelProvider = selectedModelObj?.provider || 'muapi';
+                      const selectedModelProvider = selectedModelObj?.provider || 'self-hosted';
                       return PROVIDER_LOGOS[selectedModelProvider] ? (
                         <img 
                           src={PROVIDER_LOGOS[selectedModelProvider]} 

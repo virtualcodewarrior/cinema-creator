@@ -1,9 +1,9 @@
-import StandaloneShell from '@/components/StandaloneShell';
+import SelfHostedShell from '../components/SelfHostedShell';
 
 export const metadata = {
-  title: 'Studio — Open Generative AI',
+  title: 'Studio — AI Cinema',
 };
 
 export default function StudioPage() {
-  return <StandaloneShell />;
+  return <SelfHostedShell />;
 }

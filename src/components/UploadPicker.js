@@ -1,4 +1,4 @@
-import { muapi } from '../lib/muapi.js';
+import { muapi } from '../../../packages/studio/src/backendClient.js';
 import { AuthModal } from './AuthModal.js';
 import { getUploadHistory, saveUpload, removeUpload, generateThumbnail } from '../lib/uploadHistory.js';
 
@@ -324,7 +324,7 @@ export function createUploadPicker({ anchorContainer, onSelect, onClear, maxImag
         if (!files.length) return;
 
         if (needsKey()) {
-            const apiKey = localStorage.getItem('muapi_key');
+            const apiKey = localStorage.getItem('ai_cinema_api_key');
             if (!apiKey) {
                 AuthModal(() => fileInput.click());
                 return;

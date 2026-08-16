@@ -8,7 +8,7 @@ import MobileGenerationActions, {
   GenerationCopyButtons,
 } from "./MobileGenerationActions.jsx";
 
-const CDN = "https://cdn.muapi.ai/influencer";
+const CDN = "https://example.com/influencer";
 
 // ── Default image generation model ──────────────────────────────────────────
 const INFLUENCER_MODEL = "nano-banana-pro";

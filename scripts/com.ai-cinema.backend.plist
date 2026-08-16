@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.ai-cinema.backend</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/local/bin/deno</string>
+        <string>run</string>
+        <string>--allow-all</string>
+        <string>/opt/ai-cinema/deno/main.ts</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/opt/ai-cinema/deno</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>AI_CINEMA_HOME</key>
+        <string>/opt/ai-cinema/data</string>
+        <key>DENO_DIR</key>
+        <string>/opt/ai-cinema/cache</string>
+        <key>AI_CINEMA_PORT</key>
+        <string>8000</string>
+        <key>AI_CINEMA_LOG_LEVEL</key>
+        <string>info</string>
+    </dict>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/opt/ai-cinema/logs/backend.log</string>
+    <key>StandardErrorPath</key>
+    <string>/opt/ai-cinema/logs/backend-error.log</string>
+</dict>
+</plist>

@@ -2,7 +2,7 @@
 // Two providers:
 //   - sdcpp: bundled engine, weights live on disk
 //   - wan2gp: user-run remote Gradio server
-// Mirrors electron/lib/modelCatalog.js (sd.cpp) and electron/lib/wan2gpProvider.js (wan2gp).
+// Self-hosted local model catalog for sd.cpp inference.
 export const LOCAL_MODEL_CATALOG = [
     // ── sd.cpp: Z-Image (Tongyi-MAI) ────────────────────────────────────────
     {
