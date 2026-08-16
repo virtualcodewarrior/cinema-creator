@@ -13,8 +13,8 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/Anil-matcha/Open-Generative-AI.git
-cd Open-Generative-AI
+git clone git@github.com:virtualcodewarrior/cinema-creator.git
+cd cinema-creator
 
 # Install dependencies + build workspace packages
 npm run setup
@@ -70,7 +70,7 @@ See `deno/README.md` for full self-hosted documentation.
 The frontend is a **static export** built with Next.js, served by the **Deno backend** which also handles all API requests.
 
 ```
-Open-Generative-AI/
+cinema-creator/
 ├── app/                        # Next.js App Router (static export)
 │   ├── layout.js               # Root layout (Tailwind, fonts)
 │   ├── page.js                 # Redirects → /studio
