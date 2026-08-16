@@ -39,9 +39,10 @@ const backendCmd = new Deno.Command("deno", {
 const backendProcess = backendCmd.spawn();
 
 // Start Next.js frontend in a subprocess
+const projectRoot = new URL("../", import.meta.url).pathname;
 const frontendCmd = new Deno.Command("npm", {
   args: ["run", "dev:self-hosted"],
-  cwd: new URL("../../", import.meta.url).pathname,
+  cwd: projectRoot,
   env: {
     ...Deno.env.toObject(),
     NEXT_PUBLIC_SELF_HOSTED: "1",
@@ -65,8 +66,16 @@ await new Promise<void>((resolve) => {
 });
 logger.info("Shutting down...");
 
-backendProcess.kill("SIGTERM");
-frontendProcess.kill("SIGTERM");
+// Kill processes only if still running
+try { backendProcess.kill("SIGTERM"); } catch { /* already terminated */ }
+try { frontendProcess.kill("SIGTERM"); } catch { /* already terminated */ }
+
+// Give processes time to terminate gracefully
+await new Promise(r => setTimeout(r, 1000));
+
+// Force kill if still running
+try { backendProcess.kill("SIGKILL"); } catch { /* already terminated */ }
+try { frontendProcess.kill("SIGKILL"); } catch { /* already terminated */ }
 
 await Promise.allSettled([
   backendProcess.status,
