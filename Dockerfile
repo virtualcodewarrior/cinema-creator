@@ -32,9 +32,7 @@ COPY --from=frontend-builder /app/public ./public
 
 # Copy remaining project files needed by Deno
 COPY package.json ./
-COPY next.config.mjs ./
 COPY tailwind.config.js ./
-COPY jsconfig.json ./
 COPY postcss.config.js ./
 
 # Cache Deno dependencies

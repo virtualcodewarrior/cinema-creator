@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useNavigate, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import {
@@ -160,7 +160,7 @@ function ChatBubble({ message }) {
 const TABS = ["templates", "my-agents", "my-chats"];
 
 export default function AgentStudio({ apiKey }) {
-  const router = useRouter();
+  const router = useNavigate();
   const params = useParams();
 
   const [activeMainTab, setActiveMainTab] = useState("templates");

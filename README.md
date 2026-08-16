@@ -67,17 +67,18 @@ See `deno/README.md` for full self-hosted documentation.
 
 ## 🏗️ Architecture
 
-The frontend is a **static export** built with Next.js, served by the **Deno backend** which also handles all API requests.
+The frontend is a **static bundle** built with Vite, served by the **Deno backend** which also handles all API requests.
 
 ```
 cinema-creator/
-├── app/                        # Next.js App Router (static export)
-│   ├── layout.js               # Root layout (Tailwind, fonts)
-│   ├── page.js                 # Redirects → /studio
+├── src/                        # Vite frontend source
+│   ├── main.jsx                # Entry point (React Router)
+│   ├── App.jsx                 # App component with routes
+│   ├── globals.css             # Tailwind + custom styles
+│   └── pages/                  # Page components
+├── app/                        # Shared React components
 │   ├── app-shell.js            # Unified SPA shell with sidebar navigation
-│   ├── studio/                 # Studio routes
-│   ├── agents/                 # Agent routes
-│   └── workflow/               # Workflow routes
+│   └── agents/                 # Agent page components
 ├── components/
 │   ├── SettingsPanel.js        # API key & model settings
 │   └── VideoHistoryPanel.js    # Generation history panel
@@ -98,8 +99,7 @@ cinema-creator/
 │   ├── Open-Poe-AI/            # Agent chat UI + server
 │   └── Open-AI-Design-Agent/   # Design agent UI + server
 ├── out/                        # Built static frontend (generated)
-├── package.json                # workspaces for all packages
-└── next.config.mjs             # Next.js static export config
+└── package.json                # workspaces for all packages
 ```
 
 ## 🔌 API
@@ -126,8 +126,9 @@ File uploads use `POST /api/upload` (multipart/form-data) and return a URL that 
 
 ## 🛠️ Tech Stack
 
-- **Next.js 15** — Static export for the frontend
+- **Vite** — Fast bundler for the frontend
 - **React 19** — Studio UI components
+- **React Router** — Client-side routing
 - **Tailwind CSS** — Utility-first styling
 - **Deno** — Backend HTTP server + static file serving + job queue + inference dispatcher
 - **npm workspaces** — Monorepo with shared packages

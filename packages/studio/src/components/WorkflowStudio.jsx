@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { useParams, useRouter } from "next/navigation";
+import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   getTemplateWorkflows,
   getUserWorkflows,
@@ -14,11 +14,11 @@ import {
   getAllNodeSchemas,
   getWorkflowData,
 } from "../muapi.js";
-import dynamic from "next/dynamic";
 
-const WorkflowUI = dynamic(() => import("./WorkflowUI"), {
-  ssr: false,
-  loading: () => (
+const WorkflowUI = React.lazy(() => import("./WorkflowUI"));
+
+function WorkflowLoading() {
+  return (
     <div className="absolute inset-0 flex items-center justify-center">
       <div className="flex flex-col items-center gap-4">
         <div className="w-12 h-12 border-4 border-white/5 border-t-[#22d3ee] rounded-full animate-spin" />
@@ -27,8 +27,8 @@ const WorkflowUI = dynamic(() => import("./WorkflowUI"), {
         </div>
       </div>
     </div>
-  ),
-});
+  );
+}
 
 function WorkflowCard({ workflow, onClick, activeTab, onRename, onDelete }) {
   const [showOptions, setShowOptions] = useState(false);
@@ -135,7 +135,7 @@ export default function WorkflowStudio({
   onGenerationError,
 }) {
   const params = useParams();
-  const router = useRouter();
+  const router = useNavigate();
   const idFromParams = params?.id;     // exists on /workflow/[id]/[tab] route
   const tabFromParams = params?.tab;   // string on /workflow/[id]/[tab]; array on the [[...tab]] catch-all
   // Catch-all routes (/studio/[brandSlug]/[[...tab]], /open-generative-ai/[[...tab]]) expose the

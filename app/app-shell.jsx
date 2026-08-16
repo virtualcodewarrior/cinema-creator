@@ -1,22 +1,22 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import ImageStudio from '@/packages/studio/src/components/ImageStudio';
-import VideoStudio from '@/packages/studio/src/components/VideoStudio';
-import CinemaStudio from '@/packages/studio/src/components/CinemaStudio';
-import LipSyncStudio from '@/packages/studio/src/components/LipSyncStudio';
-import WorkflowStudio from '@/packages/studio/src/components/WorkflowStudio';
-import AgentStudio from '@/packages/studio/src/components/AgentStudio';
-import AppsStudio from '@/packages/studio/src/components/AppsStudio';
-import AudioStudio from '@/packages/studio/src/components/AudioStudio';
-import MarketingStudio from '@/packages/studio/src/components/MarketingStudio';
-import RecastStudio from '@/packages/studio/src/components/RecastStudio';
-import VibeMotionStudio from '@/packages/studio/src/components/VibeMotionStudio';
-import ClippingStudio from '@/packages/studio/src/components/ClippingStudio';
-import LayersStudio from '@/packages/studio/src/components/LayersStudio';
-import DesignAgentStudio from '@/packages/studio/src/components/DesignAgentStudio';
-import AiInfluencerStudio from '@/packages/studio/src/components/AiInfluencerStudio';
-import SettingsPanel from '@/components/SettingsPanel';
+import ImageStudio from '../packages/studio/src/components/ImageStudio';
+import VideoStudio from '../packages/studio/src/components/VideoStudio';
+import CinemaStudio from '../packages/studio/src/components/CinemaStudio';
+import LipSyncStudio from '../packages/studio/src/components/LipSyncStudio';
+import WorkflowStudio from '../packages/studio/src/components/WorkflowStudio';
+import AgentStudio from '../packages/studio/src/components/AgentStudio';
+import AppsStudio from '../packages/studio/src/components/AppsStudio';
+import AudioStudio from '../packages/studio/src/components/AudioStudio';
+import MarketingStudio from '../packages/studio/src/components/MarketingStudio';
+import RecastStudio from '../packages/studio/src/components/RecastStudio';
+import VibeMotionStudio from '../packages/studio/src/components/VibeMotionStudio';
+import ClippingStudio from '../packages/studio/src/components/ClippingStudio';
+import LayersStudio from '../packages/studio/src/components/LayersStudio';
+import DesignAgentStudio from '../packages/studio/src/components/DesignAgentStudio';
+import AiInfluencerStudio from '../packages/studio/src/components/AiInfluencerStudio';
+import SettingsPanel from '../components/SettingsPanel.jsx';
 
 const STUDIO_NAV = [
   { label: 'Image', path: '/studio/image', icon: '🎨' },
