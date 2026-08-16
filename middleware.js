@@ -24,8 +24,13 @@ function addSecurityHeaders(response) {
 export function middleware(request) {
     const url = request.nextUrl;
 
-    // In self-hosted mode, skip all Muapi rewrites
+    // In self-hosted mode, proxy /api/v1/* to Deno backend
     if (SELF_HOSTED) {
+        if (url.pathname.startsWith('/api/v1')) {
+            const targetUrl = new URL(url.pathname + url.search, DENO_BACKEND_URL);
+            const proxyResponse = NextResponse.proxy(targetUrl);
+            return addSecurityHeaders(proxyResponse);
+        }
         return addSecurityHeaders(NextResponse.next());
     }
 

@@ -2,7 +2,12 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { ImageStudio, VideoStudio, LipSyncStudio, AudioStudio } from 'studio';
+import {
+  ImageStudio,
+  VideoStudio,
+  LipSyncStudio,
+  AudioStudio,
+} from 'studio';
 
 const TABS = [
   {
@@ -66,10 +71,12 @@ export default function SelfHostedShell() {
   const [apiKey, setApiKey] = useState(null);
   const [activeTab, setActiveTab] = useState(getInitialTab());
   const [showApiKeyModal, setShowApiKeyModal] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
 
   // Load API key from localStorage on mount
   useEffect(() => {
     if (typeof window !== 'undefined') {
+      setHasMounted(true);
       const key = localStorage.getItem(STORAGE_KEY);
       if (key) {
         setApiKey(key);
@@ -95,6 +102,14 @@ export default function SelfHostedShell() {
     setActiveTab(tabId);
     router.push(`/studio/${tabId}`);
   };
+
+  if (!hasMounted) {
+    return (
+      <div className="h-screen w-screen bg-black flex items-center justify-center">
+        <div className="text-white/60">Loading...</div>
+      </div>
+    );
+  }
 
   if (!apiKey) {
     return (
@@ -141,12 +156,12 @@ export default function SelfHostedShell() {
       </header>
 
       {/* Tab Navigation */}
-      <nav className="h-10 border-b border-white/10 flex items-center px-2 gap-1 bg-black/30">
+      <nav className="h-10 border-b border-white/10 flex items-center px-2 gap-1 bg-black/30 overflow-x-auto">
         {TABS.map((tab) => (
           <button
             key={tab.id}
             onClick={() => handleTabChange(tab.id)}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded text-sm ${
+            className={`flex items-center gap-2 px-3 py-1.5 rounded text-sm whitespace-nowrap ${
               activeTab === tab.id
                 ? 'bg-white/10 text-white'
                 : 'text-white/60 hover:text-white hover:bg-white/5'
