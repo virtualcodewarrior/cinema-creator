@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback, Suspense, useMemo } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import axios from "axios";
 import {
   FiSend, FiImage, FiTerminal, FiSearch,
@@ -14,26 +14,31 @@ import { BiLoaderAlt } from "react-icons/bi";
 import { RiRobot2Line, RiSparklingLine } from "react-icons/ri";
 // import { useUser } from "@/context/UserContext";
 import { useTheme } from "next-themes";
-import dynamic from "next/dynamic";
 import toast, { Toaster } from "react-hot-toast";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import PlanVisualizer from "./components/PlanVisualizer";
-import Link from "next/link";
 import { GoBook } from "react-icons/go";
 import { VscLayoutSidebarLeftOff } from "react-icons/vsc";
 
-const CanvasArea = dynamic(() => import("./CanvasArea"), { ssr: false });
-const SyntaxHighlighter = dynamic(
-  () => import('react-syntax-highlighter').then((mod) => mod.Prism),
-  { ssr: false }
+const CanvasArea = React.lazy(() => import("./CanvasArea"));
+const SyntaxHighlighter = React.lazy(
+  () => import('react-syntax-highlighter').then((mod) => ({ default: mod.Prism }))
 );
 import { oneLight, oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { HiOutlineArrowUpTray, HiOutlineTrash } from "react-icons/hi2";
-import Image from "next/image";
 
 
 const API = "/api/v1/creative-agent";
+
+// In the standalone app the canvas lived at /canvas and navigation used
+// relative query strings ("?session=…"). Inside the studio shell both map
+// onto the current page, so keep the path and only change the query.
+function navTo(to) {
+  if (!to || to === "/canvas") return { search: "" };
+  if (typeof to === "string" && to.startsWith("?")) return { search: to.slice(1) };
+  return to;
+}
 
 const formatTime = (dateStr) => {
   if (!dateStr) return "";
@@ -81,8 +86,12 @@ export default function CreativeCanvas({
   // If not provided, falls back to "$ {user.balance}".
   userBalanceLabel = null,
 }) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const router = {
+    push: (to) => navigate(navTo(to)),
+    replace: (to) => navigate(navTo(to), { replace: true }),
+  };
   const inEmbedMode = isEmbed && !!embedCode;
   const embedStorageKey = inEmbedMode ? `muapi_agent_session_${embedCode}` : null;
   const [embedSessionId, setEmbedSessionId] = useState(() => {
@@ -783,6 +792,7 @@ export default function CreativeCanvas({
     code: ({ node, inline, className, children, ...props }) => {
       const match = /language-(\w+)/.exec(className || '');
       return !inline && match ? (
+        <Suspense fallback={<pre className="my-3 overflow-x-auto rounded border border-divider p-3 text-[12px]">{String(children).replace(/\n$/, '')}</pre>}>
         <SyntaxHighlighter
           style={resolvedTheme === 'dark' ? oneDark : oneLight}
           language={match[1]}
@@ -793,6 +803,7 @@ export default function CreativeCanvas({
         >
           {String(children).replace(/\n$/, '')}
         </SyntaxHighlighter>
+        </Suspense>
       ) : (
         <code className="bg-primary/10 text-primary px-1.5 py-0.5 rounded text-[12px] font-mono" {...props}>
           {children}
@@ -967,14 +978,14 @@ export default function CreativeCanvas({
           <div className="p-3 border-b border-divider flex items-center justify-between bg-bg-card/50">
             <div className="flex items-center gap-2 overflow-hidden">
               <Link 
-                href="/"
+                to="/"
                 className={`p-2 hover:bg-bg-page rounded text-secondary-text hover:text-primary transition-colors`}
                 title="Go Back"
               >
                 <FiArrowLeft size={16} />
               </Link>
               <Link
-                href="/"
+                to="/"
                 className="flex items-center flex-shrink-0 transition-transform duration-300 hover:scale-[1.02] active:scale-95"
                 aria-label="Home"
               >
@@ -1079,7 +1090,7 @@ export default function CreativeCanvas({
 
               {!inEmbedMode && (
                 <Link
-                  href="/"
+                  to="/"
                   className={`p-1.5 hover:bg-bg-card rounded text-secondary-text hover:text-primary transition-colors ${!showLeftSidebar && "hidden"}`}
                   title="Go Back"
                 >
@@ -1210,6 +1221,7 @@ export default function CreativeCanvas({
 
           {/* Main Canvas View */}
           <div className="flex-1 relative overflow-hidden bg-bg-page/50 w-full">
+            <Suspense fallback={<div className="h-full w-full flex items-center justify-center"><div className="h-8 w-8 border-4 border-white/10 border-t-white/60 rounded-full animate-spin" /></div>}>
             <CanvasArea 
               ref={canvasRef} 
               theme={resolvedTheme}
@@ -1217,6 +1229,7 @@ export default function CreativeCanvas({
               setActiveTasks={setActiveTasks}
               onZoomChange={setZoomLevel} 
             />
+            </Suspense>
 
             {/* Floating Toolbar */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-bg-card border border-divider shadow-2xl px-2 py-1.5 rounded z-20">
@@ -1258,14 +1271,15 @@ export default function CreativeCanvas({
               <span className="text-[10px] text-secondary-text mt-1.5">Auto Model • Multi-tool Access</span>
             </div>
             <div className="flex items-center gap-1">
-              <Link 
-                href="https://muapi.ai/docs/design-agent-api" 
+              <a
+                href="https://muapi.ai/docs/design-agent-api"
                 target="_blank"
+                rel="noreferrer"
                 className="p-1.5 hover:bg-bg-page hover:text-primary-text transition-colors rounded text-secondary-text"
                 title="API Docs"
               >
                 <CgTerminal size={16} />
-              </Link>
+              </a>
               {sessionId && (
                 <button
                   onClick={() => {
@@ -1621,14 +1635,15 @@ export default function CreativeCanvas({
                           <div>
                             <h3 className="text-[12px] font-bold text-primary-text uppercase tracking-tight">Expert Skills</h3>
                           </div>
-                          <Link 
+                          <a
                             href="https://muapi.ai/docs/design-agent-api"
-                            target="_blank" 
+                            target="_blank"
+                            rel="noreferrer"
                             className="text-[10px] font-bold text-primary hover:underline flex items-center gap-1"
                           >
                             <CgTerminal size={10} />
                             API Docs
-                          </Link>
+                          </a>
                         </div>
                         <div className="max-h-80 overflow-y-auto p-1.5 scrollbar-subtle">
                           {skills.map(skill => (
