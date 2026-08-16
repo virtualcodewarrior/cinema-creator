@@ -23,6 +23,9 @@ export default defineConfig({
       input: path.resolve(__dirname, 'index.html'),
     },
   },
+  define: {
+    'process.env': '{}',
+  },
   server: {
     proxy: {
       '/api': {

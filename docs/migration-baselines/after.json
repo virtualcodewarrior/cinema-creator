@@ -1,0 +1,204 @@
+{
+  "/": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "text": "AI Cinema\n\nSelf-Hosted Studio\n\n🎨\nImage\n🎬\nVideo\n🎥\nCinema\n👄\nLip Sync\n🔗\nWorkflow\n🤖\nAgents\n📦\nApps\n🎵\nAudio\n📢\nMarketing\n🎭\nRecast\n💃\nMotion\n✂️\nClipping\n🖼️\nLayers\n✏️\nDesign\n⭐\nInfluencer\n⚙️\nSettings\nSTART CREATING WITH\nNANO BANANA\n\nDescribe a scene, character, mood, or style — and watch it come to life\n\nNano Banana\n1:1\n-\n1/4\n+\nDraw\nGenerate ✦",
+      "buttons": [
+        "🎨Image",
+        "🎬Video",
+        "🎥Cinema",
+        "👄Lip Sync",
+        "🔗Workflow",
+        "🤖Agents",
+        "📦Apps",
+        "🎵Audio",
+        "📢Marketing",
+        "🎭Recast",
+        "💃Motion",
+        "✂️Clipping",
+        "🖼️Layers",
+        "✏️Design",
+        "⭐Influencer",
+        "⚙️Settings",
+        "Nano Banana",
+        "1:1",
+        "-",
+        "+",
+        "Draw",
+        "Generate ✦"
+      ],
+      "inputs": 2,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": []
+  },
+  "/studio/video": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "text": "AI Cinema\n\nSelf-Hosted Studio\n\n🎨\nImage\n🎬\nVideo\n🎥\nCinema\n👄\nLip Sync\n🔗\nWorkflow\n🤖\nAgents\n📦\nApps\n🎵\nAudio\n📢\nMarketing\n🎭\nRecast\n💃\nMotion\n✂️\nClipping\n🖼️\nLayers\n✏️\nDesign\n⭐\nInfluencer\n⚙️\nSettings\nSTART CREATING WITH\nSEEDANCE LITE\n\nAnimate images into stunning AI videos with motion effects\n\nSeedance Lite\n16:9\n5s\n480p\nDraw\nGenerate",
+      "buttons": [
+        "🎨Image",
+        "🎬Video",
+        "🎥Cinema",
+        "👄Lip Sync",
+        "🔗Workflow",
+        "🤖Agents",
+        "📦Apps",
+        "🎵Audio",
+        "📢Marketing",
+        "🎭Recast",
+        "💃Motion",
+        "✂️Clipping",
+        "🖼️Layers",
+        "✏️Design",
+        "⭐Influencer",
+        "⚙️Settings",
+        "Seedance Lite",
+        "16:9",
+        "5s",
+        "480p",
+        "Draw",
+        "Generate"
+      ],
+      "inputs": 2,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": []
+  },
+  "/studio/cinema": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "text": "AI Cinema\n\nSelf-Hosted Studio\n\n🎨\nImage\n🎬\nVideo\n🎥\nCinema\n👄\nLip Sync\n🔗\nWorkflow\n🤖\nAgents\n📦\nApps\n🎵\nAudio\n📢\nMarketing\n🎭\nRecast\n💃\nMotion\n✂️\nClipping\n🖼️\nLayers\n✏️\nDesign\n⭐\nInfluencer\n⚙️\nSettings\nSTART CREATING WITH\nCINEMA STUDIO\n\nWhat would you shoot with infinite budget? Control cameras, lighting, lenses, and prompt high-end cinematic scenes",
+      "buttons": [
+        "🎨Image",
+        "🎬Video",
+        "🎥Cinema",
+        "👄Lip Sync",
+        "🔗Workflow",
+        "🤖Agents",
+        "📦Apps",
+        "🎵Audio",
+        "📢Marketing",
+        "🎭Recast",
+        "💃Motion",
+        "✂️Clipping",
+        "🖼️Layers",
+        "✏️Design",
+        "⭐Influencer",
+        "⚙️Settings",
+        "16:9",
+        "2K",
+        "Modular 8K Digital · Creative Tilt Lens, 35mm, f/1.4",
+        "Shoot ✦ 10"
+      ],
+      "inputs": 2,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": []
+  },
+  "/studio/layers": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "text": "AI Cinema\n\nSelf-Hosted Studio\n\n🎨\nImage\n🎬\nVideo\n🎥\nCinema\n👄\nLip Sync\n🔗\nWorkflow\n🤖\nAgents\n📦\nApps\n🎵\nAudio\n📢\nMarketing\n🎭\nRecast\n💃\nMotion\n✂️\nClipping\n🖼️\nLayers\n✏️\nDesign\n⭐\nInfluencer\n⚙️\nSettings\nCHANGE\nLasso edit\nRegional edit\nShapes (R)\n–\n100%\n+\nLayer Decomposition\nOriginal\n5 LAYERS\nTry →\n1\n2\n3\n4\n5\nClick to explore sample\nSettings\nRESOLUTION",
+      "buttons": [
+        "🎨Image",
+        "🎬Video",
+        "🎥Cinema",
+        "👄Lip Sync",
+        "🔗Workflow",
+        "🤖Agents",
+        "📦Apps",
+        "🎵Audio",
+        "📢Marketing",
+        "🎭Recast",
+        "💃Motion",
+        "✂️Clipping",
+        "🖼️Layers",
+        "✏️Design",
+        "⭐Influencer",
+        "⚙️Settings",
+        "CHANGE",
+        "Lasso edit",
+        "Regional edit",
+        "Shapes (R)",
+        "–",
+        "100%",
+        "+",
+        "1K",
+        "1.5K",
+        "2K",
+        "Separate layers 12"
+      ],
+      "inputs": 3,
+      "videos": 0,
+      "canvases": 1
+    },
+    "errors": []
+  },
+  "/agents/create": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 0,
+      "text": "",
+      "buttons": [],
+      "inputs": 0,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": [
+      "Error: invariant expected app router to be mounted at useRouter (http://localhost:5173/node_modules/.vite/deps/next_navigation.js?v=67d5f13b:2223:37) at CreateAgent (http://localhost:5173/packages/Open-Poe-AI/packages/agents/src/components/CreateAgent.jsx:36:18) at Object.react_stack_bottom_frame (http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=67d5f13b:18241:20) "
+    ]
+  },
+  "/studio/workflow": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "text": "AI Cinema\n\nSelf-Hosted Studio\n\n🎨\nImage\n🎬\nVideo\n🎥\nCinema\n👄\nLip Sync\n🔗\nWorkflow\n🤖\nAgents\n📦\nApps\n🎵\nAudio\n📢\nMarketing\n🎭\nRecast\n💃\nMotion\n✂️\nClipping\n🖼️\nLayers\n✏️\nDesign\n⭐\nInfluencer\n⚙️\nSettings\nWorkflows\n\nCreate and manage your asynchronous AI processing pipelines\n\nCREATE WORKFLOW\nTEMPLATES\nMY WORKFLOWS\nCOMMUNITY\nNo workflows found in this s",
+      "buttons": [
+        "🎨Image",
+        "🎬Video",
+        "🎥Cinema",
+        "👄Lip Sync",
+        "🔗Workflow",
+        "🤖Agents",
+        "📦Apps",
+        "🎵Audio",
+        "📢Marketing",
+        "🎭Recast",
+        "💃Motion",
+        "✂️Clipping",
+        "🖼️Layers",
+        "✏️Design",
+        "⭐Influencer",
+        "⚙️Settings",
+        "Create Workflow",
+        "Templates",
+        "My Workflows",
+        "Community"
+      ],
+      "inputs": 0,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": []
+  },
+  "/agents/agent-1": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "text": "Agent not found",
+      "buttons": [],
+      "inputs": 0,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": []
+  }
+}

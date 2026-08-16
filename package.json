@@ -11,9 +11,10 @@
     "packages/Open-AI-Design-Agent/packages/design-agent"
   ],
   "scripts": {
-    "dev": "vite",
+    "gen:css": "node scripts/gen-wc-css.mjs",
+    "dev": "node scripts/gen-wc-css.mjs && vite",
     "dev:all": "deno run --allow-all deno/launcher.ts",
-    "build": "vite build",
+    "build": "node scripts/gen-wc-css.mjs && vite build",
     "start": "vite preview",
     "start:deno": "deno run --allow-all deno/main.ts",
     "start:all": "deno run --allow-all deno/launcher.ts",
@@ -27,6 +28,10 @@
   "dependencies": {
     "ai-agent": "file:./packages/Open-Poe-AI/packages/agents",
     "axios": "^1.7.0",
+    "dompurify": "^3.4.13",
+    "highlight.js": "^11.12.0",
+    "lit": "^3.3.3",
+    "marked": "^18.0.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.4.1",
