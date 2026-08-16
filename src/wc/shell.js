@@ -6,6 +6,14 @@ import { BaseElement } from '../lib/wc-base.js';
 import { navigate } from '../lib/router.js';
 import './settings.js';
 
+import './studio/studio-apps.js';
+
+// P3: studios flipped to native web components map to an element tag; they
+// render into #studio-outlet instead of the React root below.
+const NATIVE_STUDIOS = {
+  apps: 'studio-apps',
+};
+
 import ImageStudio from '../../packages/studio/src/components/ImageStudio';
 import VideoStudio from '../../packages/studio/src/components/VideoStudio';
 import CinemaStudio from '../../packages/studio/src/components/CinemaStudio';
@@ -130,6 +138,18 @@ export class AppShell extends BaseElement {
 
   _renderStudio(name) {
     if (!this._outlet) return;
+    const tag = NATIVE_STUDIOS[name];
+    if (tag) {
+      // Native path: no React root involved.
+      if (this._studioRoot) {
+        this._studioRoot.unmount();
+        this._studioRoot = null;
+      }
+      this._outlet.replaceChildren();
+      const el = document.createElement(tag);
+      this._outlet.appendChild(el);
+      return;
+    }
     const Studio = STUDIO_COMPONENTS[name] ?? ImageStudio;
     if (!this._studioRoot) this._studioRoot = ReactDOM.createRoot(this._outlet);
     // Studios read react-router (useNavigate/Links) like WorkflowStudio and

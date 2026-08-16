@@ -1,14 +1,19 @@
 // Usage: node route-capture.mjs <out.json>
 // Navigates each route, waits, captures DOM probes + load-time console exceptions.
 const OUT = process.argv[2];
+// Optional: only capture the routes listed after the out file
+// (node route-capture.mjs out.json /studio/apps /studio/audio). All if omitted.
+const ROUTE_FILTER = process.argv.slice(3);
 const BASE = 'http://localhost:5173';
+const STUDIO_NAMES = [
+  'image', 'video', 'cinema', 'lipsync', 'workflow', 'agents', 'apps',
+  'audio', 'marketing', 'recast', 'vibemotion', 'clipping', 'layers',
+  'design', 'influencer',
+];
 const ROUTES = [
   '/',
-  '/studio/video',
-  '/studio/cinema',
-  '/studio/layers',
+  ...STUDIO_NAMES.map((n) => `/studio/${n}`),
   '/agents/create',
-  '/studio/workflow',
   '/agents/agent-1',
   '/agents/edit/agent-1',
 ];
@@ -43,7 +48,7 @@ const PROBE = String.raw`(() => {
     title: document.title,
     rootChildren: document.getElementById('root')?.childElementCount ?? -1,
     shadowRoots: allEls.reduce((n, el) => n + (el.shadowRoot ? 1 : 0), 0),
-    text: text(document.body).replace(/\s+/g, ' ').trim().slice(0, 2000),
+    text: text(document.body).replace(/\s+/g, ' ').trim().slice(0, 8000),
     buttons,
     inputs: deep('input,textarea,select').length,
     videos: deep('video').length,
@@ -78,7 +83,8 @@ await send('Runtime.enable');
 await send('Page.enable');
 
 const out = {};
-for (const route of ROUTES) {
+const captureRoutes = ROUTE_FILTER.length ? ROUTE_FILTER.filter((r) => ROUTES.includes(r)) : ROUTES;
+for (const route of captureRoutes) {
   errors.length = 0;
   await send('Page.navigate', { url: BASE + route });
   await new Promise(r => setTimeout(r, 2000));

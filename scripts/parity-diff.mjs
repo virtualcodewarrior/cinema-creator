@@ -12,10 +12,17 @@ const normErr = (s) => String(s).replace(/v=[a-f0-9]{8}/g, 'v=X');
 // textContent whitespace is formatting, not behavior
 const normText = (s) => String(s ?? '').replace(/\s+/g, ' ').trim();
 
-const expectedSet = new Set(expected); // e.g. "/.shadowRoots", "/agents/create.rootChildren"
+// Args prefixed with '@' restrict the comparison to those routes (incremental
+// per-stage captures, where the after file only holds a subset).
+const onlyRoutes = expected.filter((e) => e.startsWith('@')).map((e) => e.slice(1));
+const expectedSet = new Set(expected.filter((e) => !e.startsWith('@'))); // e.g. "/.shadowRoots"
 let failures = 0;
 
-const routes = new Set([...Object.keys(b), ...Object.keys(a)]);
+const routes = new Set(
+  onlyRoutes.length
+    ? onlyRoutes
+    : [...Object.keys(b), ...Object.keys(a)],
+);
 for (const route of routes) {
   const bd = b[route]?.dom ?? {};
   const ad = a[route]?.dom ?? {};
