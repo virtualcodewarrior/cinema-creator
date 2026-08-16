@@ -1,9 +1,9 @@
-import SelfHostedShell from '@/app/studio/components/SelfHostedShell';
+import AppShell from '@/app/app-shell';
 
 export const metadata = {
   title: 'Workflow — AI Cinema',
 };
 
 export default function WorkflowPage() {
-  return <SelfHostedShell />;
+  return <AppShell />;
 }

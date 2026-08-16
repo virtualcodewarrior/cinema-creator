@@ -1,9 +1,9 @@
 import AppShell from '@/app/app-shell';
 
 export const metadata = {
-  title: 'Workflow — AI Cinema',
+  title: 'Edit Agent — AI Cinema',
 };
 
-export default function WorkflowTabPage() {
+export default function AgentEditPage() {
   return <AppShell />;
 }

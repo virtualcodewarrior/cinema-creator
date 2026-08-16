@@ -6,8 +6,8 @@
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v18+)
-- [Deno](https://deno.land/) (for the backend)
+- [Node.js](https://nodejs.org/) (v18+) — for building the frontend
+- [Deno](https://deno.land/) (v1.40+) — for the backend + frontend serving
 
 ### Setup
 
@@ -19,21 +19,23 @@ cd Open-Generative-AI
 # Install dependencies + build workspace packages
 npm run setup
 
-# Start Deno backend
-cd deno
-deno task dev
+# Build the frontend (static export)
+npm run build:self-hosted
 
-# In another terminal, start Next.js frontend (self-hosted mode)
-npm run dev:self-hosted
+# Start Deno backend (serves both API and frontend)
+deno task start-all
 ```
 
-The app will be available at `http://localhost:3000`. The Deno backend runs in open mode by default — no API key required. To enable API key authentication, set `AI_CINEMA_API_KEY` or configure it in `~/.ai-cinema/config.json`.
+The app will be available at `http://localhost:8000`. The Deno backend runs in open mode by default — no API key required. To enable API key authentication, set `AI_CINEMA_API_KEY` or configure it in `~/.ai-cinema/config.json`.
 
-### Production Build
+### Development
 
 ```bash
-npm run build:self-hosted
-npm run start
+# Start everything (builds frontend + runs Deno server)
+deno task start-all
+
+# Or run Deno backend only (after frontend is built)
+deno task dev
 ```
 
 ## 🏠 Self-Hosted Mode
@@ -41,12 +43,8 @@ npm run start
 Run everything locally with a Deno backend and local AI models. No cloud dependencies, no subscription fees.
 
 ```bash
-# Start Deno backend
-cd deno
-deno task dev
-
-# Start Next.js frontend (self-hosted mode)
-npm run dev:self-hosted
+# Build frontend and start Deno server (serves both API and frontend)
+deno task start-all
 ```
 
 See `deno/README.md` for full self-hosted documentation.
@@ -69,20 +67,22 @@ See `deno/README.md` for full self-hosted documentation.
 
 ## 🏗️ Architecture
 
-The app is a **Next.js monorepo** with a shared `packages/studio` component library and a Deno backend.
+The frontend is a **static export** built with Next.js, served by the **Deno backend** which also handles all API requests.
 
 ```
 Open-Generative-AI/
-├── app/                        # Next.js App Router
+├── app/                        # Next.js App Router (static export)
 │   ├── layout.js               # Root layout (Tailwind, fonts)
 │   ├── page.js                 # Redirects → /studio
-│   └── studio/
-│       └── page.js             # Studio page — renders SelfHostedShell
+│   ├── app-shell.js            # Unified SPA shell with sidebar navigation
+│   ├── studio/                 # Studio routes
+│   ├── agents/                 # Agent routes
+│   └── workflow/               # Workflow routes
 ├── components/
 │   ├── SettingsPanel.js        # API key & model settings
 │   └── VideoHistoryPanel.js    # Generation history panel
-├── deno/                       # Deno backend (HTTP server)
-│   ├── main.ts                 # Entry point
+├── deno/                       # Deno backend + frontend server
+│   ├── main.ts                 # Entry point (API + static file serving)
 │   ├── api/                    # API route handlers
 │   ├── inference/              # sd.cpp inference engine
 │   ├── lib/                    # Config, auth, queue, dispatcher
@@ -97,19 +97,19 @@ Open-Generative-AI/
 │   ├── Vibe-Workflow/          # Workflow builder UI + server
 │   ├── Open-Poe-AI/            # Agent chat UI + server
 │   └── Open-AI-Design-Agent/   # Design agent UI + server
-├── middleware.js               # Next.js middleware (API proxy)
+├── out/                        # Built static frontend (generated)
 ├── package.json                # workspaces for all packages
-└── vite.config.mjs             # Vite proxy config
+└── next.config.mjs             # Next.js static export config
 ```
 
 ## 🔌 API
 
-The frontend communicates with the Deno backend directly.
+The frontend communicates with the Deno backend directly via the same origin.
 
 1. **Submit** — `POST /api/v1/{model-endpoint}` with prompt and parameters
 2. **Poll** — `GET /api/v1/predictions/{request_id}/result` until status is `completed`
 
-Authentication uses the `x-api-key` header. The Next.js middleware proxies `/api/v1/*` requests to the Deno backend when `NEXT_PUBLIC_SELF_HOSTED=1`.
+Authentication uses the `x-api-key` header. Since the frontend and API share the same origin, no CORS proxy is needed.
 
 File uploads use `POST /api/upload` (multipart/form-data) and return a URL that is passed to image-conditioned models.
 
@@ -126,10 +126,10 @@ File uploads use `POST /api/upload` (multipart/form-data) and return a URL that 
 
 ## 🛠️ Tech Stack
 
-- **Next.js 15** — App Router, server components
+- **Next.js 15** — Static export for the frontend
 - **React 19** — Studio UI components
 - **Tailwind CSS** — Utility-first styling
-- **Deno** — Backend HTTP server, job queue, inference dispatcher
+- **Deno** — Backend HTTP server + static file serving + job queue + inference dispatcher
 - **npm workspaces** — Monorepo with shared packages
 
 ## 📄 License

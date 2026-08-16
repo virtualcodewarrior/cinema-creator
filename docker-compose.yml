@@ -1,12 +1,12 @@
 version: '3.8'
 
 services:
-  # Deno backend for AI inference
-  deno-backend:
+  # Combined Deno backend + frontend
+  ai-cinema:
     build:
       context: .
-      dockerfile: Dockerfile.deno
-    container_name: ai-cinema-deno
+      dockerfile: Dockerfile
+    container_name: ai-cinema
     ports:
       - "8000:8000"
     volumes:
@@ -17,29 +17,13 @@ services:
       - DENO_DIR=/cache
       - AI_CINEMA_PORT=8000
       - AI_CINEMA_LOG_LEVEL=info
+      - SKIP_FRONTEND_BUILD=0
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
-
-  # Next.js frontend
-  nextjs-frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile.nextjs
-    container_name: ai-cinema-nextjs
-    ports:
-      - "3000:3000"
-    environment:
-      - NEXT_PUBLIC_SELF_HOSTED=1
-      - DENO_BACKEND_URL=http://deno-backend:8000
-      - NODE_ENV=production
-    depends_on:
-      deno-backend:
-        condition: service_healthy
-    restart: unless-stopped
 
 volumes:
   ai-cinema-data:

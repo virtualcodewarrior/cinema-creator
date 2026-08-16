@@ -3,7 +3,13 @@
 import { useState, useEffect, useCallback } from 'react';
 
 const STORAGE_KEY = 'ai_cinema_api_key';
-const DENO_BACKEND_URL = process.env.DENO_BACKEND_URL || 'http://localhost:8000';
+
+function getBackendUrl() {
+  if (typeof window === 'undefined') return '';
+  const envUrl = localStorage.getItem('deno_backend_url');
+  if (envUrl) return envUrl;
+  return window.location.origin;
+}
 
 export default function VideoHistoryPanel({ onDismiss }) {
   const [apiKey, setApiKey] = useState('');
@@ -24,7 +30,7 @@ export default function VideoHistoryPanel({ onDismiss }) {
     try {
       setLoading(true);
       setError(null);
-      const response = await fetch(`${DENO_BACKEND_URL}/api/v1/history?limit=50`, {
+      const response = await fetch(`${getBackendUrl()}/api/v1/history?limit=50`, {
         headers: { 'x-api-key': apiKey },
       });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -54,7 +60,7 @@ export default function VideoHistoryPanel({ onDismiss }) {
     if (!apiKey) return;
     if (!confirm('Delete this history entry?')) return;
     try {
-      const response = await fetch(`${DENO_BACKEND_URL}/api/v1/predictions/${entryId}/media`, {
+      const response = await fetch(`${getBackendUrl()}/api/v1/predictions/${entryId}/media`, {
         method: 'DELETE',
         headers: { 'x-api-key': apiKey },
       });

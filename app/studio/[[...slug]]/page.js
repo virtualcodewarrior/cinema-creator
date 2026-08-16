@@ -1,9 +1,9 @@
-import SelfHostedShell from '../components/SelfHostedShell';
+import AppShell from '../../app-shell';
 
 export const metadata = {
   title: 'Studio — AI Cinema',
 };
 
 export default function StudioPage() {
-  return <SelfHostedShell />;
+  return <AppShell />;
 }

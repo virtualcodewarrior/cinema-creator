@@ -18,7 +18,7 @@ import {
   handleModelDownloadRequest,
   isDownloading,
 } from "./api/modelDownload.ts";
-import { serveStaticFile, setupProgressWebSocket } from "./api/ws/progress.ts";
+import { serveStaticFile, setupProgressWebSocket, serveFrontend } from "./api/ws/progress.ts";
 import { handleCors, jsonResponse } from "./api/_utils.ts";
 
 // Set up logging
@@ -165,6 +165,9 @@ async function handleRequest(request: Request): Promise<Response> {
   if (outputMatch) {
     return serveStaticFile(outputMatch[1], "output", config);
   }
+
+  // ─── Serve frontend (static files + SPA routing) ────────────────────────
+  return serveFrontend(request, config);
 
   // ─── 404 ────────────────────────────────────────────────────────────────
   return new Response("Not found", { status: 404 });

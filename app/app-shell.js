@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
 import ImageStudio from '@/packages/studio/src/components/ImageStudio';
 import VideoStudio from '@/packages/studio/src/components/VideoStudio';
 import CinemaStudio from '@/packages/studio/src/components/CinemaStudio';
@@ -37,26 +36,39 @@ const STUDIO_NAV = [
   { label: 'Influencer', path: '/studio/influencer', icon: '⭐' },
 ];
 
-export default function SelfHostedShell() {
-  const router = useRouter();
-  const pathname = usePathname();
-  const [showSettings, setShowSettings] = useState(false);
+export default function AppShell() {
   const [currentStudio, setCurrentStudio] = useState('image');
+  const [showSettings, setShowSettings] = useState(false);
 
   useEffect(() => {
-    const path = pathname || '';
+    const path = window.location.pathname;
     const match = path.match(/\/studio\/(\w+)/);
     if (match) {
       setCurrentStudio(match[1]);
-    } else {
+    } else if (path.startsWith('/studio') || path === '/agents' || path === '/workflow') {
       setCurrentStudio('image');
-      router.push('/studio/image');
     }
-  }, [pathname, router]);
+  }, []);
 
   const handleNav = (path) => {
-    router.push(path);
+    window.history.pushState({}, '', path);
+    const match = path.match(/\/studio\/(\w+)/);
+    if (match) {
+      setCurrentStudio(match[1]);
+    }
   };
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const path = window.location.pathname;
+      const match = path.match(/\/studio\/(\w+)/);
+      if (match) {
+        setCurrentStudio(match[1]);
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   const renderStudio = () => {
     switch (currentStudio) {

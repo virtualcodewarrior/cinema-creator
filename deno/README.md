@@ -1,6 +1,7 @@
 # AI Cinema Backend
 
 Self-hosted AI image generation backend powered by [stable-diffusion.cpp](https://github.com/leejet/stable-diffusion.cpp).
+Serves both the REST API and the static frontend from a single Deno server.
 
 ## Quick Start
 
@@ -15,9 +16,29 @@ deno task dev
 
 # Run in production mode
 deno task start
+
+# Run with frontend build and serving
+deno task start-all
 ```
 
-The server starts on `http://127.0.0.1:8000` by default.
+The server starts on `http://127.0.0.1:8000` by default, serving both the API and the frontend.
+
+## Prerequisites
+
+Before running the backend, the frontend must be built:
+
+```bash
+# From project root
+npm install
+npm run build:packages
+npm run build:self-hosted
+```
+
+Or use the launcher which builds the frontend automatically:
+
+```bash
+deno task start-all
+```
 
 ## Configuration
 
@@ -176,17 +197,19 @@ Z-Image models require auxiliary files (Qwen3-4B text encoder + FLUX VAE).
 ┌─────────────────────────────────────────────┐
 │              User's Machine                  │
 │                                              │
-│  ┌──────────────┐    HTTP + WS    ┌─────────┴────────┐
-│  │  Next.js     │◄──────────────►│   Deno Backend   │
-│  │  Frontend    │  :8000         │   :8000          │
-│  │              │                │                  │
-│  └──────────────┘                │  ┌──────────────┐ │
-│                                  │  │  JobQueue    │ │
-│                                  │  │  JobDispatcher││
-│                                  │  │  SdCppEngine │ │
-│                                  │  │  sd-cli (proc)││
-│                                  │  └──────────────┘ │
-│                                  └──────────────────┘
+│  ┌────────────────────────────────────────┐  │
+│  │         Deno Server (:8000)            │  │
+│  │  ┌────────────┐    ┌────────────────┐  │  │
+│  │  │  Static    │    │   API Routes   │  │  │
+│  │  │  Frontend  │    │   /api/*       │  │  │
+│  │  │  (SPA)     │    │   /ws/*        │  │  │
+│  │  └────────────┘    └────────────────┘  │  │
+│  │                                 ┌──────┴──────┐  │
+│  │                                 │  JobQueue   │  │
+│  │                                 │  Dispatcher │  │
+│  │                                 │  SdCppEngine│  │
+│  │                                 └─────────────┘  │
+│  └──────────────────────────────────────────────────┘  │
 │                                              │
 │                                  ┌───────────┴──────────┐
 │                                  │  ~/.ai-cinema/        │

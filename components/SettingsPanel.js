@@ -3,7 +3,13 @@
 import { useState, useEffect, useCallback } from 'react';
 
 const STORAGE_KEY = 'ai_cinema_api_key';
-const DENO_BACKEND_URL = process.env.DENO_BACKEND_URL || 'http://localhost:8000';
+
+function getBackendUrl() {
+  if (typeof window === 'undefined') return '';
+  const envUrl = localStorage.getItem('deno_backend_url');
+  if (envUrl) return envUrl;
+  return window.location.origin;
+}
 
 export default function SettingsPanel({ onDismiss }) {
   const [apiKey, setApiKey] = useState('');
@@ -25,7 +31,7 @@ export default function SettingsPanel({ onDismiss }) {
     try {
       setLoading(true);
       setError(null);
-      const response = await fetch(`${DENO_BACKEND_URL}/api/models`, {
+      const response = await fetch(`${getBackendUrl()}/api/models`, {
         headers: { 'x-api-key': apiKey },
       });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -55,7 +61,7 @@ export default function SettingsPanel({ onDismiss }) {
     try {
       setDownloading(prev => ({ ...prev, [modelId]: true }));
       setError(null);
-      const response = await fetch(`${DENO_BACKEND_URL}/api/models/${modelId}/download`, {
+      const response = await fetch(`${getBackendUrl()}/api/models/${modelId}/download`, {
         method: 'POST',
         headers: { 'x-api-key': apiKey },
       });
@@ -78,7 +84,7 @@ export default function SettingsPanel({ onDismiss }) {
     const poll = async () => {
       if (!apiKey) return;
       try {
-        const response = await fetch(`${DENO_BACKEND_URL}/api/download/status?modelId=${modelId}`, {
+        const response = await fetch(`${getBackendUrl()}/api/download/status?modelId=${modelId}`, {
           headers: { 'x-api-key': apiKey },
         });
         const data = await response.json();
@@ -113,7 +119,7 @@ export default function SettingsPanel({ onDismiss }) {
     try {
       setDownloading(prev => ({ ...prev, [auxKey]: true }));
       setError(null);
-      const response = await fetch(`${DENO_BACKEND_URL}/api/aux/${auxKey}/download`, {
+      const response = await fetch(`${getBackendUrl()}/api/aux/${auxKey}/download`, {
         method: 'POST',
         headers: { 'x-api-key': apiKey },
       });
@@ -134,7 +140,7 @@ export default function SettingsPanel({ onDismiss }) {
     const poll = async () => {
       if (!apiKey) return;
       try {
-        const response = await fetch(`${DENO_BACKEND_URL}/api/download/status?auxKey=${auxKey}`, {
+        const response = await fetch(`${getBackendUrl()}/api/download/status?auxKey=${auxKey}`, {
           headers: { 'x-api-key': apiKey },
         });
         const data = await response.json();

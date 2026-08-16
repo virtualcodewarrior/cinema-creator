@@ -1,7 +1,5 @@
-// Self-hosted entry point — renders the full studio with sidebar navigation.
-
-import SelfHostedShell from '../components/SelfHostedShell';
+import AppShell from '../../app-shell';
 
 export default function SelfHostedStudioPage() {
-  return <SelfHostedShell />;
+  return <AppShell />;
 }

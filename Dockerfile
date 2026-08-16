@@ -1,28 +1,56 @@
-FROM node:20-alpine AS base
+# Multi-stage build: Node.js for frontend build, Deno for serving
+FROM node:20-alpine AS frontend-builder
+
 WORKDIR /app
 
 # Install dependencies
-FROM base AS deps
-COPY package*.json ./
-COPY packages/Vibe-Workflow/packages/workflow-builder/package*.json ./packages/Vibe-Workflow/packages/workflow-builder/
-COPY packages/Open-Poe-AI/packages/agents/package*.json ./packages/Open-Poe-AI/packages/agents/
-COPY packages/Open-AI-Design-Agent/packages/design-agent/package*.json ./packages/Open-AI-Design-Agent/packages/design-agent/
-COPY packages/studio/package*.json ./packages/studio/
-RUN npm install
+COPY package.json package-lock.json ./
+COPY packages/ ./packages/
 
-# Build sub-packages
-FROM deps AS builder
+RUN npm ci
+
+# Copy source and build frontend
 COPY . .
-RUN npm run build:packages
-RUN npm run build
+ENV NEXT_PUBLIC_SELF_HOSTED=1
+RUN npm run build:self-hosted
 
-# Production runner
-FROM base AS runner
-ENV NODE_ENV=production
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
+# Deno runtime stage
+FROM denoland/deno:1.44.0
 
-EXPOSE 3000
-CMD ["npm", "start"]
+# Install curl for healthcheck, unzip for model extraction
+RUN apk add --no-cache curl unzip
+
+WORKDIR /app
+
+# Copy Deno project files
+COPY deno/ ./deno/
+
+# Copy built frontend from builder stage
+COPY --from=frontend-builder /app/out ./out
+
+# Copy public assets
+COPY --from=frontend-builder /app/public ./public
+
+# Copy remaining project files needed by Deno
+COPY package.json ./
+COPY next.config.mjs ./
+COPY tailwind.config.js ./
+COPY jsconfig.json ./
+COPY postcss.config.js ./
+
+# Cache Deno dependencies
+RUN deno cache --allow-all deno/main.ts
+
+# Expose port
+EXPOSE 8000
+
+# Set environment variables
+ENV AI_CINEMA_HOME=/data
+ENV DENO_DIR=/cache
+ENV AI_CINEMA_PORT=8000
+
+# Create data directory
+RUN mkdir -p /data
+
+# Run the Deno backend (which serves both API and frontend)
+CMD ["deno", "run", "--allow-all", "deno/main.ts"]

@@ -1,4 +1,5 @@
-// Launcher script that starts both Deno backend and Next.js frontend.
+// Launcher script that builds the frontend and starts the Deno backend.
+// The Deno backend serves both the API and the static frontend files.
 // Usage: deno run --allow-all deno/launcher.ts
 
 import { ensureDataDirs, loadConfig } from "./lib/config.ts";
@@ -7,9 +8,10 @@ import { getLogger, setLogLevel } from "./lib/logger.ts";
 const logger = getLogger("launcher");
 
 const DENO_BACKEND_URL = Deno.env.get("DENO_BACKEND_URL") || "http://localhost:8000";
-const FRONTEND_PORT = parseInt(Deno.env.get("FRONTEND_PORT") || "3000", 10);
+const FRONTEND_PORT = parseInt(Deno.env.get("FRONTEND_PORT") || "8000", 10);
+const SKIP_FRONTEND_BUILD = Deno.env.get("SKIP_FRONTEND_BUILD") === "1";
 
-logger.info("Starting AI Cinema (backend + frontend)...");
+logger.info("Starting AI Cinema (Deno backend + frontend)...");
 
 // Ensure Deno backend data directories exist
 const config = loadConfig();
@@ -17,13 +19,40 @@ setLogLevel(config.logLevel);
 ensureDataDirs(config.dataDir);
 logger.info(`Data directory: ${config.dataDir}`);
 
-logger.info(`Deno backend: ${DENO_BACKEND_URL}`);
-logger.info(`Next.js frontend: http://localhost:${FRONTEND_PORT}`);
-logger.info("");
-logger.info("Press Ctrl+C to stop both services.");
+logger.info(`Backend URL: ${DENO_BACKEND_URL}`);
+logger.info(`Frontend port: ${FRONTEND_PORT}`);
 logger.info("");
 
-// Start Deno backend in a subprocess
+// Build frontend if not skipped
+if (!SKIP_FRONTEND_BUILD) {
+  logger.info("Building frontend...");
+  const projectRoot = new URL("../", import.meta.url).pathname;
+  
+  const buildCmd = new Deno.Command("npm", {
+    args: ["run", "build:self-hosted"],
+    cwd: projectRoot,
+    env: {
+      ...Deno.env.toObject(),
+      NEXT_PUBLIC_SELF_HOSTED: "1",
+    },
+    stdout: "piped",
+    stderr: "piped",
+  });
+
+  const buildProcess = buildCmd.spawn();
+  const buildStatus = await buildProcess.status;
+  
+  if (!buildStatus.success) {
+    const stderr = await buildProcess.stderr;
+    logger.error(`Frontend build failed: ${new TextDecoder().decode(stderr)}`);
+    logger.info("Continuing without frontend build...");
+  } else {
+    logger.info("Frontend built successfully.");
+  }
+  logger.info("");
+}
+
+// Start Deno backend (which now serves both API and frontend)
 const backendCmd = new Deno.Command("deno", {
   args: ["run", "--allow-all", "main.ts"],
   cwd: new URL(".", import.meta.url).pathname,
@@ -31,29 +60,13 @@ const backendCmd = new Deno.Command("deno", {
     ...Deno.env.toObject(),
     AI_CINEMA_HOME: config.dataDir,
     DENO_DIR: `${config.dataDir}/cache`,
+    AI_CINEMA_PORT: String(FRONTEND_PORT),
   },
   stdout: "inherit",
   stderr: "inherit",
 });
 
 const backendProcess = backendCmd.spawn();
-
-// Start Next.js frontend in a subprocess
-const projectRoot = new URL("../", import.meta.url).pathname;
-const frontendCmd = new Deno.Command("npm", {
-  args: ["run", "dev:self-hosted"],
-  cwd: projectRoot,
-  env: {
-    ...Deno.env.toObject(),
-    NEXT_PUBLIC_SELF_HOSTED: "1",
-    DENO_BACKEND_URL,
-    PORT: String(FRONTEND_PORT),
-  },
-  stdout: "inherit",
-  stderr: "inherit",
-});
-
-const frontendProcess = frontendCmd.spawn();
 
 // Wait for Ctrl+C
 const signal = new AbortController();
@@ -66,21 +79,16 @@ await new Promise<void>((resolve) => {
 });
 logger.info("Shutting down...");
 
-// Kill processes only if still running
+// Kill backend process
 try { backendProcess.kill("SIGTERM"); } catch { /* already terminated */ }
-try { frontendProcess.kill("SIGTERM"); } catch { /* already terminated */ }
 
-// Give processes time to terminate gracefully
+// Give process time to terminate gracefully
 await new Promise(r => setTimeout(r, 1000));
 
 // Force kill if still running
 try { backendProcess.kill("SIGKILL"); } catch { /* already terminated */ }
-try { frontendProcess.kill("SIGKILL"); } catch { /* already terminated */ }
 
-await Promise.allSettled([
-  backendProcess.status,
-  frontendProcess.status,
-]);
+await Promise.allSettled([backendProcess.status]);
 
 logger.info("Stopped.");
 Deno.exit(0);
