@@ -4,7 +4,7 @@
 
 import { getModelById, getVideoModelById, getI2IModelById, getI2VModelById, getV2VModelById, getRecastModelById, getLipSyncModelById, getAudioModelById } from './models.js';
 
-function getBaseUrl(): string {
+function getBaseUrl() {
     if (typeof window !== 'undefined') {
         return window.location.origin;
     }
