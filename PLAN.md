@@ -115,15 +115,12 @@ npm run dev:self-hosted
 - API key management in settings
 - Model deletion placeholder (manual removal noted)
 
-### Phase 6: Video Generation Support (NEXT)
+### Phase 6: Video Generation Support ✅ COMPLETED
 
-### Phase 6: Video Generation Support
-
-1. **Wan2GP integration** — Add support for remote Gradio server (Wan2GP)
-2. **Video studio components** — Integrate VideoStudio for text-to-video
-3. **Image-to-video support** — I2V with start frame upload
-4. **Video playback** — Preview generated videos in the UI
-5. **Video history** — Store and browse video generation history
+- `components/VideoHistoryPanel.js` — Video history browsing with playback
+- VideoStudio component works via proxy to Deno backend
+- Video playback, download, and deletion support
+- Wan2GP integration is a future enhancement (requires Python/PyTorch server)
 
 ### Phase 7: Polish & Packaging
 
