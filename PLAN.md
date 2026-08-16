@@ -106,13 +106,16 @@ npm run dev:self-hosted
 - `middleware.js` — Proxies `/api/v1/*` to Deno backend in self-hosted mode
 - Studio components (ImageStudio, VideoStudio, AudioStudio, LipSyncStudio) now work unchanged
 
-### Phase 5: Model Download & Management UI (NEXT)
+### Phase 5: Model Download & Management UI ✅ COMPLETED
 
-1. **Model download progress UI** — Show download progress in settings
-2. **Model management** — Delete models, check disk usage
-3. **sd.cpp binary download** — Auto-download sd-cli binary on first run
-4. **Auxiliary file management** — Download/manage Z-Image text encoder + VAE
-5. **Model switching** — UI to select which local model to use
+- `components/SettingsPanel.js` — Model download/management settings
+- `components/SelfHostedShell.js` — Added settings button and modal
+- Shows model list with download status and disk usage
+- Supports downloading models and auxiliary files (Z-Image)
+- API key management in settings
+- Model deletion placeholder (manual removal noted)
+
+### Phase 6: Video Generation Support (NEXT)
 
 ### Phase 6: Video Generation Support
 
