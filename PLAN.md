@@ -100,19 +100,13 @@ npm run dev:self-hosted
 
 ## Remaining Phases
 
-### Phase 4: Frontend Studio Integration (NEXT)
+### Phase 4: Frontend Studio Integration ✅ COMPLETED
 
-The SelfHostedShell is a minimal prototype. Need to integrate the full studio components from `packages/studio/`:
+- `components/SelfHostedShell.js` — Updated to use full studio components from packages/studio/
+- `middleware.js` — Proxies `/api/v1/*` to Deno backend in self-hosted mode
+- Studio components (ImageStudio, VideoStudio, AudioStudio, LipSyncStudio) now work unchanged
 
-1. **Integrate full studio components** — Replace SelfHostedShell with proper ImageStudio, VideoStudio, LipSyncStudio, AudioStudio
-2. **Wire up models.js** — Use the model catalog from `packages/studio/src/models.js`
-3. **Support model-specific parameters** — Aspect ratio, resolution, quality, steps, guidance, seed
-4. **Handle multi-image input** — For I2I models that accept multiple reference images
-5. **Add local model toggle** — UI to switch between Muapi cloud models and local sd.cpp models
-6. **Add model download UI** — Settings page to download/manage local models
-7. **Add progress reporting** — Real-time progress in the UI via WebSocket or polling
-
-### Phase 5: Model Download & Management UI
+### Phase 5: Model Download & Management UI (NEXT)
 
 1. **Model download progress UI** — Show download progress in settings
 2. **Model management** — Delete models, check disk usage
