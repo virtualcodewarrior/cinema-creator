@@ -122,7 +122,25 @@ npm run dev:self-hosted
 - Video playback, download, and deletion support
 - Wan2GP integration is a future enhancement (requires Python/PyTorch server)
 
-### Phase 7: Polish & Packaging
+### Phase 7: Polish & Packaging ✅ COMPLETED
+
+- `Dockerfile.deno` — Docker image for Deno backend
+- `Dockerfile.nextjs` — Docker image for Next.js frontend
+- `docker-compose.yml` — Orchestration for both services
+- `scripts/ai-cinema-backend.service` — systemd service for Linux
+- `scripts/com.ai-cinema.backend.plist` — launchd service for macOS
+- `components/FirstRunWizard.js` — Step-by-step setup wizard
+
+## Project Complete
+
+The self-hosted AI Cinema project is now complete with:
+- Fully functional Deno backend with sd.cpp local inference
+- Next.js frontend with full studio components
+- Docker deployment support
+- Auto-start services for Linux/macOS
+- First-run wizard for easy setup
+- Model download and management UI
+- Video history and playback support
 
 1. **Docker support** — Docker Compose for Deno + Next.js
 2. **Auto-start helper** — systemd service or launchd plist
