@@ -10,6 +10,7 @@ const ROUTES = [
   '/agents/create',
   '/studio/workflow',
   '/agents/agent-1',
+  '/agents/edit/agent-1',
 ];
 // Shadow-piercing probe: querySelector/innerText on body do not cross shadow
 // boundaries, so walk shadow roots explicitly. String.raw: the probe contains

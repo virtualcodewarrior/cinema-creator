@@ -1,0 +1,226 @@
+{
+  "/": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "shadowRoots": 2,
+      "text": "AI Cinema Self-Hosted Studio 🎨Image 🎬Video 🎥Cinema 👄Lip Sync 🔗Workflow 🤖Agents 📦Apps 🎵Audio 📢Marketing 🎭Recast 💃Motion ✂️Clipping 🖼️Layers ✏️Design ⭐Influencer ⚙️Settings START CREATING WITHNano BananaDescribe a scene, character, mood, or style — and watch it come to lifeNano Banana1:1-1/4+DrawGenerate ✦",
+      "buttons": [
+        "🎨Image",
+        "🎬Video",
+        "🎥Cinema",
+        "👄Lip Sync",
+        "🔗Workflow",
+        "🤖Agents",
+        "📦Apps",
+        "🎵Audio",
+        "📢Marketing",
+        "🎭Recast",
+        "💃Motion",
+        "✂️Clipping",
+        "🖼️Layers",
+        "✏️Design",
+        "⭐Influencer",
+        "⚙️Settings",
+        "Nano Banana",
+        "1:1",
+        "-",
+        "+",
+        "Draw",
+        "Generate ✦"
+      ],
+      "inputs": 2,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": []
+  },
+  "/studio/video": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "shadowRoots": 2,
+      "text": "AI Cinema Self-Hosted Studio 🎨Image 🎬Video 🎥Cinema 👄Lip Sync 🔗Workflow 🤖Agents 📦Apps 🎵Audio 📢Marketing 🎭Recast 💃Motion ✂️Clipping 🖼️Layers ✏️Design ⭐Influencer ⚙️Settings START CREATING WITHSeedance LiteAnimate images into stunning AI videos with motion effectsSeedance Lite16:95s480pDrawGenerate",
+      "buttons": [
+        "🎨Image",
+        "🎬Video",
+        "🎥Cinema",
+        "👄Lip Sync",
+        "🔗Workflow",
+        "🤖Agents",
+        "📦Apps",
+        "🎵Audio",
+        "📢Marketing",
+        "🎭Recast",
+        "💃Motion",
+        "✂️Clipping",
+        "🖼️Layers",
+        "✏️Design",
+        "⭐Influencer",
+        "⚙️Settings",
+        "Seedance Lite",
+        "16:9",
+        "5s",
+        "480p",
+        "Draw",
+        "Generate"
+      ],
+      "inputs": 2,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": []
+  },
+  "/studio/cinema": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "shadowRoots": 2,
+      "text": "AI Cinema Self-Hosted Studio 🎨Image 🎬Video 🎥Cinema 👄Lip Sync 🔗Workflow 🤖Agents 📦Apps 🎵Audio 📢Marketing 🎭Recast 💃Motion ✂️Clipping 🖼️Layers ✏️Design ⭐Influencer ⚙️Settings START CREATING WITHCINEMA STUDIOWhat would you shoot with infinite budget? Control cameras, lighting, lenses, and prompt high-end cinematic scenes.16:92KModular 8K Digital · Creative Tilt Lens, 35mm, f/1.4Shoot ✦ 10",
+      "buttons": [
+        "🎨Image",
+        "🎬Video",
+        "🎥Cinema",
+        "👄Lip Sync",
+        "🔗Workflow",
+        "🤖Agents",
+        "📦Apps",
+        "🎵Audio",
+        "📢Marketing",
+        "🎭Recast",
+        "💃Motion",
+        "✂️Clipping",
+        "🖼️Layers",
+        "✏️Design",
+        "⭐Influencer",
+        "⚙️Settings",
+        "16:9",
+        "2K",
+        "Modular 8K Digital · Creative Tilt Lens, 35mm, f/1.4",
+        "Shoot ✦ 10"
+      ],
+      "inputs": 2,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": []
+  },
+  "/studio/layers": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "shadowRoots": 2,
+      "text": "AI Cinema Self-Hosted Studio 🎨Image 🎬Video 🎥Cinema 👄Lip Sync 🔗Workflow 🤖Agents 📦Apps 🎵Audio 📢Marketing 🎭Recast 💃Motion ✂️Clipping 🖼️Layers ✏️Design ⭐Influencer ⚙️Settings CHANGELasso editRegional editShapes (R)–100%+Layer DecompositionOriginal5 LayersTry →12345Click to explore sampleSettingsResolution1K1.5K2KLayers8216Separate layers 12",
+      "buttons": [
+        "🎨Image",
+        "🎬Video",
+        "🎥Cinema",
+        "👄Lip Sync",
+        "🔗Workflow",
+        "🤖Agents",
+        "📦Apps",
+        "🎵Audio",
+        "📢Marketing",
+        "🎭Recast",
+        "💃Motion",
+        "✂️Clipping",
+        "🖼️Layers",
+        "✏️Design",
+        "⭐Influencer",
+        "⚙️Settings",
+        "CHANGE",
+        "Lasso edit",
+        "Regional edit",
+        "Shapes (R)",
+        "–",
+        "100%",
+        "+",
+        "1K",
+        "1.5K",
+        "2K",
+        "Separate layers 12"
+      ],
+      "inputs": 3,
+      "videos": 0,
+      "canvases": 1
+    },
+    "errors": []
+  },
+  "/agents/create": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "shadowRoots": 2,
+      "text": "Prompt Any Assistant Use this to prompt up an assistant to help you with any topic! What should your assistant be able to do and be knowledgeable in? Create agent",
+      "buttons": [
+        "Create agent"
+      ],
+      "inputs": 1,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": []
+  },
+  "/studio/workflow": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "shadowRoots": 2,
+      "text": "AI Cinema Self-Hosted Studio 🎨Image 🎬Video 🎥Cinema 👄Lip Sync 🔗Workflow 🤖Agents 📦Apps 🎵Audio 📢Marketing 🎭Recast 💃Motion ✂️Clipping 🖼️Layers ✏️Design ⭐Influencer ⚙️Settings WorkflowsCreate and manage your asynchronous AI processing pipelinesCreate WorkflowTemplatesMy WorkflowsCommunityNo workflows found in this section.",
+      "buttons": [
+        "🎨Image",
+        "🎬Video",
+        "🎥Cinema",
+        "👄Lip Sync",
+        "🔗Workflow",
+        "🤖Agents",
+        "📦Apps",
+        "🎵Audio",
+        "📢Marketing",
+        "🎭Recast",
+        "💃Motion",
+        "✂️Clipping",
+        "🖼️Layers",
+        "✏️Design",
+        "⭐Influencer",
+        "⚙️Settings",
+        "Create Workflow",
+        "Templates",
+        "My Workflows",
+        "Community"
+      ],
+      "inputs": 0,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": []
+  },
+  "/agents/agent-1": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "shadowRoots": 2,
+      "text": "Agent not found",
+      "buttons": [],
+      "inputs": 0,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": []
+  },
+  "/agents/edit/agent-1": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "shadowRoots": 2,
+      "text": "Access Denied Failed to load agent details. Return to My Agents",
+      "buttons": [],
+      "inputs": 0,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": [
+      "console.error: Error fetching data: Error: HTTP 404\n    at apiFetch (http://localhost:5173/src/lib/agents-api.js?t=1786884256606:58:17)\n    at async Promise.all (index 0)\n    at async AgentEdit.fetchData (http://localhost:5173/src/wc/agents/edit-agent.js?t=1786885199173:93:37)"
+    ]
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "/": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "shadowRoots": 2,
+      "text": "AI Cinema Self-Hosted Studio 🎨Image 🎬Video 🎥Cinema 👄Lip Sync 🔗Workflow 🤖Agents 📦Apps 🎵Audio 📢Marketing 🎭Recast 💃Motion ✂️Clipping 🖼️Layers ✏️Design ⭐Influencer ⚙️Settings START CREATING WITHNano BananaDescribe a scene, character, mood, or style — and watch it come to lifeNano Banana1:1-1/4+DrawGenerate ✦",
+      "buttons": [
+        "🎨Image",
+        "🎬Video",
+        "🎥Cinema",
+        "👄Lip Sync",
+        "🔗Workflow",
+        "🤖Agents",
+        "📦Apps",
+        "🎵Audio",
+        "📢Marketing",
+        "🎭Recast",
+        "💃Motion",
+        "✂️Clipping",
+        "🖼️Layers",
+        "✏️Design",
+        "⭐Influencer",
+        "⚙️Settings",
+        "Nano Banana",
+        "1:1",
+        "-",
+        "+",
+        "Draw",
+        "Generate ✦"
+      ],
+      "inputs": 2,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": []
+  },
+  "/studio/video": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "shadowRoots": 2,
+      "text": "AI Cinema Self-Hosted Studio 🎨Image 🎬Video 🎥Cinema 👄Lip Sync 🔗Workflow 🤖Agents 📦Apps 🎵Audio 📢Marketing 🎭Recast 💃Motion ✂️Clipping 🖼️Layers ✏️Design ⭐Influencer ⚙️Settings START CREATING WITHSeedance LiteAnimate images into stunning AI videos with motion effectsSeedance Lite16:95s480pDrawGenerate",
+      "buttons": [
+        "🎨Image",
+        "🎬Video",
+        "🎥Cinema",
+        "👄Lip Sync",
+        "🔗Workflow",
+        "🤖Agents",
+        "📦Apps",
+        "🎵Audio",
+        "📢Marketing",
+        "🎭Recast",
+        "💃Motion",
+        "✂️Clipping",
+        "🖼️Layers",
+        "✏️Design",
+        "⭐Influencer",
+        "⚙️Settings",
+        "Seedance Lite",
+        "16:9",
+        "5s",
+        "480p",
+        "Draw",
+        "Generate"
+      ],
+      "inputs": 2,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": []
+  },
+  "/studio/cinema": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "shadowRoots": 2,
+      "text": "AI Cinema Self-Hosted Studio 🎨Image 🎬Video 🎥Cinema 👄Lip Sync 🔗Workflow 🤖Agents 📦Apps 🎵Audio 📢Marketing 🎭Recast 💃Motion ✂️Clipping 🖼️Layers ✏️Design ⭐Influencer ⚙️Settings START CREATING WITHCINEMA STUDIOWhat would you shoot with infinite budget? Control cameras, lighting, lenses, and prompt high-end cinematic scenes.16:92KModular 8K Digital · Creative Tilt Lens, 35mm, f/1.4Shoot ✦ 10",
+      "buttons": [
+        "🎨Image",
+        "🎬Video",
+        "🎥Cinema",
+        "👄Lip Sync",
+        "🔗Workflow",
+        "🤖Agents",
+        "📦Apps",
+        "🎵Audio",
+        "📢Marketing",
+        "🎭Recast",
+        "💃Motion",
+        "✂️Clipping",
+        "🖼️Layers",
+        "✏️Design",
+        "⭐Influencer",
+        "⚙️Settings",
+        "16:9",
+        "2K",
+        "Modular 8K Digital · Creative Tilt Lens, 35mm, f/1.4",
+        "Shoot ✦ 10"
+      ],
+      "inputs": 2,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": []
+  },
+  "/studio/layers": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "shadowRoots": 2,
+      "text": "AI Cinema Self-Hosted Studio 🎨Image 🎬Video 🎥Cinema 👄Lip Sync 🔗Workflow 🤖Agents 📦Apps 🎵Audio 📢Marketing 🎭Recast 💃Motion ✂️Clipping 🖼️Layers ✏️Design ⭐Influencer ⚙️Settings CHANGELasso editRegional editShapes (R)–100%+Layer DecompositionOriginal5 LayersTry →12345Click to explore sampleSettingsResolution1K1.5K2KLayers8216Separate layers 12",
+      "buttons": [
+        "🎨Image",
+        "🎬Video",
+        "🎥Cinema",
+        "👄Lip Sync",
+        "🔗Workflow",
+        "🤖Agents",
+        "📦Apps",
+        "🎵Audio",
+        "📢Marketing",
+        "🎭Recast",
+        "💃Motion",
+        "✂️Clipping",
+        "🖼️Layers",
+        "✏️Design",
+        "⭐Influencer",
+        "⚙️Settings",
+        "CHANGE",
+        "Lasso edit",
+        "Regional edit",
+        "Shapes (R)",
+        "–",
+        "100%",
+        "+",
+        "1K",
+        "1.5K",
+        "2K",
+        "Separate layers 12"
+      ],
+      "inputs": 3,
+      "videos": 0,
+      "canvases": 1
+    },
+    "errors": []
+  },
+  "/agents/create": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "shadowRoots": 1,
+      "text": "",
+      "buttons": [],
+      "inputs": 0,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": [
+      "Error: invariant expected app router to be mounted at useRouter (http://localhost:5173/node_modules/.vite/deps/next_navigation.js?v=a8d07b74:2223:37) at CreateAgent (http://localhost:5173/packages/Open-Poe-AI/packages/agents/src/components/CreateAgent.jsx:36:18) at Object.react_stack_bottom_frame (http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=a8d07b74:18241:20) "
+    ]
+  },
+  "/studio/workflow": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "shadowRoots": 2,
+      "text": "AI Cinema Self-Hosted Studio 🎨Image 🎬Video 🎥Cinema 👄Lip Sync 🔗Workflow 🤖Agents 📦Apps 🎵Audio 📢Marketing 🎭Recast 💃Motion ✂️Clipping 🖼️Layers ✏️Design ⭐Influencer ⚙️Settings WorkflowsCreate and manage your asynchronous AI processing pipelinesCreate WorkflowTemplatesMy WorkflowsCommunityNo workflows found in this section.",
+      "buttons": [
+        "🎨Image",
+        "🎬Video",
+        "🎥Cinema",
+        "👄Lip Sync",
+        "🔗Workflow",
+        "🤖Agents",
+        "📦Apps",
+        "🎵Audio",
+        "📢Marketing",
+        "🎭Recast",
+        "💃Motion",
+        "✂️Clipping",
+        "🖼️Layers",
+        "✏️Design",
+        "⭐Influencer",
+        "⚙️Settings",
+        "Create Workflow",
+        "Templates",
+        "My Workflows",
+        "Community"
+      ],
+      "inputs": 0,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": []
+  },
+  "/agents/agent-1": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "shadowRoots": 1,
+      "text": "Agent not found",
+      "buttons": [],
+      "inputs": 0,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": []
+  },
+  "/agents/edit/agent-1": {
+    "dom": {
+      "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "shadowRoots": 1,
+      "text": "",
+      "buttons": [],
+      "inputs": 0,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": [
+      "TypeError: Cannot destructure property 'id' of 'useParams(...)' as it is null. at EditAgent (http://localhost:5173/packages/Open-Poe-AI/packages/agents/src/components/EditAgent.jsx:40:11) at Object.react_stack_bottom_frame (http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=a8d07b74:18241:20) at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/react-dom_c"
+    ]
+  }
+}

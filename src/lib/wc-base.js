@@ -8,7 +8,11 @@ const loaded = new Map(); // key -> CSSStyleSheet
 const pending = new Map(); // key -> Promise<CSSStyleSheet>
 
 function sheetUrl(key) {
-  return new URL('wc/' + key + '.css', document.baseURI).href;
+  // Absolute path on purpose: resolving against the document URL breaks on
+  // paths without a trailing slash (/agents/edit/x -> /agents/edit/wc/x.css),
+  // which returns the SPA fallback HTML and yields an empty stylesheet.
+  const base = import.meta.env.BASE_URL || '/';
+  return base.replace(/\/?$/, '/') + 'wc/' + key + '.css';
 }
 
 export function loadWcSheet(key) {
@@ -24,6 +28,7 @@ export function loadWcSheet(key) {
     return sheet;
   })();
   pending.set(key, p);
+  p.catch(() => pending.delete(key)); // don't wedge retries on a failed load
   return p;
 }
 

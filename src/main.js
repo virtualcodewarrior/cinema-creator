@@ -1,38 +1,26 @@
 // App entry (vanilla JS, no JSX).
-// P1: the app shell is the <app-shell> web component; studios still render
-// React inside its outlet, and the /agents/* routes render via a temporary
-// React bridge in light DOM. Each flips to native as its phase completes.
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// P2: the app shell and every /agents/* surface are native web components.
+// Studios still render React inside the shell's outlet (each flips to native
+// in P3–P5 as its phase completes).
 import { route, start } from './lib/router.js';
 import { loadWcCss, SHEET_KEYS } from './lib/wc-base.js';
 import { initTheme } from './lib/theme.js';
 import './globals.css';
 import './wc/toaster.js';
 import './wc/shell.js';
-// React pages for the bridge (kept until agents migrate in P2)
-import AgentChatPage from './pages/AgentChatPage.jsx';
-import AgentCreatePage from '../app/agents/create/page.jsx';
-import AgentEditPage from '../app/agents/edit/[id]/page.jsx';
+import './wc/agents/create-agent.js';
+import './wc/agents/edit-agent.js';
+import './wc/agents/agent-chat.js';
+import './wc/agents/agent-profile.js';
 
 let shell = null;
-let bridgeRoot = null;
 
 function rootEl() {
   return document.getElementById('root');
 }
 
-function clearBridge() {
-  if (bridgeRoot) {
-    bridgeRoot.unmount();
-    bridgeRoot = null;
-  }
-}
-
 function renderShell(studio) {
   const root = rootEl();
-  clearBridge();
   if (!shell || !root.contains(shell)) {
     shell = document.createElement('app-shell');
     root.innerHTML = '';
@@ -41,35 +29,17 @@ function renderShell(studio) {
   shell.setStudio(studio);
 }
 
-// Temporary React host for not-yet-migrated routes (light DOM, global CSS).
-// Declares the same param routes the old App.jsx had so useParams works.
-function renderBridge() {
+// Mount a native agents web component in #root (full page, no shell sidebar).
+function renderAgent(tag, props = {}) {
   const root = rootEl();
   if (shell) {
     shell.remove();
     shell = null;
   }
   root.innerHTML = '';
-  const div = document.createElement('div');
-  root.appendChild(div);
-  bridgeRoot = ReactDOM.createRoot(div);
-  bridgeRoot.render(
-    React.createElement(
-      React.StrictMode,
-      null,
-      React.createElement(
-        BrowserRouter,
-        null,
-        React.createElement(
-          Routes,
-          null,
-          React.createElement(Route, { path: '/agents/create', element: React.createElement(AgentCreatePage) }),
-          React.createElement(Route, { path: '/agents/edit/:id', element: React.createElement(AgentEditPage) }),
-          React.createElement(Route, { path: '/agents/:agentId', element: React.createElement(AgentChatPage) }),
-        ),
-      ),
-    ),
-  );
+  const el = document.createElement(tag);
+  Object.entries(props).forEach(([k, v]) => (el[k] = v));
+  root.appendChild(el);
 }
 
 // Registration order = match priority (specific before param routes).
@@ -77,9 +47,17 @@ route('/', () => renderShell('image'));
 route('/workflow', () => renderShell('image'));
 route('/workflow/*', () => renderShell('image'));
 route('/studio/:name', (p) => renderShell(p.name));
-route('/agents/create', () => renderBridge());
-route('/agents/edit/:id', () => renderBridge());
-route('/agents/*', () => renderBridge());
+route('/agents/create', () => renderAgent('agent-create'));
+route('/agents/edit/:id', (p) => renderAgent('agent-edit', { agentId: p.id }));
+// Must be registered before the conversation route: '/agents/x/profile' must
+// not be captured by '/agents/:agentId/:conversationId'.
+route('/agents/:agentId/profile', (p) =>
+  renderAgent('agent-profile', { agentId: p.agentId }),
+);
+route('/agents/:agentId/:conversationId', (p) =>
+  renderAgent('agent-chat', { agentId: p.agentId, conversationId: p.conversationId }),
+);
+route('/agents/:agentId', (p) => renderAgent('agent-chat', { agentId: p.agentId }));
 // Unknown paths render nothing (same as the old react-router config).
 
 const toaster = document.createElement('app-toaster');
