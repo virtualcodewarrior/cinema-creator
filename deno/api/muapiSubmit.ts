@@ -3,7 +3,7 @@
 // queues a generation job, and returns a request_id for polling.
 
 import type { JobQueue } from "../lib/queue.ts";
-import { getModelById, LOCAL_MODEL_CATALOG } from "../storage/models.ts";
+import { getModelById } from "../storage/models.ts";
 import { addHistoryEntry } from "../storage/history.ts";
 import type { Config } from "../lib/config.ts";
 import { type ApiResponse, jsonResponse } from "./_utils.ts";
