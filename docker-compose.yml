@@ -1,9 +1,48 @@
+version: '3.8'
+
 services:
-  open-generative-ai:
-    build: .
-    container_name: open-generative-ai
+  # Deno backend for AI inference
+  deno-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.deno
+    container_name: ai-cinema-deno
     ports:
-      - "3001:3000"
+      - "8000:8000"
+    volumes:
+      - ai-cinema-data:/data
+      - ai-cinema-cache:/cache
     environment:
-      - NODE_ENV=production
+      - AI_CINEMA_HOME=/data
+      - DENO_DIR=/cache
+      - AI_CINEMA_PORT=8000
+      - AI_CINEMA_LOG_LEVEL=info
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Next.js frontend
+  nextjs-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.nextjs
+    container_name: ai-cinema-nextjs
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_SELF_HOSTED=1
+      - DENO_BACKEND_URL=http://deno-backend:8000
+      - NODE_ENV=production
+    depends_on:
+      deno-backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  ai-cinema-data:
+    driver: local
+  ai-cinema-cache:
+    driver: local
