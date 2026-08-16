@@ -47,6 +47,44 @@ GET /api/models
 
 Returns all available models with download states.
 
+### Download Model
+
+```
+POST /api/models/{modelId}/download
+
+Response:
+{ "ok": true, "data": { "downloading": true, "modelId": "dreamshaper-8" } }
+{ "ok": false, "error": "Model already downloaded" }
+```
+
+### Download Auxiliary File
+
+```
+POST /api/aux/{auxKey}/download
+// auxKey: "llm" or "vae"
+
+Response:
+{ "ok": true, "data": { "downloading": true, "auxKey": "llm" } }
+```
+
+### Check Download Status
+
+```
+GET /api/download/status?modelId={modelId}
+
+Response:
+{ "ok": true, "data": { "downloading": false, "modelId": "dreamshaper-8" } }
+```
+
+### Cancel Download
+
+```
+POST /api/download/cancel?modelId={modelId}
+
+Response:
+{ "ok": true, "cancelled": true }
+```
+
 ### Generate Image
 
 ```
@@ -141,9 +179,13 @@ Z-Image models require auxiliary files (Qwen3-4B text encoder + FLUX VAE).
 │  ┌──────────────┐    HTTP + WS    ┌─────────┴────────┐
 │  │  Next.js     │◄──────────────►│   Deno Backend   │
 │  │  Frontend    │  :8000         │   :8000          │
-│  │              │                │  sd-cli (subproc)│
-│  └──────────────┘                │  JSON (history)  │
-│                                  │  fs (models/files)│
+│  │              │                │                  │
+│  └──────────────┘                │  ┌──────────────┐ │
+│                                  │  │  JobQueue    │ │
+│                                  │  │  JobDispatcher││
+│                                  │  │  SdCppEngine │ │
+│                                  │  │  sd-cli (proc)││
+│                                  │  └──────────────┘ │
 │                                  └──────────────────┘
 │                                              │
 │                                  ┌───────────┴──────────┐

@@ -5,12 +5,19 @@ import { ensureDataDirs, loadConfig } from "./lib/config.ts";
 import { getLogger, setLogLevel } from "./lib/logger.ts";
 import { extractApiKey, validateApiKey } from "./lib/auth.ts";
 import { JobQueue } from "./lib/queue.ts";
+import { JobDispatcher } from "./lib/dispatcher.ts";
 import { SdCppEngine } from "./inference/sdcpp.ts";
 import { handleModelsRequest } from "./api/models.ts";
 import { type GenerateRequest, handleGenerateRequest } from "./api/generate.ts";
 import { handleJobStatusRequest } from "./api/jobStatus.ts";
 import { handleUploadRequest } from "./api/upload.ts";
 import { handleHistoryDeleteRequest, handleHistoryListRequest } from "./api/history.ts";
+import {
+  cancelDownload,
+  handleAuxDownloadRequest,
+  handleModelDownloadRequest,
+  isDownloading,
+} from "./api/modelDownload.ts";
 import { serveStaticFile, setupProgressWebSocket } from "./api/ws/progress.ts";
 import { handleCors, jsonResponse } from "./api/_utils.ts";
 
@@ -32,6 +39,9 @@ const engine = new SdCppEngine({
   binDir: `${config.dataDir}/bin`,
   queue,
 });
+
+const dispatcher = new JobDispatcher(queue, engine, config.dataDir);
+dispatcher.start();
 
 const wsHandler = setupProgressWebSocket(queue);
 
@@ -62,6 +72,42 @@ async function handleRequest(request: Request): Promise<Response> {
   // ─── Model catalog ──────────────────────────────────────────────────────
   if (method === "GET" && url.pathname === "/api/models") {
     return handleModelsRequest(`${config.dataDir}/models`);
+  }
+
+  // ─── Model download ─────────────────────────────────────────────────────
+  const modelDownloadMatch = url.pathname.match(/^\/api\/models\/(.+)\/download$/);
+  if (method === "POST" && modelDownloadMatch) {
+    const modelId = modelDownloadMatch[1];
+    return handleModelDownloadRequest(modelId, config);
+  }
+
+  // ─── Auxiliary download ─────────────────────────────────────────────────
+  const auxDownloadMatch = url.pathname.match(/^\/api\/aux\/(.+)\/download$/);
+  if (method === "POST" && auxDownloadMatch) {
+    const auxKey = auxDownloadMatch[1];
+    return handleAuxDownloadRequest(auxKey, config);
+  }
+
+  // ─── Cancel download ────────────────────────────────────────────────────
+  if (method === "POST" && url.pathname === "/api/download/cancel") {
+    const modelId = url.searchParams.get("modelId") ?? url.searchParams.get("auxKey");
+    if (!modelId) {
+      return jsonResponse({ ok: false, error: "Missing modelId or auxKey" }, 400);
+    }
+    const cancelled = cancelDownload(modelId);
+    return jsonResponse({ ok: true, cancelled });
+  }
+
+  // ─── Check download status ──────────────────────────────────────────────
+  if (method === "GET" && url.pathname === "/api/download/status") {
+    const modelId = url.searchParams.get("modelId");
+    if (!modelId) {
+      return jsonResponse({ ok: false, error: "Missing modelId" }, 400);
+    }
+    return jsonResponse({
+      ok: true,
+      data: { downloading: isDownloading(modelId), modelId },
+    });
   }
 
   // ─── Generate ───────────────────────────────────────────────────────────

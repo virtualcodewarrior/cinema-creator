@@ -22,6 +22,8 @@ export interface QueueOptions {
 
 export type ProgressCallback = (jobId: string, data: ProgressEvent) => void;
 
+export type JobStartedCallback = (job: Job) => void;
+
 export interface ProgressEvent {
   step?: number;
   totalSteps?: number;
@@ -35,6 +37,7 @@ export class JobQueue {
   private running: Map<string, Job> = new Map(); // model -> current job
   private completed: Map<string, Job> = new Map(); // jobId -> job
   private progressListeners: ProgressCallback[] = [];
+  private startedListeners: JobStartedCallback[] = [];
   private logger: Logger;
   private maxConcurrentPerModel: number;
 
@@ -59,6 +62,16 @@ export class JobQueue {
     this.progressListeners.push(cb);
     return () => {
       this.progressListeners = this.progressListeners.filter((l) => l !== cb);
+    };
+  }
+
+  /**
+   * Subscribe to job started events.
+   */
+  onStarted(cb: JobStartedCallback): () => void {
+    this.startedListeners.push(cb);
+    return () => {
+      this.startedListeners = this.startedListeners.filter((l) => l !== cb);
     };
   }
 
@@ -125,6 +138,12 @@ export class JobQueue {
         job.startedAt = Date.now();
         this.running.set(job.model, job);
         this.logger.info(`Job ${job.id} started for model ${job.model}`);
+
+        // Notify listeners
+        for (const listener of this.startedListeners) {
+          listener(job);
+        }
+
         return;
       }
     }

@@ -11,11 +11,8 @@ export interface DownloadProgress {
 
 export type ProgressCallback = (progress: DownloadProgress) => void;
 
-interface DownloadTask {
-  id: string;
-  url: string;
-  destPath: string;
-  onProgress?: ProgressCallback;
+interface DownloadOptions {
+  signal?: AbortSignal;
 }
 
 const MAX_REDIRECTS = 10;
@@ -28,8 +25,10 @@ export async function downloadFile(
   url: string,
   destPath: string,
   onProgress?: (progress: number) => void,
+  options: DownloadOptions = {},
 ): Promise<void> {
   const tmp = destPath + ".part";
+  const { signal } = options;
 
   // Get already downloaded bytes for resume
   let alreadyDownloaded = 0;
@@ -52,6 +51,11 @@ export async function downloadFile(
     redirectsLeft: number,
     retriesLeft: number,
   ): Promise<void> {
+    // Check for abort
+    if (signal?.aborted) {
+      throw new DOMException("Download aborted", "AbortError");
+    }
+
     const urlObj = new URL(requestUrl);
 
     const headers: Record<string, string> = {
@@ -64,7 +68,12 @@ export async function downloadFile(
       headers.Range = `bytes=${resumeFrom}-`;
     }
 
-    const response = await fetch(requestUrl, { headers });
+    const response = await fetch(requestUrl, { headers, signal });
+
+    // Check for abort after fetch
+    if (signal?.aborted) {
+      throw new DOMException("Download aborted", "AbortError");
+    }
 
     // Follow redirects
     if ([301, 302, 303, 307, 308].includes(response.status)) {
@@ -110,6 +119,10 @@ export async function downloadFile(
 
     try {
       while (true) {
+        if (signal?.aborted) {
+          throw new DOMException("Download aborted", "AbortError");
+        }
+
         const { done, value } = await reader.read();
         if (done) break;
 
@@ -138,6 +151,7 @@ export async function downloadModel(
   url: string,
   destPath: string,
   onProgress: ProgressCallback,
+  options: DownloadOptions = {},
 ): Promise<{ ok: true; path: string }> {
   onProgress({ id: modelId, phase: "downloading", progress: 0 });
 
@@ -146,6 +160,7 @@ export async function downloadModel(
       url,
       destPath,
       (p) => onProgress({ id: modelId, phase: "downloading", progress: p }),
+      options,
     );
     onProgress({ id: modelId, phase: "done", progress: 1 });
     return { ok: true, path: destPath };
@@ -164,8 +179,9 @@ export function downloadAuxiliary(
   url: string,
   destPath: string,
   onProgress: ProgressCallback,
+  options?: DownloadOptions,
 ): Promise<{ ok: true; path: string }> {
-  return downloadModel(auxKey, url, destPath, onProgress);
+  return downloadModel(auxKey, url, destPath, onProgress, options);
 }
 
 /**
@@ -175,6 +191,7 @@ export async function downloadBinary(
   url: string,
   destDir: string,
   onProgress: (progress: DownloadProgress) => void,
+  options: DownloadOptions = {},
 ): Promise<{ ok: true; source: string }> {
   onProgress({ id: "__binary__", phase: "downloading", progress: 0 });
 
@@ -182,7 +199,12 @@ export async function downloadBinary(
   const zipPath = `${destDir}/${zipName}`;
 
   try {
-    await downloadFile(url, zipPath, (p) => onProgress({ id: "__binary__", phase: "downloading", progress: p }));
+    await downloadFile(
+      url,
+      zipPath,
+      (p) => onProgress({ id: "__binary__", phase: "downloading", progress: p }),
+      options,
+    );
 
     onProgress({ id: "__binary__", phase: "extracting", progress: 0.95 });
     await extractZip(zipPath, destDir);

@@ -65,6 +65,21 @@ export async function addHistoryEntry(entry: Omit<HistoryEntry, "id" | "createdA
 }
 
 /**
+ * Update an existing history entry by ID.
+ */
+export async function updateHistoryEntry(
+  id: string,
+  updates: Partial<Omit<HistoryEntry, "id" | "createdAt">>,
+): Promise<boolean> {
+  const history = await loadHistory();
+  const idx = history.findIndex((e) => e.id === id);
+  if (idx === -1) return false;
+  history[idx] = { ...history[idx], ...updates };
+  await saveHistory(history);
+  return true;
+}
+
+/**
  * List history entries (most recent first).
  */
 export async function listHistory(limit = 50): Promise<HistoryEntry[]> {
