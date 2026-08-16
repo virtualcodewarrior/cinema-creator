@@ -33,16 +33,30 @@ const PROBE = String.raw`(() => {
   function text(root, acc = '') {
     // Snapshot childNodes: iterating a live NodeList while the DOM mutates
     // (e.g. an HMR reload mid-probe) walks a torn tree and garbles the text.
+    // Skip style/script so React <style> blocks (styled-jsx, inline CSS
+    // strings) don't pollute the user-visible text metric.
     for (const c of Array.from(root.childNodes)) {
       if (c.nodeType === 3) acc += c.textContent;
       else if (c.nodeType === 1) {
+        const tag = c.tagName;
+        if (tag === 'STYLE' || tag === 'SCRIPT') continue;
         if (c.shadowRoot) acc += text(c.shadowRoot);
         else acc += text(c);
       }
     }
     return acc;
   }
-  const buttons = deep('button').map((b) => b.textContent.trim()).filter(Boolean).slice(0, 45);
+  // textContent + any slotted light-DOM children (web-component composition):
+  // a <button><slot></slot></button> in a shadow root has empty textContent
+  // but its label lives in the slotted nodes.
+  function buttonText(b) {
+    let t = b.textContent;
+    for (const slotEl of b.querySelectorAll('slot')) {
+      t += slotEl.assignedNodes().map((n) => n.textContent || '').join('');
+    }
+    return t.trim();
+  }
+  const buttons = deep('button').map(buttonText).filter(Boolean).slice(0, 45);
   const allEls = deep('*');
   return JSON.stringify({
     title: document.title,

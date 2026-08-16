@@ -307,8 +307,8 @@
     "dom": {
       "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
       "rootChildren": 1,
-      "shadowRoots": 2,
-      "text": "AI Cinema Self-Hosted Studio 🎨Image 🎬Video 🎥Cinema 👄Lip Sync 🔗Workflow 🤖Agents 📦Apps 🎵Audio 📢Marketing 🎭Recast 💃Motion ✂️Clipping 🖼️Layers ✏️Design ⭐Influencer ⚙️Settings Audio ModelSuno Create MusicDescriptionSuno generate music that turns text prompts into full songs ΓÇö complete with vocals, lyrics, and instrumentation. You can describe a mood, genre, or even a specific lyric idea, and Suno creates a realistic, studio-quality track in seconds.Prompt\"Hard-hitting rap track with aggress...\"StyleMusic style specification for the generated audio.Custom ModeEnable custom mode for advanced settings.TitleTitle for the generated music track (optional).Persona IDPersona ID or custom voice ID to apply to the generated music (optional). Pair with persona_model to disambiguate.Persona ModelSelect optionWhat kind of persona_id this is. Set to voice_persona when persona_id is a cloned voice ID from suno-voice-clone. Requires model V5 or V5_5.InstrumentalEnable this option to generate music without prompt. If false prompt will used as the exact lyrics.Negative TagsMusic styles or traits to exclude from the generated audio (optional). Use to avoid specific styles.Vocal GendermaleVocal gender preference for the singing voice (optional).Style Weight0.6501Strength of adherence to the specified style (optional). Range 0ΓÇô1, up to 2 decimal places.Weirdness Constraint0.6501Controls experimental/creative deviation (optional). Range 0ΓÇô1, up to 2 decimal places.Audio Weight0.6501Balance weight for audio features vs. other factors (optional). Range 0ΓÇô1, up to 2 decimal places.Generate TrackAudio StudioChoose an AI music model, voice cloner, or sound generator. Modify variables on the left and craft your next high-fidelity track.",
+      "shadowRoots": 3,
+      "text": "AI Cinema Self-Hosted Studio 🎨Image 🎬Video 🎥Cinema 👄Lip Sync 🔗Workflow 🤖Agents 📦Apps 🎵Audio 📢Marketing 🎭Recast 💃Motion ✂️Clipping 🖼️Layers ✏️Design ⭐Influencer ⚙️Settings Audio Model Suno Create Music Description Suno generate music that turns text prompts into full songs ΓÇö complete with vocals, lyrics, and instrumentation. You can describe a mood, genre, or even a specific lyric idea, and Suno creates a realistic, studio-quality track in seconds. Prompt \"Hard-hitting rap track with aggress...\" Style Music style specification for the generated audio. Custom Mode Enable custom mode for advanced settings. Title Title for the generated music track (optional). Persona ID Persona ID or custom voice ID to apply to the generated music (optional). Pair with persona_model to disambiguate. Persona Model Select option What kind of persona_id this is. Set to voice_persona when persona_id is a cloned voice ID from suno-voice-clone. Requires model V5 or V5_5. Instrumental Enable this option to generate music without prompt. If false prompt will used as the exact lyrics. Negative Tags Music styles or traits to exclude from the generated audio (optional). Use to avoid specific styles. Vocal Gender male Vocal gender preference for the singing voice (optional). Style Weight 0.65 0 1 Strength of adherence to the specified style (optional). Range 0ΓÇô1, up to 2 decimal places. Weirdness Constraint 0.65 0 1 Controls experimental/creative deviation (optional). Range 0ΓÇô1, up to 2 decimal places. Audio Weight 0.65 0 1 Balance weight for audio features vs. other factors (optional). Range 0ΓÇô1, up to 2 decimal places. Generate Track Audio Studio Choose an AI music model, voice cloner, or sound generator. Modify variables on the left and craft your next high-fidelity track.",
       "buttons": [
         "🎨Image",
         "🎬Video",
@@ -342,8 +342,8 @@
     "dom": {
       "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
       "rootChildren": 1,
-      "shadowRoots": 2,
-      "text": "AI Cinema Self-Hosted Studio 🎨Image 🎬Video 🎥Cinema 👄Lip Sync 🔗Workflow 🤖Agents 📦Apps 🎵Audio 📢Marketing 🎭Recast 💃Motion ✂️Clipping 🖼️Layers ✏️Design ⭐Influencer ⚙️Settings .custom-scrollbar-thin::-webkit-scrollbar { height: 4px; } .custom-scrollbar-thin::-webkit-scrollbar-track { background: transparent; } .custom-scrollbar-thin::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; } .custom-scrollbar-thin::-webkit-scrollbar-thumb:hover { background: rgba(34, 211, 238, 0.3); } START CREATING WITHMARKETING STUDIODescribe your scene, upload your product, and watch high-converting AI video ads come to life.UUGCSelect Avatar9:161080p5sLaunch",
+      "shadowRoots": 8,
+      "text": "AI Cinema Self-Hosted Studio 🎨Image 🎬Video 🎥Cinema 👄Lip Sync 🔗Workflow 🤖Agents 📦Apps 🎵Audio 📢Marketing 🎭Recast 💃Motion ✂️Clipping 🖼️Layers ✏️Design ⭐Influencer ⚙️Settings START CREATING WITH MARKETING STUDIO Describe your scene, upload your product, and watch high-converting AI video ads come to life.",
       "buttons": [
         "🎨Image",
         "🎬Video",
@@ -448,7 +448,7 @@
       "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
       "rootChildren": 1,
       "shadowRoots": 2,
-      "text": "AI Cinema Self-Hosted Studio 🎨Image 🎬Video 🎥Cinema 👄Lip Sync 🔗Workflow 🤖Agents 📦Apps 🎵Audio 📢Marketing 🎭Recast 💃Motion ✂️Clipping 🖼️Layers ✏️Design ⭐Influencer ⚙️Settings START CREATING WITHAI CLIPPING STUDIOExtract viral highlights and precise timings from your videos automatically.CAI Clipping9:163 HighlightsCoordinates OnlyGenerate ✦ 5 .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; } .custom-scrollbar::-webkit-scrollbar-track { background: transparent; } .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.08); border-radius: 99px; } .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.15); } .custom-scrollbar { scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.08) transparent; }",
+      "text": "AI Cinema Self-Hosted Studio 🎨Image 🎬Video 🎥Cinema 👄Lip Sync 🔗Workflow 🤖Agents 📦Apps 🎵Audio 📢Marketing 🎭Recast 💃Motion ✂️Clipping 🖼️Layers ✏️Design ⭐Influencer ⚙️Settings START CREATING WITHAI CLIPPING STUDIOExtract viral highlights and precise timings from your videos automatically.CAI Clipping9:163 HighlightsCoordinates OnlyGenerate ✦ 5",
       "buttons": [
         "🎨Image",
         "🎬Video",
@@ -526,7 +526,7 @@
       "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
       "rootChildren": 1,
       "shadowRoots": 2,
-      "text": "AI Cinema Self-Hosted Studio 🎨Image 🎬Video 🎥Cinema 👄Lip Sync 🔗Workflow 🤖Agents 📦Apps 🎵Audio 📢Marketing 🎭Recast 💃Motion ✂️Clipping 🖼️Layers ✏️Design ⭐Influencer ⚙️Settings Design Agent StudioNo previous sessionsTotal Sessions0New Session$ 0.00UUserBronze$ 0.00 availableSupportDark Mode100%-+ Creative AgentAuto Model • Multi-tool AccessToday Agent15:03Hello User — what shall we create today?",
+      "text": "AI Cinema Self-Hosted Studio 🎨Image 🎬Video 🎥Cinema 👄Lip Sync 🔗Workflow 🤖Agents 📦Apps 🎵Audio 📢Marketing 🎭Recast 💃Motion ✂️Clipping 🖼️Layers ✏️Design ⭐Influencer ⚙️Settings Design Agent StudioNo previous sessionsTotal Sessions0New Session$ 0.00UUserBronze$ 0.00 availableSupportDark Mode100%-+ Creative AgentAuto Model • Multi-tool AccessToday Agent16:17Hello User — what shall we create today?",
       "buttons": [
         "🎨Image",
         "🎬Video",

@@ -92,5 +92,41 @@
       "canvases": 0
     },
     "errors": []
+  },
+  "/studio/marketing": {
+    "dom": {
+      "title": "Open Generative AI \u2014 Free Open-Source AI Image and Video Studio",
+      "rootChildren": 1,
+      "shadowRoots": 8,
+      "text": "AI Cinema Self-Hosted Studio \ud83c\udfa8Image \ud83c\udfacVideo \ud83c\udfa5Cinema \ud83d\udc44Lip Sync \ud83d\udd17Workflow \ud83e\udd16Agents \ud83d\udce6Apps \ud83c\udfb5Audio \ud83d\udce2Marketing \ud83c\udfadRecast \ud83d\udc83Motion \u2702\ufe0fClipping \ud83d\uddbc\ufe0fLayers \u270f\ufe0fDesign \u2b50Influencer \u2699\ufe0fSettings START CREATING WITH MARKETING STUDIO Describe your scene, upload your product, and watch high-converting AI video ads come to life.",
+      "buttons": [
+        "\ud83c\udfa8Image",
+        "\ud83c\udfacVideo",
+        "\ud83c\udfa5Cinema",
+        "\ud83d\udc44Lip Sync",
+        "\ud83d\udd17Workflow",
+        "\ud83e\udd16Agents",
+        "\ud83d\udce6Apps",
+        "\ud83c\udfb5Audio",
+        "\ud83d\udce2Marketing",
+        "\ud83c\udfadRecast",
+        "\ud83d\udc83Motion",
+        "\u2702\ufe0fClipping",
+        "\ud83d\uddbc\ufe0fLayers",
+        "\u270f\ufe0fDesign",
+        "\u2b50Influencer",
+        "\u2699\ufe0fSettings",
+        "UUGC",
+        "Select Avatar",
+        "9:16",
+        "1080p",
+        "5s",
+        "Launch"
+      ],
+      "inputs": 4,
+      "videos": 0,
+      "canvases": 0
+    },
+    "errors": []
   }
 }
