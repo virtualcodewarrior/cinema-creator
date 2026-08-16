@@ -191,12 +191,14 @@ export function promptSegmentOption({
   selected = false,
   className = '',
   type = 'button',
+  disabled = false,
   onClick,
 }) {
   return html`
     <button
       type=${type}
       ?aria-pressed=${selected}
+      ?disabled=${disabled}
       @click=${onClick}
       class="${joinClasses(
         'min-h-7 px-3 py-1 rounded-full text-xs font-semibold transition-all flex items-center justify-center gap-1.5',

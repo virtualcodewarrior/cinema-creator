@@ -35,13 +35,16 @@ const PROBE = String.raw`(() => {
     // (e.g. an HMR reload mid-probe) walks a torn tree and garbles the text.
     // Skip style/script so React <style> blocks (styled-jsx, inline CSS
     // strings) don't pollute the user-visible text metric.
+    // Shadow-owning elements: collect BOTH the shadow tree and the light-DOM
+    // children — with <slot> composition the light children (e.g. a
+    // <prompt-composer>'s slotted content) are what actually renders.
     for (const c of Array.from(root.childNodes)) {
       if (c.nodeType === 3) acc += c.textContent;
       else if (c.nodeType === 1) {
         const tag = c.tagName;
         if (tag === 'STYLE' || tag === 'SCRIPT') continue;
         if (c.shadowRoot) acc += text(c.shadowRoot);
-        else acc += text(c);
+        acc += text(c);
       }
     }
     return acc;
