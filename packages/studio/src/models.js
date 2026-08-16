@@ -10465,7 +10465,7 @@ export const i2iModels = [
         "description": "Upload a clear portrait photo.",
         "field": "image",
         "examples": [
-          "https://example.com/outputs/d09a771a8b2a45f1b0b5e6aba5955f1b.jpg"
+          "/assets/samples/1786019968051_cKRYLHHu.png"
         ]
       },
       "name": {
@@ -10919,7 +10919,7 @@ export const i2iModels = [
       },
       "images_list": {
         "examples": [
-          "https://example.com/assets/nano-banana-2-lite-edit-in.jpg"
+          "/assets/samples/nano-banana-2-lite-edit-in.jpg"
         ],
         "description": "Reference image URLs to edit. Up to 14 images.",
         "field": "images_list",
@@ -17528,7 +17528,7 @@ export const i2vModels = [
         "name": "image_urls",
         "description": "Upload 1–7 reference images for the video. Maximum 20 MB each.",
         "examples": [
-          "https://example.com/assets/gemini-omni-image-to-video.jpg"
+          "/assets/samples/gemini-omni-image-to-video.jpg"
         ],
         "maxItems": 7
       },
@@ -17620,7 +17620,7 @@ export const i2vModels = [
       },
       "images_list": {
         "examples": [
-          "https://example.com/assets/grok-imagine-video-1-5-preview.jpg"
+          "/assets/samples/grok-imagine-video-1-5-preview.jpg"
         ],
         "description": "Upload or provide image URLs to use as input for video generation.",
         "field": "images_list",
@@ -17698,7 +17698,7 @@ export const i2vModels = [
         "description": "URL of the input image used to generate video.",
         "field": "image",
         "examples": [
-          "https://example.com/assets/kling-v3-turbo-standard-image-to-video.jpg"
+          "/assets/samples/kling-v3-turbo-standard-image-to-video.jpg"
         ]
       },
       "duration": {
@@ -17739,7 +17739,7 @@ export const i2vModels = [
         "description": "URL of the input image used to generate video.",
         "field": "image",
         "examples": [
-          "https://example.com/assets/kling-v3-turbo-pro-image-to-video.jpg"
+          "/assets/samples/kling-v3-turbo-pro-image-to-video.jpg"
         ]
       },
       "duration": {
@@ -21725,7 +21725,7 @@ export const audioModels = [
           "Afrikaans_male_1_v1",
           "Afrikaans_female_1_v1"
         ],
-        "description": "Desired voice ID. Use a voice ID you have trained (https://example.com/voice-clone), or one of the following system voice IDs",
+        "description": "Desired voice ID. Use a voice ID you have trained, or one of the following system voice IDs",
         "type": "string",
         "typing": true,
         "title": "Voice ID",
@@ -22384,7 +22384,7 @@ export const audioModels = [
           "Afrikaans_male_1_v1",
           "Afrikaans_female_1_v1"
         ],
-        "description": "Desired voice ID. Use a voice ID you have trained (https://example.com/voice-clone), or one of the following system voice IDs",
+        "description": "Desired voice ID. Use a voice ID you have trained, or one of the following system voice IDs",
         "type": "string",
         "typing": true,
         "title": "Voice ID",

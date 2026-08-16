@@ -241,7 +241,14 @@ export async function serveFrontend(request: Request, config: { dataDir: string 
       },
     });
   } catch {
-    // Not found - for SPA routing, serve index.html for non-API paths
+    // Not found
+    // Missing static files must not be answered with the SPA index.html
+    // (e.g. a .js/.webp request returning text/html breaks module scripts and <img>).
+    const missingExt = pathname.split(".").pop()?.toLowerCase() || "";
+    if (missingExt !== "" && missingExt !== "html" && CONTENT_TYPES[`.${missingExt}`]) {
+      return new Response("Not found", { status: 404 });
+    }
+    // For SPA routing, serve index.html for non-API paths
     if (!pathname.startsWith("/api/") && !pathname.startsWith("/_next/")) {
       try {
         const indexContent = await Deno.readTextFile(`${FRONTEND_DIR}/index.html`);
