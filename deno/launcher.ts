@@ -29,11 +29,10 @@ if (!SKIP_FRONTEND_BUILD) {
   const projectRoot = new URL("../", import.meta.url).pathname;
   
   const buildCmd = new Deno.Command("npm", {
-    args: ["run", "build:self-hosted"],
+    args: ["run", "build"],
     cwd: projectRoot,
     env: {
       ...Deno.env.toObject(),
-      NEXT_PUBLIC_SELF_HOSTED: "1",
     },
     stdout: "piped",
     stderr: "piped",

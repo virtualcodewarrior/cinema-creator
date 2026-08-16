@@ -12,10 +12,8 @@
   ],
   "scripts": {
     "dev": "next dev",
-    "dev:self-hosted": "NEXT_PUBLIC_SELF_HOSTED=1 next dev",
     "dev:all": "deno run --allow-all deno/launcher.ts",
     "build": "next build",
-    "build:self-hosted": "NEXT_PUBLIC_SELF_HOSTED=1 next build",
     "start": "next start",
     "start:deno": "deno run --allow-all deno/main.ts",
     "start:all": "deno run --allow-all deno/launcher.ts",

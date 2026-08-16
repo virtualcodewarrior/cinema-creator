@@ -20,7 +20,7 @@ cd cinema-creator
 npm run setup
 
 # Build the frontend (static export)
-npm run build:self-hosted
+npm run build
 
 # Start Deno backend (serves both API and frontend)
 deno task start-all

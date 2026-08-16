@@ -31,7 +31,7 @@ Before running the backend, the frontend must be built:
 # From project root
 npm install
 npm run build:packages
-npm run build:self-hosted
+npm run build
 ```
 
 Or use the launcher which builds the frontend automatically:

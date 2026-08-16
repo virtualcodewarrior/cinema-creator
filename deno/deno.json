@@ -8,7 +8,7 @@
   "tasks": {
     "dev": "deno run --watch --allow-all main.ts",
     "start": "deno run --allow-all main.ts",
-    "build-frontend": "cd .. && npm run build:self-hosted",
+    "build-frontend": "cd .. && npm run build",
     "start-all": "deno run --allow-all launcher.ts",
     "test": "deno test --allow-all"
   },

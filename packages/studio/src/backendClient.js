@@ -1,18 +1,10 @@
 // Backend client for self-hosted AI Cinema.
-// Calls the Deno backend directly.
+// Calls the Deno backend directly via same-origin requests.
 // Maintains the same function signatures for compatibility with studio components.
 
 import { getModelById, getVideoModelById, getI2IModelById, getI2VModelById, getV2VModelById, getRecastModelById, getLipSyncModelById, getAudioModelById } from './models.js';
 
-// Deno backend URL — overrides with DENO_BACKEND_URL env var at build time,
-// or falls back to relative path (same origin) for production deployments.
-const BACKEND_URL = typeof process !== 'undefined' && process.env?.DENO_BACKEND_URL
-    ? process.env.DENO_BACKEND_URL
-    : '';
-
 function getBaseUrl(): string {
-    if (BACKEND_URL) return BACKEND_URL;
-    // Same-origin for production (Next.js serves both frontend and proxies to Deno)
     if (typeof window !== 'undefined') {
         return window.location.origin;
     }

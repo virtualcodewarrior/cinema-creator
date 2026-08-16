@@ -6,9 +6,6 @@ const nextConfig = {
     unoptimized: true,
   },
   assetPrefix: './',
-  env: {
-    NEXT_PUBLIC_SELF_HOSTED: process.env.NEXT_PUBLIC_SELF_HOSTED || '1',
-  },
 };
 
 export default nextConfig;

@@ -11,8 +11,7 @@ RUN npm ci
 
 # Copy source and build frontend
 COPY . .
-ENV NEXT_PUBLIC_SELF_HOSTED=1
-RUN npm run build:self-hosted
+RUN npm run build
 
 # Deno runtime stage
 FROM denoland/deno:1.44.0
