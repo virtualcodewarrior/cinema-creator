@@ -9,11 +9,8 @@ function addSecurityHeaders(response) {
     response.headers.set('X-XSS-Protection', '1; mode=block');
     response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
 
-    // CSP: allow connections to Muapi (cloud mode) or Deno backend (self-hosted)
-    const connectSrc = SELF_HOSTED
-        ? `'self' ${DENO_BACKEND_URL}`
-        : "'self' https://muapi.ai https://*.muapi.ai";
-
+    // CSP: allow connections to Deno backend (self-hosted)
+    const connectSrc = SELF_HOSTED ? `'self' ${DENO_BACKEND_URL}` : `'self'`;
     response.headers.set(
         'Content-Security-Policy',
         `default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; media-src 'self' data: blob: https:; connect-src ${connectSrc}; font-src 'self' data:`
@@ -28,27 +25,10 @@ export function middleware(request) {
     if (SELF_HOSTED) {
         if (url.pathname.startsWith('/api/v1')) {
             const targetUrl = new URL(url.pathname + url.search, DENO_BACKEND_URL);
-            const proxyResponse = NextResponse.proxy(targetUrl);
+            const proxyResponse = NextResponse.rewrite(targetUrl);
             return addSecurityHeaders(proxyResponse);
         }
         return addSecurityHeaders(NextResponse.next());
-    }
-
-    // Cloud mode: rewrite Muapi requests
-    const isMuApi = url.pathname.startsWith('/api/workflow') ||
-                    url.pathname.startsWith('/api/app') ||
-                    url.pathname.startsWith('/api/v1');
-
-    if (isMuApi) {
-        const isHandledByRoute = url.pathname.startsWith('/api/v1/creative-agent') ||
-                                url.pathname.startsWith('/api/v1/get_upload_url') ||
-                                url.pathname.startsWith('/api/v1/upload-binary');
-
-        if (url.pathname.startsWith('/api/v1') && !isHandledByRoute) {
-            const targetUrl = new URL(url.pathname + url.search, 'https://api.muapi.ai');
-            const rewriteResponse = NextResponse.rewrite(targetUrl);
-            return addSecurityHeaders(rewriteResponse);
-        }
     }
 
     return addSecurityHeaders(NextResponse.next());

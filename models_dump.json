@@ -389,7 +389,7 @@
           "isEdit": true
         }
       },
-      "provider": "muapi",
+      "provider": "self-hosted",
       "provider_name": "Wavespeed"
     },
     {

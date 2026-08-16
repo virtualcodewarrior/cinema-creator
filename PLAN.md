@@ -78,17 +78,11 @@ npm run dev:self-hosted
 - `api/modelDownload.ts` — Model download API with abort/cancel
 - `storage/downloads.ts` — AbortSignal support for cancellable downloads
 - `storage/history.ts` — `updateHistoryEntry()` for job completion/failure
-- `api/muapiSubmit.ts` — Muapi-compatible submit endpoint
-- `api/muapiPoll.ts` — Muapi-compatible polling endpoint
-- `api/muapiUpload.ts` — Muapi-compatible file upload
-- `api/muapiHistory.ts` — Muapi-compatible history listing
-- `api/muapiDeleteMedia.ts` — Muapi-compatible media deletion
-- `api/muapiBalance.ts` — Muapi-compatible balance endpoint
 - Updated `main.ts` — Routes all Muapi-compatible endpoints
 
 ### Phase 3: Frontend Migration ✅ COMPLETED
 
-- `packages/studio/src/backendClient.js` — Replaces muapi.js, calls Deno backend
+- `packages/studio/src/backendClient.js` — Calls Deno backend directly
 - `components/SelfHostedShell.js` — Simplified UI (Image, Video, Audio, LipSync)
 - `app/studio/self-hosted/page.js` — Self-hosted entry point
 - `app/studio/[[...slug]]/page.js` — Conditional SelfHostedShell
@@ -204,4 +198,4 @@ Z-Image models require auxiliary files (Qwen3-4B text encoder + FLUX VAE).
 - Self-hosted mode is enabled via `NEXT_PUBLIC_SELF_HOSTED=1` env var
 - The Deno backend supports both simplified API (`/api/generate`) and Muapi-compatible API (`/api/v1/*`)
 - All Muapi proxy routes in Next.js are skipped in self-hosted mode
-- The backendClient.js maintains the same function signatures as muapi.js for compatibility
+- The backendClient.js maintains the same function signatures as backendClient.js for compatibility

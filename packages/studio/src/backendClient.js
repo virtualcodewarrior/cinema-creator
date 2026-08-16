@@ -1,5 +1,5 @@
 // Backend client for self-hosted AI Cinema.
-// Replaces muapi.js — calls the Deno backend instead of Muapi.
+// Calls the Deno backend directly.
 // Maintains the same function signatures for compatibility with studio components.
 
 import { getModelById, getVideoModelById, getI2IModelById, getI2VModelById, getV2VModelById, getRecastModelById, getLipSyncModelById, getAudioModelById } from './models.js';
@@ -22,7 +22,7 @@ function getBaseUrl(): string {
 function notifyAuthRequired(status, detail) {
     if (typeof window === 'undefined') return;
     if (status !== 401 && status !== 403) return;
-    window.dispatchEvent(new CustomEvent('muapi:auth-required', { detail: { status, message: detail } }));
+    window.dispatchEvent(new CustomEvent('backend:auth-required', { detail: { status, message: detail } }));
 }
 
 async function pollForResult(requestId, key, maxAttempts = 900, interval = 2000) {
@@ -357,10 +357,72 @@ export async function deleteMedia(apiKey, requestId) {
 export {
     getModelById,
     getVideoModelById,
-    getI2IModelById,
-    getI2VModelById,
-    getV2VModelById,
-    getRecastModelById,
-    getLipSyncModelById,
-    getAudioModelById,
-};
+     getI2IModelById,
+     getI2VModelById,
+     getV2VModelById,
+     getRecastModelById,
+     getLipSyncModelById,
+     getAudioModelById,
+ };
+
+// ─── App interests ──────────────────────────────────────────────────────────
+
+export async function registerAppInterest(apiKey, appName) {
+    const baseUrl = getBaseUrl();
+    const response = await fetch(`${baseUrl}/api/app/interest`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey },
+        body: JSON.stringify({ app_name: appName })
+    });
+    if (!response.ok) {
+        const errText = await response.text();
+        throw new Error(`Failed to register interest: ${response.status} - ${errText.slice(0, 100)}`);
+    }
+    return await response.json();
+}
+
+export async function getAppInterests(apiKey) {
+    const baseUrl = getBaseUrl();
+    const response = await fetch(`${baseUrl}/api/app/interests`, {
+        headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey }
+    });
+    if (!response.ok) {
+        const errText = await response.text();
+        throw new Error(`Failed to fetch interests: ${response.status} - ${errText.slice(0, 100)}`);
+    }
+    return await response.json();
+}
+
+// ─── Clipping ───────────────────────────────────────────────────────────────
+
+export async function runClipping(apiKey, params) {
+    const payload = {
+        video_url: params.video_url,
+        num_highlights: params.num_highlights || 3,
+        aspect_ratio: params.aspect_ratio || "9:16",
+        return_coordinates_only: !!params.return_coordinates_only
+    };
+    return submitAndPoll("ai-clipping", payload, apiKey, params.onRequestId, 900);
+}
+
+// ─── Motion Graphics ────────────────────────────────────────────────────────
+
+export async function runMotionGraphics(apiKey, params) {
+    const payload = {
+        prompt: params.prompt,
+        aspect_ratio: params.aspect_ratio || "16:9",
+        duration_seconds: params.duration_seconds || 6,
+    };
+    return submitAndPoll("motion-graphics", payload, apiKey, params.onRequestId, 900);
+}
+
+export async function runMotionGraphicsEdit(apiKey, params) {
+    const payload = {
+        request_id: params.request_id,
+        edit_prompt: params.edit_prompt,
+        aspect_ratio: params.aspect_ratio || "16:9",
+        duration_seconds: params.duration_seconds || 6,
+    };
+    return submitAndPoll("motion-graphics-edit", payload, apiKey, params.onRequestId, 900);
+}
+

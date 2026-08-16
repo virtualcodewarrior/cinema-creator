@@ -170,7 +170,7 @@ export default function AgentStudio({ apiKey }) {
   const [error, setError] = useState(null);
 
   // Deep-link routing. `router.push('/agents/...')` below is a real full navigation
-  // away from the studio shell on muapi.ai (BYOK/dashboard) — AiAgent's own standalone
+  // away from the studio shell on the self-hosted dashboard — AiAgent's own standalone
   // pages handle it there, unaffected. On a white-label custom domain the same push is
   // transparently rewritten by middleware.js back to this same catch-all shell route, so
   // reading it back out via useParams() here drives an inline view instead of navigating

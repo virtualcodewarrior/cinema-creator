@@ -52,11 +52,11 @@ export function SettingsModal(onClose) {
     apiPanel.innerHTML = `
         <div style="display:flex;flex-direction:column;gap:0.75rem;">
             <div>
-                <label style="display:block;font-size:0.75rem;color:rgba(255,255,255,0.5);margin-bottom:0.4rem;font-weight:600;">${t('settings.muapiKeyLabel')}</label>
+                <label style="display:block;font-size:0.75rem;color:rgba(255,255,255,0.5);margin-bottom:0.4rem;font-weight:600;">${t('settings.apiKeyLabel')}</label>
                 <input id="settings-api-key" type="password"
                     style="width:100%;box-sizing:border-box;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:0.75rem;padding:0.6rem 0.9rem;color:#fff;font-size:0.875rem;outline:none;"
                     placeholder="${t('settings.keyPlaceholder')}"
-                    value="${localStorage.getItem('muapi_key') || ''}">
+                    value="${localStorage.getItem('ai_cinema_api_key') || ''}">
             </div>
             <p style="font-size:0.7rem;color:rgba(255,255,255,0.3);margin:0;">
                 ${t('settings.keyNote')}
@@ -103,7 +103,7 @@ export function SettingsModal(onClose) {
     apiPanel.querySelector('#settings-save-btn').onclick = () => {
         const key = apiPanel.querySelector('#settings-api-key').value.trim();
         if (key) {
-            localStorage.setItem('muapi_key', key);
+            localStorage.setItem('ai_cinema_api_key', key);
             close();
         } else {
             alert(t('settings.invalidKey'));

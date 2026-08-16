@@ -1,5 +1,4 @@
-// Self-hosted entry point — renders SelfHostedShell instead of StandaloneShell.
-// Use this file in self-hosted mode by setting NEXT_PUBLIC_SELF_HOSTED=1.
+// Self-hosted entry point — renders the full studio with sidebar navigation.
 
 import SelfHostedShell from '../components/SelfHostedShell';
 

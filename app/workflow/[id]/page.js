@@ -1,9 +1,9 @@
-import StandaloneShell from '@/components/StandaloneShell';
+import SelfHostedShell from '@/app/studio/components/SelfHostedShell';
 
 export const metadata = {
-  title: 'Workflow — Open Generative AI',
+  title: 'Workflow — AI Cinema',
 };
 
 export default function WorkflowPage() {
-  return <StandaloneShell />;
+  return <SelfHostedShell />;
 }

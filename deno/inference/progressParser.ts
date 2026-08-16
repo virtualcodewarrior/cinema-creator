@@ -1,5 +1,5 @@
 // Progress parser for sd.cpp stdout/stderr output.
-// Ported from electron/lib/localInferenceRuntime.js.
+// Adapted from legacy desktop app code.
 // Parses step completion lines like "step 5 / 20" or "5 / 20 - 0.5s/it".
 
 export function stripAnsiSequences(text: string): string {
