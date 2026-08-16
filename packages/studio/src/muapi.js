@@ -31,27 +31,32 @@ export {
   runMotionGraphicsEdit,
 } from './backendClient.js';
 
-// Workflow API stubs (not yet implemented for self-hosted mode)
-export async function getTemplateWorkflows() { return { ok: true, data: [] }; }
-export async function getUserWorkflows() { return { ok: true, data: [] }; }
-export async function getPublishedWorkflows() { return { ok: true, data: [] }; }
-export async function createWorkflow() { return { ok: true, data: {} }; }
-export async function updateWorkflowName() { return { ok: true, data: {} }; }
-export async function deleteWorkflow() { return { ok: true, data: {} }; }
-export async function getWorkflowInputs() { return { ok: true, data: [] }; }
-export async function executeWorkflow() { return { ok: true, data: {} }; }
-export async function getAllNodeSchemas() { return { ok: true, data: {} }; }
-export async function getWorkflowData() { return { ok: true, data: {} }; }
+// Workflow API stubs (not yet implemented for self-hosted mode).
+// List/detail getters must return the raw shapes the studio components consume
+// (arrays for lists, node/edge shape for builder data); actions reject with a
+// descriptive error instead of faking success.
+const WORKFLOWS_UNAVAILABLE = new Error("Workflows are not available in self-hosted mode");
+export async function getTemplateWorkflows() { return []; }
+export async function getUserWorkflows() { return []; }
+export async function getPublishedWorkflows() { return []; }
+export async function createWorkflow() { throw WORKFLOWS_UNAVAILABLE; }
+export async function updateWorkflowName() { throw WORKFLOWS_UNAVAILABLE; }
+export async function deleteWorkflow() { throw WORKFLOWS_UNAVAILABLE; }
+export async function getWorkflowInputs() { return { properties: {} }; }
+export async function executeWorkflow() { throw WORKFLOWS_UNAVAILABLE; }
+export async function getAllNodeSchemas() { return []; }
+export async function getWorkflowData() { return { nodes: [], edges: [] }; }
 
 // Agent API stubs (not yet implemented for self-hosted mode)
-export async function getTemplateAgents() { return { ok: true, data: [] }; }
-export async function getUserAgents() { return { ok: true, data: [] }; }
-export async function getUserConversations() { return { ok: true, data: [] }; }
-export async function getAgentBySlug() { return { ok: true, data: {} }; }
-export async function getAgentConversation() { return { ok: true, data: [] }; }
-export async function sendAgentChatMessage() { return { ok: true, data: {} }; }
-export async function pollAgentChatResult() { return { ok: true, data: {} }; }
-export async function createAgent() { return { ok: true, data: {} }; }
+const AGENTS_UNAVAILABLE = new Error("Agents are not available in self-hosted mode");
+export async function getTemplateAgents() { return []; }
+export async function getUserAgents() { return []; }
+export async function getUserConversations() { return []; }
+export async function getAgentBySlug() { throw AGENTS_UNAVAILABLE; }
+export async function getAgentConversation() { throw AGENTS_UNAVAILABLE; }
+export async function sendAgentChatMessage() { throw AGENTS_UNAVAILABLE; }
+export async function pollAgentChatResult() { throw AGENTS_UNAVAILABLE; }
+export async function createAgent() { throw AGENTS_UNAVAILABLE; }
 
 // Image processing API stubs (not yet implemented for self-hosted mode)
 export async function upscaleImage() { return { ok: true, data: {} }; }
