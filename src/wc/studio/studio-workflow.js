@@ -13,7 +13,6 @@ import {
   getAllNodeSchemas,
   getWorkflowData,
 } from '../../../packages/studio/src/muapi.js';
-import './workflow-builder-bridge.js';
 
 // Port of packages/studio/src/components/WorkflowStudio.jsx.
 // In self-hosted mode the workflow APIs in muapi.js are stubs (empty lists,
@@ -755,21 +754,13 @@ export class StudioWorkflow extends BaseElement {
     `;
   }
 
+  // The reactflow builder was a lazy React mount (React.lazy(WorkflowUI))
+  // reachable only behind a real workflow API. P6 removed the React runtime
+  // entirely; self-hosted muapi.js stubs those endpoints, so the branch was
+  // never exercised. It now shows the original "Loading Builder..." state.
   _builder() {
     return html`
-      <div class="flex-1 relative bg-[#050505]">
-        ${this.nodeSchemas && this.workflowDef
-          ? html`<workflow-builder-bridge
-              .apiKey=${this.apiKey}
-              .workflowId=${this.selectedWorkflow?.id ?? null}
-              .nodeSchemas=${this.nodeSchemas}
-              .workflowData=${{
-                ...this.workflowDef,
-                workflow_id: this.selectedWorkflow?.id,
-              }}
-            ></workflow-builder-bridge>`
-          : this._loadingBuilder()}
-      </div>
+      <div class="flex-1 relative bg-[#050505]">${this._loadingBuilder()}</div>
     `;
   }
 

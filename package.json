@@ -4,12 +4,6 @@
   "private": true,
   "version": "2.0.0",
   "license": "MIT",
-  "workspaces": [
-    "packages/studio",
-    "packages/Vibe-Workflow/packages/workflow-builder",
-    "packages/Open-Poe-AI/packages/agents",
-    "packages/Open-AI-Design-Agent/packages/design-agent"
-  ],
   "scripts": {
     "gen:css": "node scripts/gen-wc-css.mjs",
     "dev": "node scripts/gen-wc-css.mjs && vite",
@@ -18,35 +12,19 @@
     "start": "vite preview",
     "start:deno": "deno run --allow-all deno/main.ts",
     "start:all": "deno run --allow-all deno/launcher.ts",
-    "build:studio": "npm run build -w studio",
-    "build:workflow": "npm run build -w workflow-builder",
-    "build:agent": "npm run build -w ai-agent",
-    "build:design": "npm run build -w design-agent",
-    "build:packages": "npm run build:workflow && npm run build:agent && npm run build:design && npm run build:studio",
-    "setup": "npm install && npm run build:packages && deno run --allow-all deno/scripts/fetch-binary.ts"
+    "setup": "npm install && deno run --allow-all deno/scripts/fetch-binary.ts"
   },
   "dependencies": {
-    "ai-agent": "file:./packages/Open-Poe-AI/packages/agents",
-    "axios": "^1.7.0",
     "dompurify": "^3.4.13",
     "highlight.js": "^11.12.0",
     "lit": "^3.3.3",
-    "marked": "^18.0.9",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-hot-toast": "^2.4.1",
-    "studio": "*",
-    "workflow-builder": "file:./packages/Vibe-Workflow/packages/workflow-builder",
-    "xtend": "^4.0.2"
+    "marked": "^18.0.9"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@tailwindcss/vite": "^4.1.18",
-    "@vitejs/plugin-react": "^4.7.0",
     "autoprefixer": "^10.4.24",
     "eslint": "^9",
     "postcss": "^8.5.6",
-    "react-router-dom": "^7.18.2",
     "tailwindcss": "^3.4.0",
     "vite": "^5.4.21"
   }

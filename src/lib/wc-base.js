@@ -3,7 +3,7 @@ import { LitElement } from 'lit';
 // Per-package Tailwind-generated utility sheets live in /public/wc/<key>.css.
 // Each shadow root adopts its package sheet via adoptedStyleSheets so utility
 // classes keep working inside encapsulated styles.
-export const SHEET_KEYS = ['shell', 'studio', 'workflow', 'agents', 'design'];
+export const SHEET_KEYS = ['shell', 'studio', 'agents', 'design'];
 const loaded = new Map(); // key -> CSSStyleSheet
 const pending = new Map(); // key -> Promise<CSSStyleSheet>
 

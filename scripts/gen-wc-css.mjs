@@ -49,26 +49,27 @@ function stripThemeBlocks(text) {
   return parts.join('\n');
 }
 
+// P6: the React source packages are gone; utility classes are now extracted
+// from the native lit sources that reused them, plus the relocated per-package
+// component CSS (src/wc/sheets/*-extras.css, moved out of the deleted
+// packages). The former `workflow` sheet only served the now-deleted
+// reactflow builder.
 const SHEETS = {
   shell: {
-    content: ['./index.html', './src/**/*.{js,jsx}', './app/**/*.{js,jsx}', './components/**/*.{js,jsx}'],
+    content: ['./index.html', './src/**/*.{js,jsx}'],
     extra: [],
   },
   studio: {
-    content: ['./packages/studio/src/**/*.{js,jsx}'],
+    content: ['./src/wc/studio/**/*.js', './packages/studio/src/**/*.js'],
     extra: ['packages/studio/src/tailwind.css'],
   },
-  workflow: {
-    content: ['./packages/Vibe-Workflow/packages/workflow-builder/src/**/*.{js,jsx}'],
-    extra: ['packages/Vibe-Workflow/packages/workflow-builder/src/tailwind.css'],
-  },
   agents: {
-    content: ['./packages/Open-Poe-AI/packages/agents/src/**/*.{js,jsx}'],
-    extra: ['packages/Open-Poe-AI/packages/agents/src/tailwind.css'],
+    content: ['./src/wc/agents/**/*.js'],
+    extra: ['src/wc/sheets/agents-extras.css'],
   },
   design: {
-    content: ['./packages/Open-AI-Design-Agent/packages/design-agent/src/**/*.{js,jsx}'],
-    extra: ['packages/Open-AI-Design-Agent/packages/design-agent/src/tailwind.css'],
+    content: ['./src/wc/studio/**/*.js'],
+    extra: ['src/wc/sheets/design-extras.css'],
   },
 };
 

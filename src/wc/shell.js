@@ -1,6 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
 import { html, css } from 'lit';
 import { BaseElement } from '../lib/wc-base.js';
 import { navigate } from '../lib/router.js';
@@ -20,9 +17,9 @@ import './studio/studio-image.js';
 import './studio/studio-video.js';
 import './studio/studio-layers.js';
 import './studio/studio-design.js';
+import './studio/studio-workflow.js';
 
-// P3: studios flipped to native web components map to an element tag; they
-// render into #studio-outlet instead of the React root below.
+// All studios render as native web components into #studio-outlet.
 const NATIVE_STUDIOS = {
   layers: 'studio-layers',
   apps: 'studio-apps',
@@ -40,23 +37,6 @@ const NATIVE_STUDIOS = {
   design: 'studio-design',
   workflow: 'studio-workflow',
 };
-
-import ImageStudio from '../../packages/studio/src/components/ImageStudio';
-import VideoStudio from '../../packages/studio/src/components/VideoStudio';
-import CinemaStudio from '../../packages/studio/src/components/CinemaStudio';
-import LipSyncStudio from '../../packages/studio/src/components/LipSyncStudio';
-import WorkflowStudio from '../../packages/studio/src/components/WorkflowStudio';
-import './studio/studio-workflow.js';
-import AgentStudio from '../../packages/studio/src/components/AgentStudio';
-import AppsStudio from '../../packages/studio/src/components/AppsStudio';
-import AudioStudio from '../../packages/studio/src/components/AudioStudio';
-import MarketingStudio from '../../packages/studio/src/components/MarketingStudio';
-import RecastStudio from '../../packages/studio/src/components/RecastStudio';
-import VibeMotionStudio from '../../packages/studio/src/components/VibeMotionStudio';
-import ClippingStudio from '../../packages/studio/src/components/ClippingStudio';
-import LayersStudio from '../../packages/studio/src/components/LayersStudio';
-import DesignAgentStudio from '../../packages/studio/src/components/DesignAgentStudio';
-import AiInfluencerStudio from '../../packages/studio/src/components/AiInfluencerStudio';
 
 const STUDIO_NAV = [
   { label: 'Image', path: '/studio/image', icon: '🎨' },
@@ -76,27 +56,9 @@ const STUDIO_NAV = [
   { label: 'Influencer', path: '/studio/influencer', icon: '⭐' },
 ];
 
-const STUDIO_COMPONENTS = {
-  image: ImageStudio,
-  video: VideoStudio,
-  cinema: CinemaStudio,
-  lipsync: LipSyncStudio,
-  workflow: WorkflowStudio,
-  agents: AgentStudio,
-  apps: AppsStudio,
-  audio: AudioStudio,
-  marketing: MarketingStudio,
-  recast: RecastStudio,
-  vibemotion: VibeMotionStudio,
-  clipping: ClippingStudio,
-  layers: LayersStudio,
-  design: DesignAgentStudio,
-  influencer: AiInfluencerStudio,
-};
-
-// Port of app/app-shell.jsx. The sidebar and settings overlay are now web
-// components; the active studio still renders as React (until each studio is
-// migrated in P3+) inside #studio-outlet, styled via the adopted studio sheet.
+// Port of app/app-shell.jsx. Sidebar, settings overlay and every studio are
+// native web components rendered inside #studio-outlet, styled via the
+// adopted studio sheet.
 export class AppShell extends BaseElement {
   static sheetKeys = ['shell', 'studio'];
 
@@ -137,11 +99,10 @@ export class AppShell extends BaseElement {
     this.studio = 'image';
     this.settingsOpen = false;
     this._outlet = null;
-    this._studioRoot = null;
   }
 
   setStudio(name, search) {
-    const next = STUDIO_COMPONENTS[name] ? name : 'image';
+    const next = name in NATIVE_STUDIOS ? name : 'image';
     if (!this.hasUpdated) {
       this.studio = next;
       return;
@@ -157,47 +118,24 @@ export class AppShell extends BaseElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    if (this._studioRoot) {
-      this._studioRoot.unmount();
-      this._studioRoot = null;
-    }
     this._outlet = null;
   }
 
   _renderStudio(name, search) {
     if (!this._outlet) return;
-    const tag = NATIVE_STUDIOS[name];
-    if (tag) {
-      // Native path: no React root involved.
-      const existing = this._outlet.firstElementChild;
-      if (existing && existing.tagName.toLowerCase() === tag) {
-        // Same native studio already mounted: forward search-only navigations
-        // (?session=… in the design agent) to the element instead of
-        // remounting — the React path reconciles on re-render.
-        existing.setSearch?.(search ?? window.location.search);
-        return;
-      }
-      if (this._studioRoot) {
-        this._studioRoot.unmount();
-        this._studioRoot = null;
-      }
-      this._outlet.replaceChildren();
-      const el = document.createElement(tag);
-      this._outlet.appendChild(el);
-      el.setSearch?.(search ?? window.location.search);
+    const tag = NATIVE_STUDIOS[name] || 'studio-image';
+    const existing = this._outlet.firstElementChild;
+    if (existing && existing.tagName.toLowerCase() === tag) {
+      // Same studio already mounted: forward search-only navigations
+      // (?session=… in the design agent) to the element instead of
+      // remounting — the old React path reconciled on re-render.
+      existing.setSearch?.(search ?? window.location.search);
       return;
     }
-    const Studio = STUDIO_COMPONENTS[name] ?? ImageStudio;
-    if (!this._studioRoot) this._studioRoot = ReactDOM.createRoot(this._outlet);
-    // Studios read react-router (useNavigate/Links) like WorkflowStudio and
-    // CreativeCanvas do, so the outlet root carries its own router context.
-    this._studioRoot.render(
-      React.createElement(
-        React.StrictMode,
-        null,
-        React.createElement(BrowserRouter, null, React.createElement(Studio)),
-      ),
-    );
+    this._outlet.replaceChildren();
+    const el = document.createElement(tag);
+    this._outlet.appendChild(el);
+    el.setSearch?.(search ?? window.location.search);
   }
 
   openSettings() {

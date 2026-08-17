@@ -1,6 +1,6 @@
 # React → Web Components + Shadow DOM — Migration Plan
 
-Status: proposal · Updated: 2026-08-16
+Status: **COMPLETE (P0–P6)** · Updated: 2026-08-17
 
 ## 1. Goal
 
@@ -272,4 +272,24 @@ Live-verified: outlet = `<studio-workflow>`; 20 buttons (16 nav + Create Workflo
 
 **P5 complete**: `PARITY OK` across all 19 routes, allow-list now **19 entries** (adds `workflow.shadowRoots` 2→3 — the element's own shadow root; no card elements exist in the empty listing).
 
-**Next: P6** (React removal + hardening): flip the remaining `STUDIO_COMPONENTS` entries off React (all 13 routes already native — the map is only a legitimacy marker now), delete the React glue (`workflow-builder-bridge` + `WorkflowUI.jsx` + `WorkflowStudio.jsx` + the Vibe-Workflow package if unused), drop `react`/`react-dom`/`react-router-dom` from the build, remove `BrowserRouter` from the shell fallback, and harden (404 route, empty-outlet guard). Commit + push at stage completion.
+## 14.3 P6 log (complete)
+
+**P6: React removal + hardening.** The build no longer contains any of the React runtime.
+
+Removed:
+- Shell React branch: `react`/`react-dom`/`react-router-dom` imports, the 13 `*Studio` React component imports, the `STUDIO_COMPONENTS` map and `ReactDOM.createRoot` outlet rendering, `BrowserRouter` context, StrictMode. All 15 studios now resolve through `NATIVE_STUDIOS` (unknown name → `studio-image` guard; unknown studio state → image).
+- `workflow-builder-bridge.js` (lazy React mount of the builder) — the builder slot in `<studio-workflow>` shows the original "Loading Builder…" state (the reactflow builder was unreachable behind the self-hosted API stubs; see P5).
+- Dead React sources: `packages/studio/src/components/**` (all 13 studio components + subcomponents), `packages/studio/src/index.js`, and the entire vendored packages `packages/Vibe-Workflow/`, `packages/Open-AI-Design-Agent/`, `packages/Open-Poe-AI/` (their `server/` dirs are standalone third-party backends — the Deno backend at `deno/` references none of the packages). `packages/studio` is reduced to the pure-JS API/util modules still imported natively (`muapi.js`, `backendClient.js`, `models.js`, `persistKey.js`, `utils/`).
+- Dead build files: `vite.config.mjs` (legacy, superseded by `vite.config.js`), the `@vitejs/plugin-react` plugin and `ai-agent`/`workflow-builder`/`design-agent` aliases (the `studio` alias stays — native elements import `studio/muapi.js` etc.).
+- `package.json`: `workspaces` gone; deps reduced to `dompurify`, `highlight.js`, `lit`, `marked` (dropped `react`, `react-dom`, `react-router-dom`, `react-hot-toast`, `axios`, `xtend`, `studio`, `ai-agent`, `workflow-builder`, and the unused `@tailwindcss/vite` — page CSS is processed by the postcss `tailwindcss` v3 config). `package-lock.json` regenerated (`npm install --package-lock-only`): −8256/+1816 lines. The Docker build only needs the root package + `packages/` for `npm ci`/`vite build` — no Dockerfile change.
+
+Sheet generator (P6 adaptations): content globs now extract from the **native** sources that reuse the class strings (`./src/wc/studio/**/*.js`, `./src/wc/agents/**/*.js`) — the React packages that previously supplied the classes are gone. The per-package component CSS moved to `src/wc/sheets/{agents,design}-extras.css` (agents' `.premium-*` component layer; design's `:root`/`.dark` theme-variable blocks, `@theme` stripped as before). The `workflow` sheet (built solely for the deleted builder) is removed from `SHEET_KEYS` + generator + `public/wc/workflow.css`. Single-item brace globs (`**/*.{js}`) silently match nothing in the v3 CLI — plain `**/*.js` used. Selector-level diff of all four regenerated sheets vs. pre-deletion: every class actually used by a native element is present (the handful of lost selectors belong to deleted React-only UI).
+
+Verification gotchas caught:
+- Shell regression: the P6 `setStudio` initially stored the element **tag** in `this.studio` (was the route **name**), so the second navigation resolved `NATIVE_STUDIOS['studio-design']` → undefined → image fallback for design/workflow. Restored name semantics; tag resolution lives only in `_renderStudio`. Nav active-state check also depends on the name.
+- `parity-diff` `normErr` now strips module query strings from stacks (`file.js?t=<ts>` / `?v=<hash>`, sometimes absent entirely) — the /agents routes' 404 stacks previously diffed per dev-server session.
+- The committed `after.json` `/` entry was stale (same image studio as `/studio/image` yet `shadowRoots` 2 vs 10 — a vacuous P3.13-era capture, same class of bug as the P3.4 baseline repair). Full fresh 19-route recapture; `/.shadowRoots` 2→10 allow-listed.
+
+**Verification**: full 19-route fresh capture → **`PARITY OK`** with the 20-entry expected-diff allow-list (adds `/.shadowRoots`). `npm run build` ✓ — bundle is now a **single 1.86 MB lit chunk (425 kB gzip)** + CSS (was 3.00 MB + 1.59 MB of React/reactflow chunks across two JS files); 165 modules transformed. Zero `react` occurrences in the bundle (4 grep hits are lit's `reactiveElement` + two prompt strings containing "reaction"). No live React imports anywhere in `src/`. Deno backend untouched.
+
+**MIGRATION COMPLETE — P0→P6.** All UI is vanilla JS + Lit web components + Shadow DOM; React is fully out of the source tree and the build. Behavior verified byte-identical (text/DOM parity) across all 19 routes against the original React baseline, with the Deno backend unchanged.

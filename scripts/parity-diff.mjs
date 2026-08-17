@@ -7,8 +7,10 @@ const [,, beforePath, afterPath, ...expected] = process.argv;
 const b = JSON.parse(fs.readFileSync(beforePath, 'utf8'));
 const a = JSON.parse(fs.readFileSync(afterPath, 'utf8'));
 
-// vite dep hash in error stacks changes per build — normalize
-const normErr = (s) => String(s).replace(/v=[a-f0-9]{8}/g, 'v=X');
+// vite dep hash / module timestamp in error stacks changes per build and per
+// dev-server session (sometimes absent entirely) — strip it
+const normErr = (s) =>
+  String(s).replace(/\.(m?[jt]sx?)\?[0-9a-zA-Z_=-]+/g, '.$1').replace(/v=[a-f0-9]{8}/g, 'v=X');
 // textContent whitespace is formatting, not behavior
 const normText = (s) => String(s ?? '').replace(/\s+/g, ' ').trim();
 
