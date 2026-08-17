@@ -963,7 +963,7 @@ export class StudioCinema extends BaseElement {
             @click=${() => this.handleGenerate()}
           >
             ${this.isGenerating
-              ? html`<span class="animate-spin inline-block text-black">◌</span> <span>Generating...</span>`
+              ? html`<span class="animate-spin inline-block text-black">◌</span><span>Generating...</span>`
               : html`<span>Shoot ✦ 10</span>`}
           </prompt-action>
         </prompt-footer>
