@@ -10,6 +10,7 @@ import './studio/studio-apps.js';
 import './studio/studio-audio.js';
 import './studio/studio-marketing.js';
 import './studio/studio-motion.js';
+import './studio/studio-influencer.js';
 
 // P3: studios flipped to native web components map to an element tag; they
 // render into #studio-outlet instead of the React root below.
@@ -18,6 +19,7 @@ const NATIVE_STUDIOS = {
   audio: 'studio-audio',
   marketing: 'studio-marketing',
   vibemotion: 'studio-motion',
+  influencer: 'studio-influencer',
 };
 
 import ImageStudio from '../../packages/studio/src/components/ImageStudio';
