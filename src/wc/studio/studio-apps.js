@@ -68,70 +68,43 @@ const templateApps = [
   }
 ];
 
+// Every entry links to a verified GitHub repo; `hosted` is present only when a
+// live demo was verified, otherwise the Demo button opens the request-access
+// modal.
 const dummyAppsData = [
-  { thumbnail: "/assets/apps/Pet_Product_Studio.jpg", name: "Pet Product Studio", description: "High-end product photography specifically for pet toys and food.", icon: "FaPaw", category: "Lifestyle" },
-  { thumbnail: "/assets/apps/Resale_Photo_Enhancer.png", name: "Resale Photo Enhancer", description: "Boost sales by elevating low-quality product photos to studio level.", icon: "FaImage", category: "Business" },
-  { thumbnail: "/assets/apps/AI_Recruiter.png", name: "AI Recruiter", description: "Smart candidate screening and interview assistant.", icon: "FaBriefcase", category: "Business" },
-  { thumbnail: "/assets/apps/Talk_to_PDF.png", name: "Talk to PDF", description: "Interactive document chat for deep research and summarization.", icon: "FaFileAlt", category: "Productivity" },
-  { thumbnail: "/assets/apps/Blogger_CMS.png", name: "Blogger CMS", description: "AI-powered content management for high-velocity SEO blogs.", icon: "FaBriefcase", category: "Business" },
-  { thumbnail: "/assets/apps/Amazon_Product_Studio.webp", name: "Amazon Product Studio", description: "Perfect Amazon-ready product shots with AI backdrops.", icon: "FaImage", category: "Business" },
-  { thumbnail: "/assets/apps/AI_Business_Card.webp", name: "AI Business Card", description: "Digital-first business card generator with AI networking.", icon: "FaBriefcase", category: "Business" },
-  { thumbnail: "/assets/apps/MailWise.png", name: "MailWise", description: "Intelligent email drafting and scheduling assistant.", icon: "FaBriefcase", category: "Business" },
-  { thumbnail: "/assets/apps/My_Podcast.webp", name: "My Podcast", description: "Automated podcast editing and show-note generation.", icon: "FaMicrophone", category: "Creative" },
-  { thumbnail: "/assets/apps/EZScribe.png", name: "EZScribe", description: "Instant transcription and meeting minute automation.", icon: "FaFileAlt", category: "Productivity" },
-  { thumbnail: "/assets/apps/AI_Knowledge_Base.png", name: "AI Knowledge Base", description: "Train an AI on your company data for instant support.", icon: "FaBriefcase", category: "Business" },
-  { thumbnail: "/assets/apps/AI_Outbound.webp", name: "AI Outbound", description: "Personalized cold outreach at scale for sales teams.", icon: "FaBriefcase", category: "Business" },
-  { thumbnail: "/assets/apps/AI_Royal_Portrait.png", name: "AI Royal Portrait", description: "Transform your photos into 18th-century royal oil paintings.", icon: "FaHandSparkles", category: "Creative" },
-  { thumbnail: "/assets/apps/AI_MEME.png", name: "AI MEME", description: "Viral-ready meme generation based on trending topics.", icon: "FaMagic", category: "Creative" },
-  { thumbnail: "/assets/apps/AI_Real_Estate_Stager.webp", name: "AI Real Estate Stager", description: "Virtually furnish and stage empty homes for sale.", icon: "FaHome", category: "Real Estate" },
-  { thumbnail: "/assets/apps/AI_Logo.png", name: "AI Logo", description: "Dynamic brand identity and logo generator.", icon: "FaHandSparkles", category: "Business" },
-  { thumbnail: "/assets/apps/OldPhoto.png", name: "OldPhoto", description: "Restore, colorize, and sharpen vintage family photos.", icon: "FaImage", category: "Creative" },
-  { thumbnail: "/assets/apps/AITryOn.png", name: "AITryOn", description: "Virtual fitting room for fashion brands and enthusiasts.", icon: "FaHandSparkles", category: "Lifestyle" },
-  { thumbnail: "/assets/apps/AI_Age_Transformation.webp", name: "AI Age Transformation", description: "Visualize yourself at different stages of life with high fidelity.", icon: "FaImage", category: "Lifestyle" },
-  { thumbnail: "/assets/apps/AI_Professional_Makeup_Generator.webp", name: "AI Professional Makeup Generator", description: "Try on hundreds of makeup looks virtually.", icon: "FaHandSparkles", category: "Lifestyle" },
-  { thumbnail: "/assets/apps/AI_Flash_Cards.webp", name: "AI Flash Cards", description: "Turn any text or PDF into pedagogical flashcards.", icon: "FaFileAlt", category: "Education" },
-  { thumbnail: "/assets/apps/AI_Group_Photo.webp", name: "AI Group Photo", description: "Seamlessly combine individual portraits into a group photo.", icon: "FaImage", category: "Creative" },
-  { thumbnail: "/assets/apps/AI_Tattoo_Try_On.webp", name: "AI Tattoo Try-On", description: "Visualize tattoos on your body before getting inked.", icon: "FaHandSparkles", category: "Lifestyle" },
-  { thumbnail: "/assets/apps/AI_Hair_Style_Simulator.webp", name: "AI Hair Style Simulator", description: "Try on new haircuts and colors with zero commitment.", icon: "FaHandSparkles", category: "Lifestyle" },
-  { thumbnail: "/assets/apps/AI_Kids_to_Adult_Prediction.webp", name: "AI Kids-to-Adult Prediction", description: "Ever wonder what your kid will look like as an adult?", icon: "FaImage", category: "Lifestyle" },
-  { thumbnail: "/assets/apps/AI_Room_Declutter.webp", name: "AI Room Declutter", description: "Instantly clean up messy room photos for listings.", icon: "FaHome", category: "Real Estate" },
-  { thumbnail: "/assets/apps/AI_Fitness_Body_Simulator.webp", name: "AI Fitness Body Simulator", description: "Visualize your fitness goals on your own body.", icon: "FaImage", category: "Lifestyle" },
-  { thumbnail: "/assets/apps/AI_Pet_Portrait.webp", name: "AI Pet Portrait", description: "Elegant, artistic portraits for your beloved pets.", icon: "FaPaw", category: "Lifestyle" },
-  { thumbnail: "/assets/apps/AI_Kissing_Video_Generator.webp", name: "AI Kissing Video Generator", description: "Expressive AI video generation for romantic moments.", icon: "FaVideo", category: "Creative" },
-  { thumbnail: "/assets/apps/Chat_with_PDF.webp", name: "Chat with PDF", description: "Ask questions and extract data from massive PDF files.", icon: "FaFileAlt", category: "Productivity" },
-  { thumbnail: "/assets/apps/AI_Travel_Studio.png", name: "AI Travel Studio", description: "Create stunning travel posters and visuals from prompts.", icon: "FaMapMarkerAlt", category: "Lifestyle" },
-  { thumbnail: "/assets/apps/Prompt_Architect.webp", name: "Prompt Architect", description: "Refine and optimize complex prompts for high-tier AI models.", icon: "FaMagic", category: "Creative" },
-  { thumbnail: "/assets/apps/ClearMark_AI.webp", name: "ClearMark AI", description: "Automated watermark removal and brand cleanup for assets.", icon: "FaImage", category: "Business" },
-  { thumbnail: "/assets/apps/PlantVision_AI.webp", name: "PlantVision AI", description: "Identify plants and generate gardening care guides.", icon: "FaHandSparkles", category: "Lifestyle" },
-  { thumbnail: "/assets/apps/AI_Wedding_Photo.png", name: "AI Wedding Photo", description: "Cinematic wedding photography enhancements and filters.", icon: "FaImage", category: "Lifestyle" },
-  { thumbnail: "/assets/apps/User_Account_Registration_Form.webp", name: "User Account Registration Form", description: "Beautiful, conversion-optimized signup flows.", icon: "FaBriefcase", category: "Development" },
-  { thumbnail: "/assets/apps/Social_Post.webp", name: "Social Post", description: "AI-generated social media scheduling and copy creator.", icon: "FaBriefcase", category: "Marketing" },
-  { thumbnail: "/assets/apps/MagicSelf_AI.webp", name: "MagicSelf AI", description: "The ultimate AI selfie and avatar generation engine.", icon: "FaMagic", category: "Creative" },
-  { thumbnail: "/assets/apps/AI_Resume_Builder.webp", name: "AI Resume Builder", description: "Craft the perfect, ATS-friendly resume in seconds.", icon: "FaFileAlt", category: "Productivity" },
-  { thumbnail: "/assets/apps/GEO_Checker.webp", name: "GEO Checker", description: "AI-powered location tagging and geodata validation.", icon: "FaMapMarkerAlt", category: "Business" },
-  { thumbnail: "/assets/apps/AI_Character_Studio.webp", name: "AI Character Studio", description: "Consistent character design for animators and writers.", icon: "FaUserTie", category: "Creative" },
-  { thumbnail: "/assets/apps/Luxury_Hair_Studio.webp", name: "Luxury Hair Studio", description: "High-end hair visualization for top-tier salons.", icon: "FaHandSparkles", category: "Lifestyle" },
-  { thumbnail: "/assets/apps/ProFlow_Plumbing.webp", name: "ProFlow Plumbing", description: "AI scheduling and diagnostics for plumbing services.", icon: "FaHome", category: "Services" },
-  { thumbnail: "/assets/apps/Solace_AI.webp", name: "Solace AI", description: "Empathetic AI assistant for mental well-being support.", icon: "FaHandSparkles", category: "Health" },
-  { thumbnail: "/assets/apps/ReLive_AI.webp", name: "ReLive AI", description: "Immersive memory and historical visualization engine.", icon: "FaHandSparkles", category: "Creative" },
-  { thumbnail: "/assets/apps/AI_Chiropractic_Service.webp", name: "AI Chiropractic Service", description: "Postural analysis and exercise recommendation AI.", icon: "FaUserInjured", category: "Health" },
-  { thumbnail: "/assets/apps/Tabla___ReserveAI.webp", name: "Tabla - ReserveAI", description: "Intelligent table reservation engine for restaurants.", icon: "FaBuilding", category: "Services" },
-  { thumbnail: "/assets/apps/Dental_ReserveAI.webp", name: "Dental ReserveAI", description: "Smart dental appointment and follow-up management.", icon: "FaStethoscope", category: "Health" },
-  { thumbnail: "/assets/apps/CounselMate.webp", name: "CounselMate", description: "Legal research and document drafting aid for lawyers.", icon: "FaBalanceScale", category: "Legal" },
-  { thumbnail: "/assets/apps/Intelligent_Real_Estate_Agent.webp", name: "Intelligent Real Estate Agent", description: "Automate leads and property matches with AI agents.", icon: "FaHome", category: "Real Estate" },
-  { thumbnail: "/assets/apps/Fixera.webp", name: "Fixera", description: "Home repair diagnosis and pro-finding ecosystem.", icon: "FaHome", category: "Services" },
-  { thumbnail: "/assets/apps/Velora___Yoga_AI.webp", name: "Velora - Yoga AI", description: "Personalized AI yoga and posture guidance engine.", icon: "FaHandSparkles", category: "Health" },
-  { thumbnail: "/assets/apps/Nova_AssuranceAI.webp", name: "Nova AssuranceAI", description: "Smart insurance quote and claim processing assistant.", icon: "FaBalanceScale", category: "Legal" },
-  { thumbnail: "/assets/apps/TurboGlow_Auto_Spa.webp", name: "TurboGlow Auto Spa", description: "AI booking and customization for luxury auto detailing.", icon: "FaCar", category: "Services" },
-  { thumbnail: "/assets/apps/Paws___Pals.webp", name: "Paws & Pals", description: "AI-powered pet care and walking coordination hub.", icon: "FaPaw", category: "Lifestyle" },
-  { thumbnail: "/assets/apps/Vertex_Tax_Strategy.webp", name: "Vertex Tax Strategy", description: "Intelligent tax planning and deduction spotting AI.", icon: "FaBalanceScale", category: "Business" },
-  { thumbnail: "/assets/apps/LedgerSync.webp", name: "LedgerSync", description: "Automated bookkeeping and financial reconciliations.", icon: "FaBriefcase", category: "Business" },
-  { thumbnail: "/assets/apps/Nova_Care_Clinic.webp", name: "Nova Care Clinic", description: "Patient scheduling and medical intake automation.", icon: "FaStethoscope", category: "Health" },
-  { thumbnail: "/assets/apps/Opulent_Drive.webp", name: "Opulent Drive", description: "Luxury car rental and fleet management AI.", icon: "FaCar", category: "Services" },
-  { thumbnail: "/assets/apps/ProFix_Auto.webp", name: "ProFix Auto", description: "Engine diagnostics and preventive maintenance alerts.", icon: "FaCar", category: "Services" },
-  { thumbnail: "/assets/apps/TowMate.webp", name: "TowMate", description: "Smart roadside assistance and dispatch coordination.", icon: "FaTruck", category: "Services" },
-  { thumbnail: "/assets/apps/SwiftLink_Logistics.webp", name: "SwiftLink Logistics", description: "AI route optimization and fleet tracking system.", icon: "FaTruck", category: "Services" },
-  { thumbnail: "/assets/apps/Lumea_Residence.webp", name: "Lumea Residence", description: "Smart home property management and tenant portal.", icon: "FaHome", category: "Real Estate" }
+  { thumbnail: "/assets/apps/Pet_Product_Studio.jpg", name: "Pet Product Studio", description: "High-end product photography specifically for pet toys and food.", icon: "FaPaw", category: "Lifestyle", repo: "https://github.com/SamurAIGPT/pet-product-studio", hosted: "https://pet-product-studio.vercel.app" },
+  { thumbnail: "/assets/apps/Resale_Photo_Enhancer.png", name: "Resale Photo Enhancer", description: "Boost sales by elevating low-quality product photos to studio level.", icon: "FaImage", category: "Business", repo: "https://github.com/SamurAIGPT/resale-photo-enhancer", hosted: "https://resale-photo-enhancer.vercel.app" },
+  { thumbnail: "/assets/apps/Blogger_CMS.png", name: "Blogger CMS", description: "AI-powered content management for high-velocity SEO blogs.", icon: "FaBriefcase", category: "Business", repo: "https://github.com/SamurAIGPT/blogger-cms" },
+  { thumbnail: "/assets/apps/Amazon_Product_Studio.webp", name: "Amazon Product Studio", description: "Perfect Amazon-ready product shots with AI backdrops.", icon: "FaImage", category: "Business", repo: "https://github.com/SamurAIGPT/amazon-product-studio", hosted: "https://amazon-product-studio.vercel.app" },
+  { thumbnail: "/assets/apps/AI_Business_Card.webp", name: "AI Business Card", description: "Digital-first business card generator with AI networking.", icon: "FaBriefcase", category: "Business", repo: "https://github.com/SamurAIGPT/ai-business-card", hosted: "https://ai-business-card.vercel.app" },
+  { thumbnail: "/assets/apps/MailWise.png", name: "MailWise", description: "Intelligent email drafting and scheduling assistant.", icon: "FaBriefcase", category: "Business", repo: "https://github.com/SamurAIGPT/mail-wise", hosted: "https://mail-wise-khaki.vercel.app" },
+  { thumbnail: "/assets/apps/My_Podcast.webp", name: "My Podcast", description: "Automated podcast editing and show-note generation.", icon: "FaMicrophone", category: "Creative", repo: "https://github.com/SamurAIGPT/my-podcast", hosted: "https://my-podcast.vercel.app" },
+  { thumbnail: "/assets/apps/AI_Knowledge_Base.png", name: "AI Knowledge Base", description: "Train an AI on your company data for instant support.", icon: "FaBriefcase", category: "Business", repo: "https://github.com/SamurAIGPT/ai-knowledge-base", hosted: "https://ai-knowledge-base-six.vercel.app" },
+  { thumbnail: "/assets/apps/AI_Royal_Portrait.png", name: "AI Royal Portrait", description: "Transform your photos into 18th-century royal oil paintings.", icon: "FaHandSparkles", category: "Creative", repo: "https://github.com/SamurAIGPT/ai-royal-portrait", hosted: "https://ai-royal-portrait.vercel.app" },
+  { thumbnail: "/assets/apps/AI_MEME.png", name: "AI MEME", description: "Viral-ready meme generation based on trending topics.", icon: "FaMagic", category: "Creative", repo: "https://github.com/SamurAIGPT/ai-meme-generator", hosted: "https://ai-meme-umber.vercel.app" },
+  { thumbnail: "/assets/apps/AI_Real_Estate_Stager.webp", name: "AI Real Estate Stager", description: "Virtually furnish and stage empty homes for sale.", icon: "FaHome", category: "Real Estate", repo: "https://github.com/SamurAIGPT/ai-real-estate-stager", hosted: "https://ai-real-estate-stager.vercel.app" },
+  { thumbnail: "/assets/apps/AI_Logo.png", name: "AI Logo", description: "Dynamic brand identity and logo generator.", icon: "FaHandSparkles", category: "Business", repo: "https://github.com/SamurAIGPT/ai-logo-studio", hosted: "https://ai-logo-studio-rho.vercel.app" },
+  { thumbnail: "/assets/apps/OldPhoto.png", name: "OldPhoto", description: "Restore, colorize, and sharpen vintage family photos.", icon: "FaImage", category: "Creative", repo: "https://github.com/SamurAIGPT/old-photo-restore", hosted: "https://old-photo-restore.vercel.app" },
+  { thumbnail: "/assets/apps/AITryOn.png", name: "AITryOn", description: "Virtual fitting room for fashion brands and enthusiasts.", icon: "FaHandSparkles", category: "Lifestyle", repo: "https://github.com/SamurAIGPT/ai-tryon", hosted: "https://ai-tryon-smoky.vercel.app" },
+  { thumbnail: "/assets/apps/AI_Professional_Makeup_Generator.webp", name: "AI Professional Makeup Generator", description: "Try on hundreds of makeup looks virtually.", icon: "FaHandSparkles", category: "Lifestyle", repo: "https://github.com/SamurAIGPT/ai-professional-makeup-generator", hosted: "https://ai-professional-makeup-generator.vercel.app" },
+  { thumbnail: "/assets/apps/AI_Group_Photo.webp", name: "AI Group Photo", description: "Seamlessly combine individual portraits into a group photo.", icon: "FaImage", category: "Creative", repo: "https://github.com/SamurAIGPT/ai-group-photo", hosted: "https://ai-group-photo-mocha.vercel.app" },
+  { thumbnail: "/assets/apps/AI_Tattoo_Try_On.webp", name: "AI Tattoo Try-On", description: "Visualize tattoos on your body before getting inked.", icon: "FaHandSparkles", category: "Lifestyle", repo: "https://github.com/SamurAIGPT/ai-tattoo-try-on", hosted: "https://ai-tattoo-try-on.vercel.app" },
+  { thumbnail: "/assets/apps/AI_Hair_Style_Simulator.webp", name: "AI Hair Style Simulator", description: "Try on new haircuts and colors with zero commitment.", icon: "FaHandSparkles", category: "Lifestyle", repo: "https://github.com/SamurAIGPT/ai-hair-style-simulator", hosted: "https://ai-hair-style-simulator.vercel.app" },
+  { thumbnail: "/assets/apps/AI_Kids_to_Adult_Prediction.webp", name: "AI Kids-to-Adult Prediction", description: "Ever wonder what your kid will look like as an adult?", icon: "FaImage", category: "Lifestyle", repo: "https://github.com/SamurAIGPT/ai-kid-to-adult-prediction", hosted: "https://ai-kid-to-adult-prediction.vercel.app" },
+  { thumbnail: "/assets/apps/AI_Room_Declutter.webp", name: "AI Room Declutter", description: "Instantly clean up messy room photos for listings.", icon: "FaHome", category: "Real Estate", repo: "https://github.com/SamurAIGPT/ai-room-declutter", hosted: "https://ai-room-declutter.vercel.app" },
+  { thumbnail: "/assets/apps/AI_Fitness_Body_Simulator.webp", name: "AI Fitness Body Simulator", description: "Visualize your fitness goals on your own body.", icon: "FaImage", category: "Lifestyle", repo: "https://github.com/SamurAIGPT/ai-fitness-body-simulator", hosted: "https://ai-fitness-body-simulator.vercel.app" },
+  { thumbnail: "/assets/apps/AI_Pet_Portrait.webp", name: "AI Pet Portrait", description: "Elegant, artistic portraits for your beloved pets.", icon: "FaPaw", category: "Lifestyle", repo: "https://github.com/SamurAIGPT/ai-pet-portrait", hosted: "https://ai-pet-portrait-two.vercel.app" },
+  { thumbnail: "/assets/apps/AI_Kissing_Video_Generator.webp", name: "AI Kissing Video Generator", description: "Expressive AI video generation for romantic moments.", icon: "FaVideo", category: "Creative", repo: "https://github.com/SamurAIGPT/ai-kissing-video-generator", hosted: "https://ai-kissing-video-generator-amber.vercel.app" },
+  { thumbnail: "/assets/apps/AI_Travel_Studio.png", name: "AI Travel Studio", description: "Create stunning travel posters and visuals from prompts.", icon: "FaMapMarkerAlt", category: "Lifestyle", repo: "https://github.com/SamurAIGPT/ai-travel-studio", hosted: "https://ai-travel-studio.vercel.app" },
+  { thumbnail: "/assets/apps/Prompt_Architect.webp", name: "Prompt Architect", description: "Refine and optimize complex prompts for high-tier AI models.", icon: "FaMagic", category: "Creative", repo: "https://github.com/SamurAIGPT/prompt-architect", hosted: "https://prompt-architect-one-nu.vercel.app" },
+  { thumbnail: "/assets/apps/ClearMark_AI.webp", name: "ClearMark AI", description: "Automated watermark removal and brand cleanup for assets.", icon: "FaImage", category: "Business", repo: "https://github.com/SamurAIGPT/clearmark-ai", hosted: "https://clearmark-ai.vercel.app" },
+  { thumbnail: "/assets/apps/AI_Wedding_Photo.png", name: "AI Wedding Photo", description: "Cinematic wedding photography enhancements and filters.", icon: "FaImage", category: "Lifestyle", repo: "https://github.com/SamurAIGPT/ai-wedding-photo", hosted: "https://ai-wedding-photo.vercel.app" },
+  { thumbnail: "/assets/apps/Social_Post.webp", name: "Social Post", description: "AI-generated social media scheduling and copy creator.", icon: "FaBriefcase", category: "Marketing", repo: "https://github.com/SamurAIGPT/social-post", hosted: "https://social-post-woad.vercel.app" },
+  { thumbnail: "/assets/apps/MagicSelf_AI.webp", name: "MagicSelf AI", description: "The ultimate AI selfie and avatar generation engine.", icon: "FaMagic", category: "Creative", repo: "https://github.com/SamurAIGPT/magicself-ai", hosted: "https://magicself-ai.vercel.app" },
+  { thumbnail: "/assets/apps/AI_Resume_Builder.webp", name: "AI Resume Builder", description: "Craft the perfect, ATS-friendly resume in seconds.", icon: "FaFileAlt", category: "Productivity", repo: "https://github.com/SamurAIGPT/ai-resume-builder", hosted: "https://ai-resume-builder-five-olive.vercel.app" },
+  { thumbnail: "/assets/apps/GEO_Checker.webp", name: "GEO Checker", description: "AI-powered location tagging and geodata validation.", icon: "FaMapMarkerAlt", category: "Business", repo: "https://github.com/SamurAIGPT/geo-checker", hosted: "https://geo-checker-silk.vercel.app" },
+  { thumbnail: "/assets/apps/AI_Character_Studio.webp", name: "AI Character Studio", description: "Consistent character design for animators and writers.", icon: "FaUserTie", category: "Creative", repo: "https://github.com/SamurAIGPT/ai-character-studio", hosted: "https://ai-character-studio-beta.vercel.app" },
+  { thumbnail: "/assets/apps/ReLive_AI.webp", name: "ReLive AI", description: "Immersive memory and historical visualization engine.", icon: "FaHandSparkles", category: "Creative", repo: "https://github.com/SamurAIGPT/relive-ai", hosted: "https://relive-ai-beta.vercel.app" }
 ];
 
 export class StudioApps extends BaseElement {
@@ -200,7 +173,7 @@ export class StudioApps extends BaseElement {
     }
   }
 
-  renderAppCard(app, isDummy = false, index = 0) {
+  renderAppCard(app, index = 0) {
     // Premium Vibrant Gradients for placeholders
     const gradients = [
       'from-blue-600/20 to-indigo-600/20',
@@ -255,35 +228,31 @@ export class StudioApps extends BaseElement {
           >
 
           <div class="flex items-center gap-2 pt-2">
-            ${isDummy
+            ${app.repo
               ? html`
-                  <button
-                    @click=${() => (this.selectedApp = app)}
+                  <a
+                    href="${app.repo}"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="flex-1 py-2 bg-white/5 text-white rounded-md text-[11px] font-bold uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-white/10 transition-all border border-white/5 active:scale-95"
                   >
                     ${icon('FaGithub', 'text-xs')}
                     Github
-                  </button>
-                  <button
-                    @click=${() => (this.selectedApp = app)}
-                    class="flex-1 py-2 bg-[#22d3ee]/10 text-[#22d3ee] rounded-md text-[11px] font-bold uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-[#22d3ee]/20 transition-all border border-[#22d3ee]/20 active:scale-95"
-                  >
-                    ${icon('FaExternalLinkAlt', 'text-[9px]')}
-                    Demo
-                  </button>
+                  </a>
                 `
               : html`
-                  <a
-                    href="${app.repo || '#'}"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    @click=${() => (this.selectedApp = app)}
                     class="flex-1 py-2 bg-white/5 text-white rounded-md text-[11px] font-bold uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-white/10 transition-all border border-white/5 active:scale-95"
                   >
                     ${icon('FaGithub', 'text-xs')}
                     Github
-                  </a>
+                  </button>
+                `}
+            ${app.hosted
+              ? html`
                   <a
-                    href="${app.hosted || '#'}"
+                    href="${app.hosted}"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="flex-1 py-2 bg-[#22d3ee]/10 text-[#22d3ee] rounded-md text-[11px] font-bold uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-[#22d3ee]/20 transition-all border border-[#22d3ee]/20 active:scale-95"
@@ -291,6 +260,15 @@ export class StudioApps extends BaseElement {
                     ${icon('FaExternalLinkAlt', 'text-[9px]')}
                     Demo
                   </a>
+                `
+              : html`
+                  <button
+                    @click=${() => (this.selectedApp = app)}
+                    class="flex-1 py-2 bg-[#22d3ee]/10 text-[#22d3ee] rounded-md text-[11px] font-bold uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-[#22d3ee]/20 transition-all border border-[#22d3ee]/20 active:scale-95"
+                  >
+                    ${icon('FaExternalLinkAlt', 'text-[9px]')}
+                    Demo
+                  </button>
                 `}
           </div>
         </div>
@@ -334,9 +312,9 @@ export class StudioApps extends BaseElement {
           <div
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full pt-8"
           >
-            ${templateApps.map((app, index) => this.renderAppCard(app, false, index))}
+            ${templateApps.map((app, index) => this.renderAppCard(app, index))}
             ${dummyAppsData.map((app, index) =>
-              this.renderAppCard(app, true, index + templateApps.length),
+              this.renderAppCard(app, index + templateApps.length),
             )}
           </div>
 
