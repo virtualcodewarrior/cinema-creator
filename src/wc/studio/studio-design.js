@@ -1204,7 +1204,7 @@ export class StudioDesign extends BaseElement {
         const lines = highlighted.split('\n');
         pre.className = 'my-3 overflow-x-auto rounded border border-divider';
         pre.innerHTML =
-          `<div class="scrollbar-subtle !m-0 !p-3 text-[12px] sh-code" style="background:#263238;color:#eeffff;">` +
+          `<div class="scrollbar-subtle !m-0 !p-3 text-[12px] sh-code" style="background:#282c34;color:#abb2bf;">` +
           `<div class="sh-linenos">${lines
             .map((_, i) => `<span class="sh-ln">${i + 1}</span>`)
             .join('')}</div>` +
