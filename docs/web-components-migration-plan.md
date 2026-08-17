@@ -253,4 +253,23 @@ Live-verified: 20 buttons / 2 inputs / 1 canvas / shadowRoots 4; skills 404 `con
 
 **P4 complete**: `PARITY OK` across all 19 routes, allow-list now **18 entries** (adds `design.shadowRoots` 2→4 — `<studio-design>` + `<design-canvas-area>` roots — and `design.errors` — fetch vs axios 404 wording).
 
-**Next: P5 `studio-workflow`** (reactflow reimplementation) → P6 (React removal + hardening). Commit + push at each stage completion.
+## 14.2 P5 log (complete)
+
+**P5 `studio-workflow`** — port of `packages/studio/src/components/WorkflowStudio.jsx` (1012 lines) to `src/wc/studio/studio-workflow.js` + `<workflow-card>`, plus `workflow-builder-bridge.js`. Key scoping finding during investigation:
+
+- **The workflow APIs are stubbed in self-hosted mode** (`packages/studio/src/muapi.js:39-48`): `getTemplateWorkflows/getUserWorkflows/getPublishedWorkflows` → `[]`, `createWorkflow/updateWorkflowName/deleteWorkflow/executeWorkflow` → throw `"Workflows are not available in self-hosted mode"`, `getWorkflowInputs/getAllNodeSchemas/getWorkflowData` → empty shapes.
+- Consequences: the listing is always empty (no cards → no select/delete/rename reachable), `Create Workflow` resolves to a silent state-only error (the error box only renders inside the unreachable selected-workflow view), and the **reactflow builder (~12k lines in `packages/Vibe-Workflow/packages/workflow-builder`) is never instantiated** — it requires `nodeSchemas && workflowDef`, which require a real API behind an unauthenticated-by-shell `apiKey` (shell passes no props). The legacy `/workflow/*` routes render the image studio (main.js), so no deep link reaches the builder either.
+- The full WorkflowStudio logic is ported 1:1 regardless (listing + 3 tabs, create-flow with the verbatim error string, rename modal w/ confirm/alerts, header + zen-mode controller, playground form/preview/execution, and all five React effects incl. the `/studio/workflows/[id]` redirect and the `fromWorkflowBuilder` reload-on-exit), so a live workflow backend would get identical behavior.
+
+Builder decision (documented bridge → P6): `workflow-builder-bridge.js` mirrors the original `React.lazy(() => import(WorkflowUI))` — a lazy React mount that only instantiates when real workflow data exists (never in this deployment). Porting 12k lines of unreachable reactflow editor code (node drag/connect/pan internals, generation, chat widget) was rejected as dead-code porting; P6 removes the bridge, the Vibe-Workflow package, and the `WorkflowUI` glue (behavior-identical: the branch is unreachable with the self-hosted stubs).
+
+Porting notes:
+- The six workflow arbitrary-utility classes looked missing from `public/wc/studio.css` (stale-check artifact — escaped-selector grep false negatives); a clean regeneration (`npm run gen:css`) is byte-identical to the committed sheet and already contains all classes used.
+- Two class families are **dead in the current app too** (absent from the v4 page CSS as well) and are kept verbatim as inert strings: `animate-fade-in-down`/`animate-shake`/`animate-in`/`zoom-in` (no keyframes/plugin anywhere), and the four `shadow-[0_0_*_rgba(34, 211, 238,…)]` tokens which are **broken in the source** — literal spaces inside the brackets split the class attribute, so they never matched a rule. No CSS was added for either family.
+- Unbound-method lit gotcha avoided throughout (`@submit=${(e) => …}` closures); the rename modal input gets `requestAnimationFrame` focus in `updated()` (React `autoFocus`).
+
+Live-verified: outlet = `<studio-workflow>`; 20 buttons (16 nav + Create Workflow/Templates/My Workflows/Community, exact text); 0 inputs; 0 canvases; tab switching refetches (empty states persist); Create Workflow → `error = "Failed to initialize workflow: Workflows are not available in self-hosted mode"`, `loading` back to false, listing unchanged; zero console errors/warnings.
+
+**P5 complete**: `PARITY OK` across all 19 routes, allow-list now **19 entries** (adds `workflow.shadowRoots` 2→3 — the element's own shadow root; no card elements exist in the empty listing).
+
+**Next: P6** (React removal + hardening): flip the remaining `STUDIO_COMPONENTS` entries off React (all 13 routes already native — the map is only a legitimacy marker now), delete the React glue (`workflow-builder-bridge` + `WorkflowUI.jsx` + `WorkflowStudio.jsx` + the Vibe-Workflow package if unused), drop `react`/`react-dom`/`react-router-dom` from the build, remove `BrowserRouter` from the shell fallback, and harden (404 route, empty-outlet guard). Commit + push at stage completion.

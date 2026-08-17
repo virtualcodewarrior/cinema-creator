@@ -38,6 +38,7 @@ const NATIVE_STUDIOS = {
   image: 'studio-image',
   video: 'studio-video',
   design: 'studio-design',
+  workflow: 'studio-workflow',
 };
 
 import ImageStudio from '../../packages/studio/src/components/ImageStudio';
@@ -45,6 +46,7 @@ import VideoStudio from '../../packages/studio/src/components/VideoStudio';
 import CinemaStudio from '../../packages/studio/src/components/CinemaStudio';
 import LipSyncStudio from '../../packages/studio/src/components/LipSyncStudio';
 import WorkflowStudio from '../../packages/studio/src/components/WorkflowStudio';
+import './studio/studio-workflow.js';
 import AgentStudio from '../../packages/studio/src/components/AgentStudio';
 import AppsStudio from '../../packages/studio/src/components/AppsStudio';
 import AudioStudio from '../../packages/studio/src/components/AudioStudio';
