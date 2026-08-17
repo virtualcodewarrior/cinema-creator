@@ -33,7 +33,6 @@ Before running the backend, the frontend must be built:
 ```bash
 # From project root
 npm install
-npm run build:packages
 npm run build
 ```
 

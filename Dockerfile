@@ -17,7 +17,8 @@ RUN npm run build
 FROM denoland/deno:1.44.0
 
 # Install curl for healthcheck, unzip for model extraction
-RUN apk add --no-cache curl unzip
+# (denoland/deno images are Debian-based as of 1.44 — no apk)
+RUN apt-get update && apt-get install -y --no-install-recommends curl unzip && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 

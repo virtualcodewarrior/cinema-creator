@@ -17,6 +17,7 @@
   "dependencies": {
     "dompurify": "^3.4.13",
     "highlight.js": "^11.12.0",
+    "konva": "^10.3.1",
     "lit": "^3.3.3",
     "marked": "^18.0.9"
   },
