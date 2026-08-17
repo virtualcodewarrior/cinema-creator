@@ -304,7 +304,7 @@ Per request, the build pipeline is now **bundling + minification only, in produc
 
 - `npm run build` = `vite build`; `npm run dev` = `vite` (previously both ran `gen-wc-css` first; the build additionally ran a postcss tailwind/autoprefixer pass over the page CSS).
 - `src/globals.css` is the committed page CSS: the one-off expanded utilities (132 KB, from the final Tailwind v3 run over the pre-P6 sources) + the original custom block (reset, theme vars, `.glass-panel`, scrollbars, keyframes), unminified so it stays human-editable — Vite minifies it as usual when bundling (imported CSS), so production bytes are unchanged (~110 KB min).
-- `public/wc/{shell,studio,agents,design}.css` are committed pre-minified (Vite copies `public/` verbatim, so they must ship minified).
+- `public/wc/{shell,studio,agents,design}.css` were committed pre-minified (Vite copies `public/` verbatim, so they must ship minified). Superseded by P8's in-`out/` minify: they now ship **unminified** in the repo (hand-editable, like `globals.css`) and `npm run build` minifies them for prod.
 - Deleted: `scripts/gen-wc-css.mjs`, `tailwind.config.js`, `postcss.config.js`, `src/wc/sheets/*-extras.css`, `packages/studio/src/tailwind.css`, and the `tailwindcss`/`postcss`/`autoprefixer` devDependencies (node_modules pruned 76 packages). `.gitignore` no longer hides `public/wc/`.
 - Workflow: change a class in a template → add/adjust CSS by hand in the right file → `npm run check:css`.
 
@@ -321,7 +321,7 @@ Per request, the build pipeline is now **bundling + minification only, in produc
 Per request, the production build no longer bundles. The app was already the precondition for it: 100% native ESM, no JSX, no decorators, **no dynamic `import()` anywhere** — the whole app is one static module graph the browser can load directly.
 
 **How it works now**:
-- `npm run build` = `scripts/build.mjs` — pure copy + per-file esbuild minify, nothing else: `index.html` + `src/` + `packages/studio/` + `public/` → `out/`, then every `src/`+`packages/` `.js` and `globals.css` minified in place (transform mode: import/export untouched, no resolution, no chunking). No hashing, no rewriting.
+- `npm run build` = `scripts/build.mjs` — pure copy + per-file esbuild minify, nothing else: `index.html` + `src/` + `packages/studio/` + `public/` → `out/`, then every `src/`+`packages/` `.js` and every copied `.css` (`globals.css` + `public/wc/*`. committed unminified for editability) minified in place (transform mode: import/export untouched, no resolution, no chunking). No hashing, no rewriting.
 - Bare specifiers resolve via an **import map** in `index.html` (must precede the module script): 7 committed single-file ESM vendor bundles in `public/vendor/` (`lit`, `lit/directives/unsafe-html|style-map`, `marked`, `dompurify`, `highlight.js/lib/common`, `konva`) + a prefix entry `"studio/": "/packages/studio/src/"` for the surviving studio API lib. Vite dev rewrites all bare specifiers at transform time, so the map is **dormant in dev** — one `index.html` serves both modes.
 - `scripts/vendor.mjs` (`npm run vendor`) is a one-shot *source* task (like the old CSS step): esbuild-bundles each npm dep into its single ESM file (444 KB total minified; lit ×3, marked, dompurify, hljs-common, konva). Re-run only on a dependency bump, review, commit.
 - `globals.css` moved `src/` → `public/` and is loaded via `<link rel="stylesheet">` in `index.html` (a JS `import './globals.css'` only works in a bundler). It still ships unminified in the repo and is minified by the build for prod.

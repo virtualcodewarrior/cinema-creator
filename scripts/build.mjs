@@ -1,10 +1,11 @@
 // Production build WITHOUT bundling: the app ships as native ES modules.
 // Steps (nothing else runs):
 //   1. copy index.html, src/, packages/studio/, public/ into out/
-//   2. minify every .js of the copied sources + the page CSS (esbuild transform,
+//   2. minify every copied .js + every copied .css (esbuild transform,
 //      module-forwards import/export untouched — no resolution, no bundling)
-// Committed artifacts are final: public/vendor/* (npm deps, see vendor.mjs) and
-// public/wc/*.css (style sheets) are copied as-is.
+// Committed artifacts are final: public/vendor/* (npm deps, see vendor.mjs) is
+// copied as-is. CSS ships unminified in the repo (human-editable) and is
+// minified here for prod.
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -58,12 +59,16 @@ for (const file of walk(path.join(OUT, 'packages'))) {
   }
   js++;
 }
-// globals.css ships unminified in the repo (human-editable) -> minify for prod.
-// public/wc/*.css are committed pre-minified and copied as-is.
-const globalsCss = path.join(OUT, 'globals.css');
-const rc = spawnSync(esbuild, [globalsCss, '--minify', '--allow-overwrite', `--outfile=${globalsCss}`], { cwd: ROOT, encoding: 'utf8' });
-if (rc.status !== 0) {
-  console.error(`[build] minify CSS FAILED: globals.css\n${rc.stderr}`);
-  process.exit(1);
+// Page CSS (globals.css) + wc sheets ship unminified in the repo
+// (human-editable) -> minify every copied .css for prod.
+let css = 0;
+for (const file of walk(OUT)) {
+  if (!file.endsWith('.css')) continue;
+  const rc = spawnSync(esbuild, [file, '--minify', '--allow-overwrite', `--outfile=${file}`], { cwd: ROOT, encoding: 'utf8' });
+  if (rc.status !== 0) {
+    console.error(`[build] minify CSS FAILED: ${path.relative(ROOT, file)}\n${rc.stderr}`);
+    process.exit(1);
+  }
+  css++;
 }
-console.log(`[build] done: ${js} js files + css minified, no bundling (native ES modules + import map)`);
+console.log(`[build] done: ${js} js + ${css} css files minified, no bundling (native ES modules + import map)`);
