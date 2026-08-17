@@ -1,6 +1,6 @@
 # React → Web Components + Shadow DOM — Migration Plan
 
-Status: **COMPLETE (P0–P6)** · Updated: 2026-08-17
+Status: **COMPLETE (P0–P8)** · Updated: 2026-08-17
 
 ## 1. Goal
 
@@ -315,3 +315,21 @@ Per request, the build pipeline is now **bundling + minification only, in produc
 **Visual fix found by the guard (P4 regression closed)**: the design chat's code blocks were unstyled in the port — the original CreativeCanvas used react-syntax-highlighter (Prism `oneLight`/`oneDark` inline themes); the P4 port switched to `hljs.highlightElement` without any theme CSS, and its `sh-code/sh-linenos/sh-ln/sh-pre/sh-line` gutter classes had no rules. Now in `public/wc/design.css`: **hljs `atom-one-dark` theme** (same One Dark palette as the original) + 8 rules of gutter/line-number CSS, and the code wrapper's inline background moved #263238 → #282c34 / #abb2bf to match One Dark. Verified live by rendering a real markdown code block through the element's `_postProcessMarkdown()` pipeline: `hljs-keyword` computes to `rgb(198,120,221)` (#c678dd One Dark purple), code background #282c34, gutter #546e7a.
 
 **Verification**: `npm run build` ✓ (1.6 s, single 1.86 MB chunk + media); `npm run check:css` ✓; full fresh 19-route capture → **PARITY OK** (20-entry allow-list). CSS-only changes — text/DOM untouched.
+
+## 16. P8 log — no-bundle production (native ES modules + import map) (complete)
+
+Per request, the production build no longer bundles. The app was already the precondition for it: 100% native ESM, no JSX, no decorators, **no dynamic `import()` anywhere** — the whole app is one static module graph the browser can load directly.
+
+**How it works now**:
+- `npm run build` = `scripts/build.mjs` — pure copy + per-file esbuild minify, nothing else: `index.html` + `src/` + `packages/studio/` + `public/` → `out/`, then every `src/`+`packages/` `.js` and `globals.css` minified in place (transform mode: import/export untouched, no resolution, no chunking). No hashing, no rewriting.
+- Bare specifiers resolve via an **import map** in `index.html` (must precede the module script): 7 committed single-file ESM vendor bundles in `public/vendor/` (`lit`, `lit/directives/unsafe-html|style-map`, `marked`, `dompurify`, `highlight.js/lib/common`, `konva`) + a prefix entry `"studio/": "/packages/studio/src/"` for the surviving studio API lib. Vite dev rewrites all bare specifiers at transform time, so the map is **dormant in dev** — one `index.html` serves both modes.
+- `scripts/vendor.mjs` (`npm run vendor`) is a one-shot *source* task (like the old CSS step): esbuild-bundles each npm dep into its single ESM file (444 KB total minified; lit ×3, marked, dompurify, hljs-common, konva). Re-run only on a dependency bump, review, commit.
+- `globals.css` moved `src/` → `public/` and is loaded via `<link rel="stylesheet">` in `index.html` (a JS `import './globals.css'` only works in a bundler). It still ships unminified in the repo and is minified by the build for prod.
+
+**First-load cost (the trade-off, accepted)**: ~55 module requests (main graph 20 + lit/vendor 7 + studio lib 5 + …) instead of 2. Fine on the self-hosted LAN; this is what buys the zero-bipeline build.
+
+**Bugs this exposed and fixed**:
+- `import.meta.env.BASE_URL` in `src/lib/wc-base.js` is Vite-only. `vite build` used to inline it; in the raw browser `import.meta.env` is `undefined` → threw and **silently broke every shadow-sheet load in production**. Now `(import.meta.env?.BASE_URL) || '/'` (the value was always `/`).
+- `deno/api/ws/progress.ts` `serveFrontend`: it gave `.js`/`.css` `immutable` 1-year cache — only safe because bundle files were content-hashed. Unhashed source files must revalidate, so js/css now get `no-cache` (cheap revalidation on the LAN). Everything else in the Deno server already worked for this layout (MIME map, deep-link SPA fallback).
+
+**Verification**: production smoke on the built `out/` (served with SPA fallback) via CDP — deep links `/`, `/studio/image`, `/studio/workflow`, `/studio/design`, `/agents/create`, `/agents/agent-1` all mount the right element, design adopts both sheets (1,259 rules incl. the atom-one-dark theme), agent pages render, **zero module-resolution errors**; only the expected backend-404 logs. Dev pipeline untouched → full fresh 19-route capture → **PARITY OK** (20-entry allow-list). `npm run check:css` green (artifact path now `public/globals.css`). Docker unchanged: the same `npm ci && npm run build` builder stage now just runs the copy+minify script.

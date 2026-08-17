@@ -5,7 +5,6 @@
 import { route, start } from './lib/router.js';
 import { loadWcCss, SHEET_KEYS } from './lib/wc-base.js';
 import { initTheme } from './lib/theme.js';
-import './globals.css';
 import './wc/toaster.js';
 import './wc/shell.js';
 import './wc/agents/create-agent.js';

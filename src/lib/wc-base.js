@@ -11,7 +11,9 @@ function sheetUrl(key) {
   // Absolute path on purpose: resolving against the document URL breaks on
   // paths without a trailing slash (/agents/edit/x -> /agents/edit/wc/x.css),
   // which returns the SPA fallback HTML and yields an empty stylesheet.
-  const base = import.meta.env.BASE_URL || '/';
+  // import.meta.env is Vite-only; the unbundled production build hits this
+  // in the raw browser, so guard it (BASE_URL has always been '/').
+  const base = (import.meta.env?.BASE_URL) || '/';
   return base.replace(/\/?$/, '/') + 'wc/' + key + '.css';
 }
 

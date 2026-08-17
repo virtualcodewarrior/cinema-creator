@@ -6,9 +6,10 @@
   "license": "MIT",
   "scripts": {
     "check:css": "node scripts/check-css.mjs",
+    "vendor": "node scripts/vendor.mjs",
     "dev": "vite",
     "dev:all": "deno run --allow-all deno/launcher.ts",
-    "build": "vite build",
+    "build": "node scripts/build.mjs",
     "start": "vite preview",
     "start:deno": "deno run --allow-all deno/main.ts",
     "start:all": "deno run --allow-all deno/launcher.ts",

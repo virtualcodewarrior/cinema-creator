@@ -3,6 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/globals.css" />
+    <!-- Production is unbundled native ES modules (scripts/build.mjs). The
+         import map resolves the bare specifiers; Vite dev rewrites them at
+         transform time, so the map is dormant in dev. -->
+    <script type="importmap">
+      {
+        "imports": {
+          "lit": "/vendor/lit.js",
+          "lit/directives/unsafe-html.js": "/vendor/lit-unsafe-html.js",
+          "lit/directives/style-map.js": "/vendor/lit-style-map.js",
+          "marked": "/vendor/marked.js",
+          "dompurify": "/vendor/dompurify.js",
+          "highlight.js/lib/common": "/vendor/hljs-common.js",
+          "konva": "/vendor/konva.js",
+          "studio/": "/packages/studio/src/"
+        }
+      }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Open Generative AI — a free, open-source AI image and video generation studio. Generate AI images and cinematic shots with 20+ models including Flux, SDXL, Ideogram, and Midjourney." />
     <meta name="keywords" content="open source ai, ai image generator, ai cinema studio, flux ai, ai video generation, open source ai image generation" />

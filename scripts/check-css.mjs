@@ -1,5 +1,5 @@
 // Fail if any class used in a template has no rule in the committed CSS
-// artifacts (src/globals.css + public/wc/*.css). The CSS is precompiled
+// artifacts (public/globals.css + public/wc/*.css). The CSS is precompiled
 // (no build step), so this is the guard against silently-losing styles:
 // add a class to a template -> run `npm run check:css` -> add the CSS by hand.
 // Extracts tokens only from `class=` attribute positions (lit static
@@ -129,7 +129,7 @@ const ALLOWLIST = new Set([
   'pointer', 'progress-bar', 'regional-edit', 'group/user-att',
 ]);
 
-const ARTIFACTS = ['src/globals.css', 'public/wc/shell.css', 'public/wc/studio.css', 'public/wc/agents.css', 'public/wc/design.css'];
+const ARTIFACTS = ['public/globals.css', 'public/wc/shell.css', 'public/wc/studio.css', 'public/wc/agents.css', 'public/wc/design.css'];
 const defined = new Set();
 for (const f of ARTIFACTS) {
   const p = path.join(ROOT, f);
@@ -156,7 +156,7 @@ const missing = [...used.entries()]
 if (missing.length) {
   console.error(`check:css: ${missing.length} class(es) used in templates but missing from committed CSS:`);
   for (const [t, files] of missing) console.error(`  ${t}  (${files.join(', ')})`);
-  console.error('\nAdd the missing rules to src/globals.css or the matching public/wc/<sheet>.css');
+  console.error('\nAdd the missing rules to public/globals.css or the matching public/wc/<sheet>.css');
   console.error('(or justify an entry in ALLOWLIST above if it is intentionally unstyled).');
   process.exit(1);
 }

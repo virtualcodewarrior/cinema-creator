@@ -229,8 +229,10 @@ export async function serveFrontend(request: Request, config: { dataDir: string 
     if (ext === "html") {
       cacheControl = "no-cache, no-store, must-revalidate";
     } else if (ext === "js" || ext === "css") {
-      // Next.js static assets have hashes in names, safe to cache long
-      cacheControl = "public, max-age=31536000, immutable";
+      // Unbundled build ships unhashed source files: immutable caching would
+      // pin stale modules, so revalidate every load (revalidation is cheap on
+      // the self-hosted LAN).
+      cacheControl = "no-cache";
     }
 
     return new Response(file.readable, {
