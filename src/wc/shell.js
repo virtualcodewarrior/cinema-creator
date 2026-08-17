@@ -18,10 +18,12 @@ import './studio/studio-recast.js';
 import './studio/studio-cinema.js';
 import './studio/studio-image.js';
 import './studio/studio-video.js';
+import './studio/studio-layers.js';
 
 // P3: studios flipped to native web components map to an element tag; they
 // render into #studio-outlet instead of the React root below.
 const NATIVE_STUDIOS = {
+  layers: 'studio-layers',
   apps: 'studio-apps',
   audio: 'studio-audio',
   marketing: 'studio-marketing',
