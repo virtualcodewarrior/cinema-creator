@@ -19,6 +19,7 @@ import './studio/studio-cinema.js';
 import './studio/studio-image.js';
 import './studio/studio-video.js';
 import './studio/studio-layers.js';
+import './studio/studio-design.js';
 
 // P3: studios flipped to native web components map to an element tag; they
 // render into #studio-outlet instead of the React root below.
@@ -36,6 +37,7 @@ const NATIVE_STUDIOS = {
   cinema: 'studio-cinema',
   image: 'studio-image',
   video: 'studio-video',
+  design: 'studio-design',
 };
 
 import ImageStudio from '../../packages/studio/src/components/ImageStudio';
@@ -136,14 +138,14 @@ export class AppShell extends BaseElement {
     this._studioRoot = null;
   }
 
-  setStudio(name) {
+  setStudio(name, search) {
     const next = STUDIO_COMPONENTS[name] ? name : 'image';
     if (!this.hasUpdated) {
       this.studio = next;
       return;
     }
     if (next !== this.studio) this.studio = next;
-    this._renderStudio(this.studio);
+    this._renderStudio(this.studio, search);
   }
 
   firstUpdated() {
@@ -160,11 +162,19 @@ export class AppShell extends BaseElement {
     this._outlet = null;
   }
 
-  _renderStudio(name) {
+  _renderStudio(name, search) {
     if (!this._outlet) return;
     const tag = NATIVE_STUDIOS[name];
     if (tag) {
       // Native path: no React root involved.
+      const existing = this._outlet.firstElementChild;
+      if (existing && existing.tagName.toLowerCase() === tag) {
+        // Same native studio already mounted: forward search-only navigations
+        // (?session=… in the design agent) to the element instead of
+        // remounting — the React path reconciles on re-render.
+        existing.setSearch?.(search ?? window.location.search);
+        return;
+      }
       if (this._studioRoot) {
         this._studioRoot.unmount();
         this._studioRoot = null;
@@ -172,6 +182,7 @@ export class AppShell extends BaseElement {
       this._outlet.replaceChildren();
       const el = document.createElement(tag);
       this._outlet.appendChild(el);
+      el.setSearch?.(search ?? window.location.search);
       return;
     }
     const Studio = STUDIO_COMPONENTS[name] ?? ImageStudio;

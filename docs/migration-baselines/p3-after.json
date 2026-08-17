@@ -522,8 +522,8 @@
     "dom": {
       "title": "Open Generative AI — Free Open-Source AI Image and Video Studio",
       "rootChildren": 1,
-      "shadowRoots": 2,
-      "text": "AI Cinema Self-Hosted Studio 🎨Image 🎬Video 🎥Cinema 👄Lip Sync 🔗Workflow 🤖Agents 📦Apps 🎵Audio 📢Marketing 🎭Recast 💃Motion ✂️Clipping 🖼️Layers ✏️Design ⭐Influencer ⚙️Settings Design Agent StudioNo previous sessionsTotal Sessions0New Session$ 0.00UUserBronze$ 0.00 availableSupportDark Mode100%-+ Creative AgentAuto Model • Multi-tool AccessToday Agent19:49Hello User — what shall we create today?",
+      "shadowRoots": 4,
+      "text": "AI Cinema Self-Hosted Studio 🎨Image 🎬Video 🎥Cinema 👄Lip Sync 🔗Workflow 🤖Agents 📦Apps 🎵Audio 📢Marketing 🎭Recast 💃Motion ✂️Clipping 🖼️Layers ✏️Design ⭐Influencer ⚙️Settings Design Agent Studio No previous sessions Total Sessions 0 New Session $ 0.00 U User Bronze $ 0.00 available Support Dark Mode 100% - + Creative Agent Auto Model • Multi-tool Access Today Agent 08:35 Hello User — what shall we create today?",
       "buttons": [
         "🎨Image",
         "🎬Video",
@@ -551,7 +551,7 @@
       "canvases": 1
     },
     "errors": [
-      "console.error: Failed to fetch skills: AxiosError: Request failed with status code 404\n    at settle (http://localhost:5173/node_modules/.vite/deps/axios.js?v=a45c682e:1358:7)\n    at XMLHttpRequest.onloadend (http://localhost:5173/node_modules/.vite/deps/axios.js?v=a45c682e:1742:7)"
+      "console.error: Failed to fetch skills: Error: Request failed with status code 404\n    at StudioDesign._api (http://localhost:5173/src/wc/studio/studio-design.js?t=1786970045260:354:19)\n    at async StudioDesign.fetchSkills (http://localhost:5173/src/wc/studio/studio-design.js?t=1786970045260:378:20)"
     ]
   },
   "/studio/influencer": {

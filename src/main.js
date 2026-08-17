@@ -19,14 +19,14 @@ function rootEl() {
   return document.getElementById('root');
 }
 
-function renderShell(studio) {
+function renderShell(studio, search = window.location.search) {
   const root = rootEl();
   if (!shell || !root.contains(shell)) {
     shell = document.createElement('app-shell');
     root.innerHTML = '';
     root.appendChild(shell);
   }
-  shell.setStudio(studio);
+  shell.setStudio(studio, search);
 }
 
 // Mount a native agents web component in #root (full page, no shell sidebar).
@@ -46,7 +46,7 @@ function renderAgent(tag, props = {}) {
 route('/', () => renderShell('image'));
 route('/workflow', () => renderShell('image'));
 route('/workflow/*', () => renderShell('image'));
-route('/studio/:name', (p) => renderShell(p.name));
+route('/studio/:name', (p) => renderShell(p.name, p.search));
 route('/agents/create', () => renderAgent('agent-create'));
 route('/agents/edit/:id', (p) => renderAgent('agent-edit', { agentId: p.id }));
 // Must be registered before the conversation route: '/agents/x/profile' must
