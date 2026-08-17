@@ -854,7 +854,7 @@ export class StudioMotion extends BaseElement {
                     </button>
                     ${this.openDropdown === 'source'
                       ? html`
-                          <prompt-popover class="w-64">
+                          <prompt-popover .className=${'w-64'}>
                             ${promptPopoverHeader('Source Generation')}
                             <div class="flex flex-col gap-1">
                               ${sources.map(

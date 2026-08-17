@@ -447,8 +447,8 @@
     "dom": {
       "title": "Open Generative AI \u2014 Free Open-Source AI Image and Video Studio",
       "rootChildren": 1,
-      "shadowRoots": 2,
-      "text": "AI Cinema Self-Hosted Studio \ud83c\udfa8Image \ud83c\udfacVideo \ud83c\udfa5Cinema \ud83d\udc44Lip Sync \ud83d\udd17Workflow \ud83e\udd16Agents \ud83d\udce6Apps \ud83c\udfb5Audio \ud83d\udce2Marketing \ud83c\udfadRecast \ud83d\udc83Motion \u2702\ufe0fClipping \ud83d\uddbc\ufe0fLayers \u270f\ufe0fDesign \u2b50Influencer \u2699\ufe0fSettings START CREATING WITHAI CLIPPING STUDIOExtract viral highlights and precise timings from your videos automatically.CAI Clipping9:163 HighlightsCoordinates OnlyGenerate \u2726 5",
+      "shadowRoots": 8,
+      "text": "AI Cinema Self-Hosted Studio \ud83c\udfa8Image \ud83c\udfacVideo \ud83c\udfa5Cinema \ud83d\udc44Lip Sync \ud83d\udd17Workflow \ud83e\udd16Agents \ud83d\udce6Apps \ud83c\udfb5Audio \ud83d\udce2Marketing \ud83c\udfadRecast \ud83d\udc83Motion \u2702\ufe0fClipping \ud83d\uddbc\ufe0fLayers \u270f\ufe0fDesign \u2b50Influencer \u2699\ufe0fSettings START CREATING WITH AI CLIPPING STUDIO Extract viral highlights and precise timings from your videos automatically. C AI Clipping 9:16 3 Highlights Coordinates Only Generate \u2726 5",
       "buttons": [
         "\ud83c\udfa8Image",
         "\ud83c\udfacVideo",
@@ -475,10 +475,7 @@
       "videos": 0,
       "canvases": 0
     },
-    "errors": [
-      "console.error: Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s=\"%s\" or %s={value.toString()}. true jsx jsx true jsx",
-      "console.error: Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s=\"%s\" or %s={value.toString()}. true global global true global"
-    ]
+    "errors": []
   },
   "/studio/layers": {
     "dom": {
