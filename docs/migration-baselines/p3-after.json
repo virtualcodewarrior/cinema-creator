@@ -214,8 +214,8 @@
     "dom": {
       "title": "Open Generative AI \u2014 Free Open-Source AI Image and Video Studio",
       "rootChildren": 1,
-      "shadowRoots": 2,
-      "text": "AI Cinema Self-Hosted Studio \ud83c\udfa8Image \ud83c\udfacVideo \ud83c\udfa5Cinema \ud83d\udc44Lip Sync \ud83d\udd17Workflow \ud83e\udd16Agents \ud83d\udce6Apps \ud83c\udfb5Audio \ud83d\udce2Marketing \ud83c\udfadRecast \ud83d\udc83Motion \u2702\ufe0fClipping \ud83d\uddbc\ufe0fLayers \u270f\ufe0fDesign \u2b50Influencer \u2699\ufe0fSettings Agentstemplatesmy agentsmy chats+Create",
+      "shadowRoots": 3,
+      "text": "AI Cinema Self-Hosted Studio \ud83c\udfa8Image \ud83c\udfacVideo \ud83c\udfa5Cinema \ud83d\udc44Lip Sync \ud83d\udd17Workflow \ud83e\udd16Agents \ud83d\udce6Apps \ud83c\udfb5Audio \ud83d\udce2Marketing \ud83c\udfadRecast \ud83d\udc83Motion \u2702\ufe0fClipping \ud83d\uddbc\ufe0fLayers \u270f\ufe0fDesign \u2b50Influencer \u2699\ufe0fSettings Agents templates my agents my chats +Create",
       "buttons": [
         "\ud83c\udfa8Image",
         "\ud83c\udfacVideo",
