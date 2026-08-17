@@ -13,6 +13,8 @@
 import { html, nothing } from 'lit';
 import { BaseElement } from '../../lib/wc-base.js';
 import { t2vModels, i2vModels, v2vModels } from 'studio/models.js';
+import { matchesOrigin } from 'studio/modelOrigin.js';
+import { modelOriginBadge, originFilterPills } from './origin-filter.js';
 
 const PROVIDER_LOGOS = {
   openai: '/assets/models/openai.png',
@@ -124,6 +126,7 @@ export class VideoModelDropdown extends BaseElement {
     search: { state: true },
     selectedCategory: { state: true },
     selectedProvider: { state: true },
+    selectedOrigin: { state: true },
   };
 
   constructor() {
@@ -131,6 +134,13 @@ export class VideoModelDropdown extends BaseElement {
     this.selectedModel = '';
     this.search = '';
     this.selectedCategory = 'all';
+    this.selectedProvider = 'all';
+    this.selectedOrigin = 'all';
+  }
+
+  setOrigin(origin) {
+    if (origin === this.selectedOrigin) return;
+    this.selectedOrigin = origin;
     this.selectedProvider = 'all';
   }
 
@@ -144,10 +154,14 @@ export class VideoModelDropdown extends BaseElement {
     return MODEL_CATEGORIES.find((c) => c.id === this.selectedCategory) || MODEL_CATEGORIES[0];
   }
 
+  get originEntries() {
+    return this.activeCategory.entries.filter(({ model: m }) => matchesOrigin(m, this.selectedOrigin));
+  }
+
   get availableProviders() {
     const out = [];
     const seen = new Set();
-    this.activeCategory.entries.forEach(({ model: m }) => {
+    this.originEntries.forEach(({ model: m }) => {
       const pId = m.provider || 'self-hosted';
       const pName = m.provider_name || 'Muapi';
       if (!seen.has(pId)) {
@@ -168,7 +182,7 @@ export class VideoModelDropdown extends BaseElement {
       }
       return m.name.toLowerCase().includes(query) || m.id.toLowerCase().includes(query);
     };
-    const matches = this.activeCategory.entries.filter(filterFn);
+    const matches = this.originEntries.filter(filterFn);
     return {
       main: matches.filter(({ category }) => category !== 'v2v'),
       v2v: matches.filter(({ category }) => category === 'v2v'),
@@ -213,7 +227,9 @@ export class VideoModelDropdown extends BaseElement {
                   ' border rounded-xl flex items-center justify-center font-black text-xs shadow-inner uppercase'}
               >${m.name.charAt(0)}</div>`}
           <div class="flex flex-col gap-0.5 min-w-0">
-            <span class="text-xs font-bold text-white tracking-tight truncate">${m.name}</span>${
+            <span class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-bold text-white tracking-tight truncate">${m.name}</span>${modelOriginBadge(m)}
+            </span>${
               isV2V
                 ? html`<span class="text-[9px] text-orange-400/70">${
                     m.imageField ? 'Upload a video and image' : 'Upload a video to use'
@@ -325,13 +341,20 @@ export class VideoModelDropdown extends BaseElement {
             </div>
           </div>
 
-          <div class="text-xs font-bold text-secondary px-2 py-1 shrink-0 flex items-center justify-between">
-            <span>${this.activeCategory.label} models</span>${this.selectedProvider !== 'all'
+          <div class="text-xs font-bold text-secondary px-2 py-1 shrink-0 flex items-center justify-between gap-2">
+            <span class="min-w-0 truncate">${
+              this.selectedOrigin === 'local'
+                ? 'Local models'
+                : this.selectedOrigin === 'api'
+                  ? 'API (3rd party) models'
+                  : `${this.activeCategory.label} models`
+            }</span>
+            <div class="flex items-center gap-2 shrink-0">${this.selectedProvider !== 'all'
               ? html`<span class="text-[10px] bg-white/5 px-2 py-0.5 rounded text-white/60">${
                   providers.find((p) => p.id === this.selectedProvider)?.name ||
                   this.selectedProvider
                 }</span>`
-              : nothing}
+              : nothing}${originFilterPills(this.selectedOrigin, (o) => this.setOrigin(o))}</div>
           </div>
 
           <div class="flex flex-col gap-1.5 overflow-y-auto custom-scrollbar pr-1 pb-2 flex-1">

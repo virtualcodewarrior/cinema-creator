@@ -33,6 +33,8 @@ import {
   videoLipSyncModels,
   getResolutionsForLipSyncModel,
 } from 'studio/models.js';
+import { matchesOrigin } from 'studio/modelOrigin.js';
+import { modelOriginBadge, originFilterPills } from './origin-filter.js';
 import {
   GenerationCopyButtons,
   MobileGenerationActions,
@@ -141,6 +143,7 @@ export class StudioLipSync extends BaseElement {
     activeHistoryIdx: { state: true },
     internalHistory: { state: true },
     openDropdown: { state: true },
+    modelOriginFilter: { state: true },
   };
 
   static styles = [
@@ -186,6 +189,7 @@ export class StudioLipSync extends BaseElement {
 
     this.internalHistory = [];
     this.openDropdown = null;
+    this.modelOriginFilter = 'all';
 
     this._persistKey = null;
     this._saveTimer = null;
@@ -678,8 +682,9 @@ export class StudioLipSync extends BaseElement {
   }
 
   renderComposer() {
-    const currentModels =
-      this.inputMode === 'image' ? imageLipSyncModels : videoLipSyncModels;
+    const currentModels = (
+      this.inputMode === 'image' ? imageLipSyncModels : videoLipSyncModels
+    ).filter((m) => matchesOrigin(m, this.modelOriginFilter));
     const selectedModel = lipsyncModels.find(
       (m) => m.id === this.selectedModelId,
     );
@@ -796,21 +801,26 @@ export class StudioLipSync extends BaseElement {
                       @click=${(e) => e.stopPropagation()}
                     >
                       ${promptPopoverHeader('Model')}
-                      ${promptMenuList(html`
-                        ${currentModels.map((item) =>
-                          promptMenuItem({
-                            children: item.name,
-                            description: item.description
-                              ? `${item.description.slice(0, 60)}${item.description.length > 60 ? '...' : ''}`
-                              : undefined,
-                            selected: item.id === this.selectedModelId,
-                            onClick: () => {
-                              this.handleModelSelect(item);
-                              this.openDropdown = null;
-                            },
-                          }),
-                        )}
-                      `)}
+                      <div class="px-1 pb-2">${originFilterPills(this.modelOriginFilter, (o) => (this.modelOriginFilter = o))}</div>
+                      ${currentModels.length === 0
+                        ? html`<div class="text-xs text-white/30 text-center py-4">No models found</div>`
+                        : promptMenuList(html`
+                            ${currentModels.map((item) =>
+                              promptMenuItem({
+                                children: html`<span class="flex items-center gap-1.5 min-w-0">
+                                  <span class="truncate">${item.name}</span>${modelOriginBadge(item)}
+                                </span>`,
+                                description: item.description
+                                  ? `${item.description.slice(0, 60)}${item.description.length > 60 ? '...' : ''}`
+                                  : undefined,
+                                selected: item.id === this.selectedModelId,
+                                onClick: () => {
+                                  this.handleModelSelect(item);
+                                  this.openDropdown = null;
+                                },
+                              }),
+                            )}
+                          `)}
                     </prompt-popover>
                   `
                 : nothing}

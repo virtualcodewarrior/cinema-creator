@@ -31,6 +31,8 @@ import {
   getRecastModelById,
   getAspectRatiosForRecastModel,
 } from 'studio/models.js';
+import { matchesOrigin } from 'studio/modelOrigin.js';
+import { modelOriginBadge, originFilterPills } from './origin-filter.js';
 import {
   GenerationCopyButtons,
   MobileGenerationActions,
@@ -123,6 +125,7 @@ export class StudioRecast extends BaseElement {
     fullscreenUrl: { state: true },
     internalHistory: { state: true },
     openDropdown: { state: true },
+    modelOriginFilter: { state: true },
   };
 
   static styles = [
@@ -168,6 +171,7 @@ export class StudioRecast extends BaseElement {
 
     this.internalHistory = [];
     this.openDropdown = null;
+    this.modelOriginFilter = 'all';
 
     this._persistKey = null;
     this._saveTimer = null;
@@ -789,19 +793,26 @@ export class StudioRecast extends BaseElement {
                   @click=${(e) => e.stopPropagation()}
                 >
                   ${promptPopoverHeader('Model')}
-                  ${promptMenuList(html`
-                    ${recastModels.map((item) =>
-                      promptMenuItem({
-                        children: item.name,
-                        description: item.description?.slice(0, 75),
-                        selected: item.id === this.selectedModelId,
-                        onClick: () => {
-                          this.handleModelSelect(item);
-                          this.openDropdown = null;
-                        },
-                      }),
-                    )}
-                  `)}
+                  <div class="px-1 pb-2">
+                    ${originFilterPills(this.modelOriginFilter, (o) => (this.modelOriginFilter = o))}
+                  </div>
+                  ${recastModels.filter((m) => matchesOrigin(m, this.modelOriginFilter)).length === 0
+                    ? html`<div class="text-xs text-white/30 text-center py-4">No models found</div>`
+                    : promptMenuList(html`
+                        ${recastModels.filter((m) => matchesOrigin(m, this.modelOriginFilter)).map((item) =>
+                          promptMenuItem({
+                            children: html`<span class="flex items-center gap-1.5 min-w-0">
+                              <span class="truncate">${item.name}</span>${modelOriginBadge(item)}
+                            </span>`,
+                            description: item.description?.slice(0, 75),
+                            selected: item.id === this.selectedModelId,
+                            onClick: () => {
+                              this.handleModelSelect(item);
+                              this.openDropdown = null;
+                            },
+                          }),
+                        )}
+                      `)}
                 </prompt-popover>
               `,
               'w-80 max-w-[calc(100vw-2rem)]',

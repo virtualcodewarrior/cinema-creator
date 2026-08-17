@@ -13,6 +13,8 @@ import { generateAudio, uploadFile } from 'studio/muapi.js';
 import { formatErrorMessage } from 'studio/utils/formatError.js';
 import { scopedPersistKey, migrateLegacyPersistKey } from 'studio/persistKey.js';
 import { audioModels, getAudioModelById } from 'studio/models.js';
+import { matchesOrigin } from 'studio/modelOrigin.js';
+import { modelOriginBadge, originFilterPills } from './origin-filter.js';
 
 const svg = (markup) => unsafeHTML(markup);
 
@@ -85,6 +87,7 @@ export class StudioAudio extends BaseElement {
     view: { state: true },
     internalHistory: { state: true },
     activeHistoryIdx: { state: true },
+    modelOriginFilter: { state: true },
   };
 
   static styles = [
@@ -112,6 +115,7 @@ export class StudioAudio extends BaseElement {
     // History state
     this.internalHistory = [];
     this.activeHistoryIdx = 0;
+    this.modelOriginFilter = 'all';
 
     this.apiKey = '';
     this.onGenerationStart = null;
@@ -429,30 +433,35 @@ export class StudioAudio extends BaseElement {
                 ? html`<div
                     class="absolute left-0 right-0 mt-2 z-50 bg-[#161618] border border-zinc-700 rounded shadow-3xl max-h-60 overflow-y-auto custom-scrollbar p-1.5"
                   >
-                    ${audioModels.map(
-                      (m) => html`
-                        <button
-                          type="button"
-                          @click=${() => {
-                            this.selectedModelId = m.id;
-                            this.openDropdown = false;
-                          }}
-                          class="w-full text-left px-4 py-2.5 rounded text-xs font-bold transition-all flex flex-col gap-1.5 border ${
-                            m.id === this.selectedModelId
-                              ? 'text-primary bg-primary/10 border-primary/20'
-                              : 'text-zinc-200 border-transparent hover:bg-zinc-900 hover:text-white'
-                          }"
-                        >
-                          <span>${m.name}</span>
-                          ${m.description
-                            ? html`<span
-                                class="text-[10px] text-zinc-300 truncate max-w-[320px] font-normal"
-                                >${m.description}</span
-                              >`
-                            : nothing}
-                        </button>
-                      `,
-                    )}
+                    <div class="px-1.5 pb-2 pt-0.5">${originFilterPills(this.modelOriginFilter, (o) => (this.modelOriginFilter = o))}</div>
+                    ${audioModels.filter((m) => matchesOrigin(m, this.modelOriginFilter)).length === 0
+                      ? html`<div class="text-xs text-white/30 text-center py-4">No models found</div>`
+                      : audioModels.filter((m) => matchesOrigin(m, this.modelOriginFilter)).map(
+                          (m) => html`
+                            <button
+                              type="button"
+                              @click=${() => {
+                                this.selectedModelId = m.id;
+                                this.openDropdown = false;
+                              }}
+                              class="w-full text-left px-4 py-2.5 rounded text-xs font-bold transition-all flex flex-col gap-1.5 border ${
+                                m.id === this.selectedModelId
+                                  ? 'text-primary bg-primary/10 border-primary/20'
+                                  : 'text-zinc-200 border-transparent hover:bg-zinc-900 hover:text-white'
+                              }"
+                            >
+                              <span class="flex items-center gap-1.5 min-w-0">
+                                <span class="truncate">${m.name}</span>${modelOriginBadge(m)}
+                              </span>
+                              ${m.description
+                                ? html`<span
+                                    class="text-[10px] text-zinc-300 truncate max-w-[320px] font-normal"
+                                    >${m.description}</span
+                                  >`
+                                : nothing}
+                            </button>
+                          `,
+                        )}
                   </div>`
                 : nothing}
             </div>

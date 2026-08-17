@@ -12,6 +12,8 @@
 import { html, nothing } from 'lit';
 import { BaseElement } from '../../lib/wc-base.js';
 import { t2iModels, i2iModels } from 'studio/models.js';
+import { matchesOrigin } from 'studio/modelOrigin.js';
+import { modelOriginBadge, originFilterPills } from './origin-filter.js';
 
 const PROVIDER_LOGOS = {
   openai: '/assets/models/openai.png',
@@ -109,6 +111,7 @@ export class ImageModelDropdown extends BaseElement {
     search: { state: true },
     selectedCategory: { state: true },
     selectedProvider: { state: true },
+    selectedOrigin: { state: true },
   };
 
   constructor() {
@@ -116,6 +119,13 @@ export class ImageModelDropdown extends BaseElement {
     this.selectedModel = '';
     this.search = '';
     this.selectedCategory = 'all';
+    this.selectedProvider = 'all';
+    this.selectedOrigin = 'all';
+  }
+
+  setOrigin(origin) {
+    if (origin === this.selectedOrigin) return;
+    this.selectedOrigin = origin;
     this.selectedProvider = 'all';
   }
 
@@ -129,10 +139,14 @@ export class ImageModelDropdown extends BaseElement {
     return MODEL_CATEGORIES.find((c) => c.id === this.selectedCategory) || MODEL_CATEGORIES[0];
   }
 
+  get originEntries() {
+    return this.activeCategory.entries.filter(({ model: m }) => matchesOrigin(m, this.selectedOrigin));
+  }
+
   get availableProviders() {
     const out = [];
     const seen = new Set();
-    this.activeCategory.entries.forEach(({ model: m }) => {
+    this.originEntries.forEach(({ model: m }) => {
       const pId = m.provider || 'self-hosted';
       const pName = m.provider_name || 'Muapi';
       if (!seen.has(pId)) {
@@ -146,7 +160,7 @@ export class ImageModelDropdown extends BaseElement {
   get filtered() {
     const query = this.search.toLowerCase();
     const provider = this.selectedProvider;
-    return this.activeCategory.entries.filter(({ model: m }) => {
+    return this.originEntries.filter(({ model: m }) => {
       if (provider !== 'all') {
         const pId = m.provider || 'self-hosted';
         if (pId !== provider) return false;
@@ -254,13 +268,20 @@ export class ImageModelDropdown extends BaseElement {
             </div>
           </div>
 
-          <div class="text-xs font-semibold text-secondary py-1 shrink-0 flex items-center justify-between">
-            <span>${this.activeCategory.label} models</span>${this.selectedProvider !== 'all'
+          <div class="text-xs font-semibold text-secondary py-1 shrink-0 flex items-center justify-between gap-2">
+            <span class="min-w-0 truncate">${
+              this.selectedOrigin === 'local'
+                ? 'Local models'
+                : this.selectedOrigin === 'api'
+                  ? 'API (3rd party) models'
+                  : `${this.activeCategory.label} models`
+            }</span>
+            <div class="flex items-center gap-2 shrink-0">${this.selectedProvider !== 'all'
               ? html`<span class="text-[10px] bg-white/5 px-2 py-0.5 rounded text-white/60">${
                   providers.find((p) => p.id === this.selectedProvider)?.name ||
                   this.selectedProvider
                 }</span>`
-              : nothing}
+              : nothing}${originFilterPills(this.selectedOrigin, (o) => this.setOrigin(o))}</div>
           </div>
 
           <div class="flex flex-col gap-1.5 overflow-y-auto custom-scrollbar pr-1 pb-2 flex-1">
@@ -299,7 +320,10 @@ export class ImageModelDropdown extends BaseElement {
                                  ' border rounded-full flex items-center justify-center font-bold text-xs shadow-inner uppercase'}
                              >${m.name.charAt(0)}</div>`}
                         <div class="flex flex-col gap-0.5 min-w-0">
-                          <span class="text-xs font-bold text-white tracking-tight truncate">${m.name}</span>${
+                          <span class="flex items-center gap-1.5 min-w-0">
+                            <span class="text-xs font-bold text-white tracking-tight truncate">${m.name}</span
+                            >${modelOriginBadge(m)}
+                          </span>${
                             this.selectedProvider === 'all' && m.provider_name
                               ? html`<span class="text-[9px] text-white/40">${m.provider_name}</span>`
                               : nothing

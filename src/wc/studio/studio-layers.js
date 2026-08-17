@@ -28,6 +28,8 @@ import {
   expandImage,
 } from 'studio/muapi.js';
 import { formatErrorMessage } from 'studio/utils/formatError.js';
+import { matchesOrigin } from 'studio/modelOrigin.js';
+import { modelOriginBadge, originFilterPills } from './origin-filter.js';
 
 // Upscale Models Definition from schema_data.json
 const UPSCALE_MODELS = [
@@ -150,6 +152,7 @@ export class StudioLayers extends BaseElement {
     isModelDropdownOpen: { state: true },
     topazFactor: { state: true },
     seedvrResolution: { state: true },
+    modelOriginFilter: { state: true },
 
     colorGrading: { state: true },
     openSections: { state: true },
@@ -218,6 +221,7 @@ export class StudioLayers extends BaseElement {
     this.isModelDropdownOpen = false;
     this.topazFactor = 1;
     this.seedvrResolution = '4k';
+    this.modelOriginFilter = 'all';
 
     // Color Grading State (Individual Category Resets, No Toggles)
     this.colorGrading = structuredClone(DEFAULT_COLOR_GRADING);
@@ -2963,33 +2967,38 @@ export class StudioLayers extends BaseElement {
                 <div
                   class="absolute top-full left-0 right-0 mt-2 bg-[#1f222b] border border-white/10 rounded-2xl p-1.5 shadow-2xl z-50 space-y-1"
                 >
-                  ${UPSCALE_MODELS.map(
-                    (opt) => html`
-                      <button
-                        @click=${() => {
-                          this.upscaleModel = opt.id;
-                          this.isModelDropdownOpen = false;
-                        }}
-                        class="w-full p-2.5 rounded-xl text-left flex flex-col transition-all ${
-                          this.upscaleModel === opt.id
-                            ? 'bg-[#343946] text-white'
-                            : 'text-white/70 hover:bg-white/5 hover:text-white'
-                        }"
-                      >
-                        <div class="flex items-center justify-between">
-                          <span class="text-xs font-bold text-white"
-                            >${opt.name}</span
+                  <div class="px-1 pt-0.5 pb-1">${originFilterPills(this.modelOriginFilter, (o) => (this.modelOriginFilter = o))}</div>
+                  ${UPSCALE_MODELS.filter((m) => matchesOrigin(m, this.modelOriginFilter)).length === 0
+                    ? html`<div class="text-xs text-white/30 text-center py-4">No models found</div>`
+                    : UPSCALE_MODELS.filter((m) => matchesOrigin(m, this.modelOriginFilter)).map(
+                        (opt) => html`
+                          <button
+                            @click=${() => {
+                              this.upscaleModel = opt.id;
+                              this.isModelDropdownOpen = false;
+                            }}
+                            class="w-full p-2.5 rounded-xl text-left flex flex-col transition-all ${
+                              this.upscaleModel === opt.id
+                                ? 'bg-[#343946] text-white'
+                                : 'text-white/70 hover:bg-white/5 hover:text-white'
+                            }"
                           >
-                          <span class="text-[10px] font-bold text-[#a3e635]">
-                            ${opt.cost} credits
-                          </span>
-                        </div>
-                        <span class="text-[10px] text-white/40">
-                          ${opt.subtitle}
-                        </span>
-                      </button>
-                    `,
-                  )}
+                            <div class="flex items-center justify-between gap-2">
+                              <span class="flex items-center gap-1.5 min-w-0">
+                                <span class="text-xs font-bold text-white truncate">
+                                  ${opt.name}
+                                </span>${modelOriginBadge(opt)}
+                              </span>
+                              <span class="text-[10px] font-bold text-[#a3e635] shrink-0">
+                                ${opt.cost} credits
+                              </span>
+                            </div>
+                            <span class="text-[10px] text-white/40">
+                              ${opt.subtitle}
+                            </span>
+                          </button>
+                        `,
+                      )}
                 </div>
               `
               : nothing}
