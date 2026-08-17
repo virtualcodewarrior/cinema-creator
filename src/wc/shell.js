@@ -14,6 +14,7 @@ import './studio/studio-influencer.js';
 import './studio/studio-agents.js';
 import './studio/studio-clipping.js';
 import './studio/studio-lipsync.js';
+import './studio/studio-recast.js';
 
 // P3: studios flipped to native web components map to an element tag; they
 // render into #studio-outlet instead of the React root below.
@@ -26,6 +27,7 @@ const NATIVE_STUDIOS = {
   agents: 'studio-agents',
   clipping: 'studio-clipping',
   lipsync: 'studio-lipsync',
+  recast: 'studio-recast',
 };
 
 import ImageStudio from '../../packages/studio/src/components/ImageStudio';
