@@ -17,6 +17,7 @@ import './studio/studio-lipsync.js';
 import './studio/studio-recast.js';
 import './studio/studio-cinema.js';
 import './studio/studio-image.js';
+import './studio/studio-video.js';
 
 // P3: studios flipped to native web components map to an element tag; they
 // render into #studio-outlet instead of the React root below.
@@ -32,6 +33,7 @@ const NATIVE_STUDIOS = {
   recast: 'studio-recast',
   cinema: 'studio-cinema',
   image: 'studio-image',
+  video: 'studio-video',
 };
 
 import ImageStudio from '../../packages/studio/src/components/ImageStudio';
